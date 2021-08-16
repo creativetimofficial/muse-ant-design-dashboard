@@ -1,0 +1,34 @@
+.copyright {
+	color: #8c8c8c;
+	margin-top: 7px;
+  }
+  .copyright .anticon-heart {
+  
+	margin: 0px 5px;
+  }
+  .copyright a {
+	margin: 0px 5px;
+	color: #141414;
+	font-weight: 700;
+  }
+  .footer-menu ul {
+	margin: 0px;
+	padding: 0px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+  }
+  
+  .footer-menu ul li {
+	list-style: none;
+  }
+  .footer-menu ul li a {
+	padding: 0.5rem 1rem;
+	display: block;
+	color: #8c8c8c;
+  }
+  span.ismobile {
+	display: none;
+	margin-right: 15px;
+	cursor: pointer;
+  }

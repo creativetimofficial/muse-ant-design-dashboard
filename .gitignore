@@ -1,23 +1,67 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
-
-# testing
-/coverage
-
-# production
-/build
-
-# misc
+*.iml
+.idea/
+.ipr
+.iws
+*~
+~*
+*.diff
+*.patch
+*.bak
 .DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+Thumbs.db
+.project
+.*proj
+.svn/
+*.swp
+*.swo
+*.log
+*.log.*
+*.json.gzip
+node_modules/
+.buildpath
+.settings
+npm-debug.log
+nohup.out
+_site
+_data
+dist
+report.html
+/lib
+/es
+elasticsearch-*
+config/base.yaml
+/.vscode/
+/coverage
+yarn.lock
+package-lock.json
+components/**/*.js
+components/**/*.jsx
+!components/**/__tests__/**/*.js
+!components/**/__tests__/**/*.js.snap
+/.history
+*.tmp
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# Docs templates
+site/theme/template/Color/ColorPicker.jsx
+site/theme/template/IconDisplay/*.js
+site/theme/template/IconDisplay/*.jsx
+site/theme/template/IconDisplay/fields.js
+site/theme/template/Home/**/*.jsx
+site/theme/template/utils.jsx
+site/theme/template/Layout/Footer.jsx
+site/theme/template/Layout/Header/**/*.jsx
+site/theme/template/Layout/SiteContext.jsx
+site/theme/template/Content/Article.jsx
+site/theme/template/Content/EditButton.jsx
+site/theme/template/Resources/*.jsx
+site/theme/template/Resources/**/*.jsx
+site/theme/template/NotFound.jsx
+scripts/previewEditor/index.html
+components/version/version.tsx
+
+# Image snapshot diff
+__diff_output__/
+__image_snapshots__/
+/jest-stare
+/imageSnapshots
+/imageDiffSnapshots
