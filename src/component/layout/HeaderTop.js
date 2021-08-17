@@ -1,5 +1,16 @@
-import React, { Component } from "react";
-import avtar from "../images/team-2.jpg";
+/*!
+=========================================================
+* Muse Ant Design Dashboard - v1.0.0
+=========================================================
+* Product Page: https://www.creative-tim.com/product/muse-ant-design-dashboard
+* Copyright 2021 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://github.com/creativetimofficial/muse-ant-design-dashboard/blob/main/LICENSE.md)
+* Coded by Creative Tim
+=========================================================
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+*/
+import React, { Component } from 'react';
+import avtar from '../images/team-2.jpg';
 import {
   Row,
   Col,
@@ -13,16 +24,16 @@ import {
   Drawer,
   Typography,
   Switch,
-} from "antd";
+} from 'antd';
 import {
   SearchOutlined,
   StarOutlined,
   TwitterOutlined,
   FacebookFilled,
-} from "@ant-design/icons";
+} from '@ant-design/icons';
 
-import { NavLink, Link } from "react-router-dom";
-import styled from "styled-components";
+import { NavLink, Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 const ButtonContainer = styled.div`
   .ant-btn-primary {
@@ -129,19 +140,19 @@ const clockicon = [
 ];
 const data = [
   {
-    title: "New message from Sophie",
+    title: 'New message from Sophie',
     description: <>{clockicon} 2 days ago</>,
 
     avatar: avtar,
   },
   {
-    title: "New album by Travis Scott",
+    title: 'New album by Travis Scott',
     description: <>{clockicon} 2 days ago</>,
 
     avatar: <Avatar shape="square">{wifi}</Avatar>,
   },
   {
-    title: "Payment completed",
+    title: 'Payment completed',
     description: <>{clockicon} 2 days ago</>,
     avatar: <Avatar shape="square">{credit}</Avatar>,
   },
@@ -232,7 +243,7 @@ export default class HeaderTop extends Component {
     this.state = {
       visible: false,
       color: [],
-      sidenavType: "transparent",
+      sidenavType: 'transparent',
     };
   }
   componentDidMount() {
@@ -283,7 +294,7 @@ export default class HeaderTop extends Component {
           </Col>
           <Col span={24} md={18} className="header-control">
             <Badge size="small" count={4}>
-              <Dropdown overlay={menu} trigger={["click"]}>
+              <Dropdown overlay={menu} trigger={['click']}>
                 <a
                   className="ant-dropdown-link"
                   onClick={(e) => e.preventDefault()}
@@ -324,32 +335,32 @@ export default class HeaderTop extends Component {
                     <ButtonContainer>
                       <Button
                         type="primary"
-                        onClick={() => this.props.handleSidebarColor("#1890ff")}
+                        onClick={() => this.props.handleSidebarColor('#1890ff')}
                       >
                         1
                       </Button>
                       <Button
                         type="success"
-                        onClick={() => this.props.handleSidebarColor("#52c41a")}
+                        onClick={() => this.props.handleSidebarColor('#52c41a')}
                       >
                         1
                       </Button>
                       <Button
                         type="danger"
-                        onClick={() => this.props.handleSidebarColor("#d9363e")}
+                        onClick={() => this.props.handleSidebarColor('#d9363e')}
                       >
                         1
                       </Button>
                       <Button
                         type="yellow"
-                        onClick={() => this.props.handleSidebarColor("#fadb14")}
+                        onClick={() => this.props.handleSidebarColor('#fadb14')}
                       >
                         1
                       </Button>
 
                       <Button
                         type="black"
-                        onClick={() => this.props.handleSidebarColor("black")}
+                        onClick={() => this.props.handleSidebarColor('black')}
                       >
                         1
                       </Button>
@@ -362,26 +373,26 @@ export default class HeaderTop extends Component {
                     <ButtonContainer className="trans">
                       <Button
                         type={
-                          this.state.sidenavType === "transparent"
-                            ? "primary"
-                            : "white"
+                          this.state.sidenavType === 'transparent'
+                            ? 'primary'
+                            : 'white'
                         }
                         onClick={() => {
-                          this.props.handleSidenavType("transparent");
-                          this.setState({ sidenavType: "transparent" });
+                          this.props.handleSidenavType('transparent');
+                          this.setState({ sidenavType: 'transparent' });
                         }}
                       >
                         TRANSPARENT
                       </Button>
                       <Button
                         type={
-                          this.state.sidenavType === "white"
-                            ? "primary"
-                            : "white"
+                          this.state.sidenavType === 'white'
+                            ? 'primary'
+                            : 'white'
                         }
                         onClick={() => {
-                          this.props.handleSidenavType("#fff");
-                          this.setState({ sidenavType: "white" });
+                          this.props.handleSidenavType('#fff');
+                          this.setState({ sidenavType: 'white' });
                         }}
                       >
                         WHITE

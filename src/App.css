@@ -1,3 +1,14 @@
+/*!
+=========================================================
+* Muse Ant Design Dashboard - v1.0.0
+=========================================================
+* Product Page: https://www.creative-tim.com/product/muse-ant-design-dashboard
+* Copyright 2021 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://github.com/creativetimofficial/muse-ant-design-dashboard/blob/main/LICENSE.md)
+* Coded by Creative Tim
+=========================================================
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+*/
 body {
   padding: 0 0 30px 0;
   background-color: #fafafa;
@@ -1244,7 +1255,7 @@ img {
 
 .gradent {
   /* background-image: linear-gradient(310deg, #181565, #9259fd); */
-  background: url("../src/component/images/info-card-2.jpg") no-repeat center
+  background: url('../src/component/images/info-card-2.jpg') no-repeat center
     top;
   background-size: cover;
   padding: 15px;
@@ -1797,7 +1808,7 @@ body {
   background-size: cover;
   background-position: 50%;
   text-align: center;
-  background: url("../src/component/images/bg-signup.jpg") no-repeat center top;
+  background: url('../src/component/images/bg-signup.jpg') no-repeat center top;
 }
 .header-col.header-brand {
   white-space: nowrap;
@@ -2263,7 +2274,7 @@ section.ant-layout.layout-content .ant-layout-content.content-ant {
 }
 
 .card-credit {
-  background-image: url("../src/component/images/info-card-3.jpg");
+  background-image: url('../src/component/images/info-card-3.jpg');
   background-position: 50%;
   background-size: cover;
   border: none;
@@ -2311,7 +2322,7 @@ section.ant-layout.layout-content .ant-layout-content.content-ant {
   width: 100%;
 }
 .p-20 {
-  padding: "0px 20px 0px 0px";
+  padding: '0px 20px 0px 0px';
 }
 .layout-default .ant-layout-content.p-0 {
   padding: 0px;

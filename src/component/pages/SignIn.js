@@ -1,5 +1,16 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+/*!
+=========================================================
+* Muse Ant Design Dashboard - v1.0.0
+=========================================================
+* Product Page: https://www.creative-tim.com/product/muse-ant-design-dashboard
+* Copyright 2021 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://github.com/creativetimofficial/muse-ant-design-dashboard/blob/main/LICENSE.md)
+* Coded by Creative Tim
+=========================================================
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+*/
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Layout,
   Menu,
@@ -11,14 +22,14 @@ import {
   Input,
   Checkbox,
   Switch,
-} from "antd";
-import signinbg from "../images/img-signin.jpg";
+} from 'antd';
+import signinbg from '../images/img-signin.jpg';
 import {
   DribbbleOutlined,
   TwitterOutlined,
   InstagramOutlined,
   GithubOutlined,
-} from "@ant-design/icons";
+} from '@ant-design/icons';
 function onChange(checked) {
   console.log(`switch to ${checked}`);
 }
@@ -107,11 +118,11 @@ const signin = [
 export default class SignIn extends Component {
   render() {
     const onFinish = (values) => {
-      console.log("Success:", values);
+      console.log('Success:', values);
     };
 
     const onFinishFailed = (errorInfo) => {
-      console.log("Failed:", errorInfo);
+      console.log('Failed:', errorInfo);
     };
     return (
       <>
@@ -121,7 +132,7 @@ export default class SignIn extends Component {
               <h5>Muse Dashboard</h5>
             </div>
             <div className="header-col header-nav">
-              <Menu mode="horizontal" defaultSelectedKeys={["1"]}>
+              <Menu mode="horizontal" defaultSelectedKeys={['1']}>
                 <Menu.Item key="1">
                   <Link to="/dashboard">
                     {template}
@@ -176,7 +187,7 @@ export default class SignIn extends Component {
                     rules={[
                       {
                         required: true,
-                        message: "Please input your email!",
+                        message: 'Please input your email!',
                       },
                     ]}
                   >
@@ -190,7 +201,7 @@ export default class SignIn extends Component {
                     rules={[
                       {
                         required: true,
-                        message: "Please input your password!",
+                        message: 'Please input your password!',
                       },
                     ]}
                   >
@@ -210,13 +221,13 @@ export default class SignIn extends Component {
                     <Button
                       type="primary"
                       htmlType="submit"
-                      style={{ width: "100%" }}
+                      style={{ width: '100%' }}
                     >
                       SIGN IN
                     </Button>
                   </Form.Item>
                   <p className="font-semibold text-muted">
-                    Don't have an account?{" "}
+                    Don't have an account?{' '}
                     <Link to="/sign-up" className="text-dark font-bold">
                       Sign Up
                     </Link>
@@ -270,12 +281,12 @@ export default class SignIn extends Component {
               </Menu.Item>
             </Menu>
             <p className="copyright">
-              {" "}
-              Copyright © 2021 Muse by{" "}
+              {' '}
+              Copyright © 2021 Muse by{' '}
               <a data-v-4ebdc598="" href="#">
                 Creative Tim
               </a>
-              .{" "}
+              .{' '}
             </p>
           </Footer>
         </Layout>

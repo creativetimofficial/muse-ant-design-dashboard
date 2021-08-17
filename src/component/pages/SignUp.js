@@ -1,4 +1,15 @@
-import React, { Component } from "react";
+/*!
+=========================================================
+* Muse Ant Design Dashboard - v1.0.0
+=========================================================
+* Product Page: https://www.creative-tim.com/product/muse-ant-design-dashboard
+* Copyright 2021 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://github.com/creativetimofficial/muse-ant-design-dashboard/blob/main/LICENSE.md)
+* Coded by Creative Tim
+=========================================================
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+*/
+import React, { Component } from 'react';
 import {
   Layout,
   Menu,
@@ -8,18 +19,18 @@ import {
   Form,
   Input,
   Checkbox,
-} from "antd";
-import logo1 from "../images/logos-facebook.svg";
-import logo2 from "../images/logo-apple.svg";
-import logo3 from "../images/Google__G__Logo.svg.png";
+} from 'antd';
+import logo1 from '../images/logos-facebook.svg';
+import logo2 from '../images/logo-apple.svg';
+import logo3 from '../images/Google__G__Logo.svg.png';
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import {
   DribbbleOutlined,
   TwitterOutlined,
   InstagramOutlined,
   GithubOutlined,
-} from "@ant-design/icons";
+} from '@ant-design/icons';
 
 const { Title } = Typography;
 const { Header, Footer, Content } = Layout;
@@ -36,19 +47,19 @@ const template = [
       data-v-4ebdc598=""
       d="M3 4C3 3.44772 3.44772 3 4 3H16C16.5523 3 17 3.44772 17 4V6C17 6.55228 16.5523 7 16 7H4C3.44772 7 3 6.55228 3 6V4Z"
       fill="#111827"
-     className="fill-muted"
+      className="fill-muted"
     ></path>
     <path
       data-v-4ebdc598=""
       d="M3 10C3 9.44771 3.44772 9 4 9H10C10.5523 9 11 9.44771 11 10V16C11 16.5523 10.5523 17 10 17H4C3.44772 17 3 16.5523 3 16V10Z"
       fill="#111827"
-     className="fill-muted"
+      className="fill-muted"
     ></path>
     <path
       data-v-4ebdc598=""
       d="M14 9C13.4477 9 13 9.44771 13 10V16C13 16.5523 13.4477 17 14 17H16C16.5523 17 17 16.5523 17 16V10C17 9.44771 16.5523 9 16 9H14Z"
       fill="#111827"
-     className="fill-muted"
+      className="fill-muted"
     ></path>
   </svg>,
 ];
@@ -98,20 +109,19 @@ const signin = [
     viewBox="0 0 14 14"
   >
     <path
-     className="fill-muted"
+      className="fill-muted"
       d="M12.25,14H1.75A1.752,1.752,0,0,1,0,12.25V3.5A1.752,1.752,0,0,1,1.75,1.75h.876V.875a.875.875,0,0,1,1.75,0V1.75h5.25V.875a.875.875,0,0,1,1.75,0V1.75h.875A1.752,1.752,0,0,1,14,3.5v8.75A1.752,1.752,0,0,1,12.25,14ZM3.5,4.375a.875.875,0,0,0,0,1.75h7a.875.875,0,0,0,0-1.75Z"
     />
   </svg>,
 ];
 export default class SignUp extends Component {
-  
   render() {
     const onFinish = (values) => {
-      console.log("Success:", values);
+      console.log('Success:', values);
     };
 
     const onFinishFailed = (errorInfo) => {
-      console.log("Failed:", errorInfo);
+      console.log('Failed:', errorInfo);
     };
     return (
       <>
@@ -121,7 +131,7 @@ export default class SignUp extends Component {
               <h5>Muse Dashboard</h5>
             </div>
             <div className="header-col header-nav">
-              <Menu mode="horizontal" defaultSelectedKeys={["1"]}>
+              <Menu mode="horizontal" defaultSelectedKeys={['1']}>
                 <Menu.Item key="1">
                   <Link to="/dashboard">
                     {template}
@@ -165,7 +175,6 @@ export default class SignUp extends Component {
             </div>
 
             <Card
-              
               className="card-signup header-solid h-full ant-card pt-0"
               title={<h5>Register With</h5>}
               bordered="false"
@@ -192,7 +201,7 @@ export default class SignUp extends Component {
                 <Form.Item
                   name="Name"
                   rules={[
-                    { required: true, message: "Please input your username!" },
+                    { required: true, message: 'Please input your username!' },
                   ]}
                 >
                   <Input placeholder="Name" />
@@ -200,7 +209,7 @@ export default class SignUp extends Component {
                 <Form.Item
                   name="email"
                   rules={[
-                    { required: true, message: "Please input your email!" },
+                    { required: true, message: 'Please input your email!' },
                   ]}
                 >
                   <Input placeholder="email" />
@@ -208,7 +217,7 @@ export default class SignUp extends Component {
                 <Form.Item
                   name="password"
                   rules={[
-                    { required: true, message: "Please input your password!" },
+                    { required: true, message: 'Please input your password!' },
                   ]}
                 >
                   <Input placeholder="Passwoed" />
@@ -216,7 +225,7 @@ export default class SignUp extends Component {
 
                 <Form.Item name="remember" valuePropName="checked">
                   <Checkbox>
-                    I agree the{" "}
+                    I agree the{' '}
                     <a href="#" className="font-bold text-dark">
                       Terms and Conditions
                     </a>
@@ -225,7 +234,7 @@ export default class SignUp extends Component {
 
                 <Form.Item>
                   <Button
-                    style={{ width: "100%" }}
+                    style={{ width: '100%' }}
                     type="primary"
                     htmlType="submit"
                   >
@@ -234,7 +243,7 @@ export default class SignUp extends Component {
                 </Form.Item>
               </Form>
               <p className="font-semibold text-muted text-center">
-                Already have an account?{" "}
+                Already have an account?{' '}
                 <Link to="/sign-in" className="font-bold text-dark">
                   Sign In
                 </Link>
@@ -276,13 +285,13 @@ export default class SignUp extends Component {
                 <Link to="#">{<GithubOutlined />}</Link>
               </Menu.Item>
             </Menu>
-            <p  className="copyright">
-              {" "}
-              Copyright © 2021 Muse by{" "}
+            <p className="copyright">
+              {' '}
+              Copyright © 2021 Muse by{' '}
               <a data-v-4ebdc598="" href="#">
                 Creative Tim
               </a>
-              .{" "}
+              .{' '}
             </p>
           </Footer>
         </div>

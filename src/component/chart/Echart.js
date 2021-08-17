@@ -1,6 +1,17 @@
-import React, { Component } from "react";
-import ReactApexChart from "react-apexcharts";
-import { Row, Col, Typography } from "antd";
+/*!
+=========================================================
+* Muse Ant Design Dashboard - v1.0.0
+=========================================================
+* Product Page: https://www.creative-tim.com/product/muse-ant-design-dashboard
+* Copyright 2021 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://github.com/creativetimofficial/muse-ant-design-dashboard/blob/main/LICENSE.md)
+* Coded by Creative Tim
+=========================================================
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+*/
+import React, { Component } from 'react';
+import ReactApexChart from 'react-apexcharts';
+import { Row, Col, Typography } from 'antd';
 const { Title, Paragraph } = Typography;
 export default class Echart extends Component {
   constructor(props) {
@@ -9,17 +20,17 @@ export default class Echart extends Component {
     this.state = {
       series: [
         {
-          name: "Sales",
+          name: 'Sales',
           data: [450, 200, 100, 220, 500, 100, 400, 230, 500],
-          color: "#fff",
+          color: '#fff',
         },
       ],
 
       options: {
         chart: {
-          type: "bar",
-          width: "100%",
-          height: "auto",
+          type: 'bar',
+          width: '100%',
+          height: 'auto',
 
           toolbar: {
             show: false,
@@ -28,7 +39,7 @@ export default class Echart extends Component {
         plotOptions: {
           bar: {
             horizontal: false,
-            columnWidth: "55%",
+            columnWidth: '55%',
             borderRadius: 5,
           },
         },
@@ -38,42 +49,42 @@ export default class Echart extends Component {
         stroke: {
           show: true,
           width: 1,
-          colors: ["transparent"],
+          colors: ['transparent'],
         },
         grid: {
           show: true,
-          borderColor: "#ccc",
+          borderColor: '#ccc',
           strokeDashArray: 2,
         },
         xaxis: {
           categories: [
-            "Feb",
-            "Mar",
-            "Apr",
-            "May",
-            "Jun",
-            "Jul",
-            "Aug",
-            "Sep",
-            "Oct",
+            'Feb',
+            'Mar',
+            'Apr',
+            'May',
+            'Jun',
+            'Jul',
+            'Aug',
+            'Sep',
+            'Oct',
           ],
           labels: {
             show: true,
-            align: "right",
+            align: 'right',
             minWidth: 0,
             maxWidth: 160,
             style: {
               colors: [
-                "#fff",
-                "#fff",
-                "#fff",
-                "#fff",
-                "#fff",
-                "#fff",
-                "#fff",
-                "#fff",
-                "#fff",
-                "#fff",
+                '#fff',
+                '#fff',
+                '#fff',
+                '#fff',
+                '#fff',
+                '#fff',
+                '#fff',
+                '#fff',
+                '#fff',
+                '#fff',
               ],
             },
           },
@@ -81,21 +92,21 @@ export default class Echart extends Component {
         yaxis: {
           labels: {
             show: true,
-            align: "right",
+            align: 'right',
             minWidth: 0,
             maxWidth: 160,
             style: {
               colors: [
-                "#fff",
-                "#fff",
-                "#fff",
-                "#fff",
-                "#fff",
-                "#fff",
-                "#fff",
-                "#fff",
-                "#fff",
-                "#fff",
+                '#fff',
+                '#fff',
+                '#fff',
+                '#fff',
+                '#fff',
+                '#fff',
+                '#fff',
+                '#fff',
+                '#fff',
+                '#fff',
               ],
             },
           },
@@ -104,7 +115,7 @@ export default class Echart extends Component {
         tooltip: {
           y: {
             formatter: function (val) {
-              return "$ " + val + " thousands";
+              return '$ ' + val + ' thousands';
             },
           },
         },
@@ -114,20 +125,20 @@ export default class Echart extends Component {
   render() {
     const visitor = [
       {
-        Title: "3,6K",
-        user: "Users",
+        Title: '3,6K',
+        user: 'Users',
       },
       {
-        Title: "2m",
-        user: "Clicks",
+        Title: '2m',
+        user: 'Clicks',
       },
       {
-        Title: "$772",
-        user: "Sales",
+        Title: '$772',
+        user: 'Sales',
       },
       {
-        Title: "82",
-        user: "Items",
+        Title: '82',
+        user: 'Items',
       },
     ];
     return (

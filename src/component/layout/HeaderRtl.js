@@ -1,5 +1,16 @@
-import React, { Component } from "react";
-import avtar from "../images/team-2.jpg";
+/*!
+=========================================================
+* Muse Ant Design Dashboard - v1.0.0
+=========================================================
+* Product Page: https://www.creative-tim.com/product/muse-ant-design-dashboard
+* Copyright 2021 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://github.com/creativetimofficial/muse-ant-design-dashboard/blob/main/LICENSE.md)
+* Coded by Creative Tim
+=========================================================
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+*/
+import React, { Component } from 'react';
+import avtar from '../images/team-2.jpg';
 import {
   Row,
   Col,
@@ -13,16 +24,16 @@ import {
   Drawer,
   Typography,
   Switch,
-} from "antd";
+} from 'antd';
 import {
   SearchOutlined,
   StarOutlined,
   TwitterOutlined,
   FacebookFilled,
-} from "@ant-design/icons";
+} from '@ant-design/icons';
 
-import { NavLink, Link } from "react-router-dom";
-import styled from "styled-components";
+import { NavLink, Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 const ButtonContainer = styled.div`
   .ant-btn-primary {
@@ -129,19 +140,19 @@ const clockicon = [
 ];
 const data = [
   {
-    title: "New message from Sophie",
+    title: 'New message from Sophie',
     description: <>{clockicon} 2 days ago</>,
 
     avatar: avtar,
   },
   {
-    title: "New album by Travis Scott",
+    title: 'New album by Travis Scott',
     description: <>{clockicon} 2 days ago</>,
 
     avatar: <Avatar shape="square">{wifi}</Avatar>,
   },
   {
-    title: "Payment completed",
+    title: 'Payment completed',
     description: <>{clockicon} 2 days ago</>,
     avatar: <Avatar shape="square">{credit}</Avatar>,
   },
@@ -247,7 +258,7 @@ export default class HeaderRtl extends Component {
     super(props);
     this.state = {
       visible: false,
-      placement: "left",
+      placement: 'left',
       color: [],
       sidebarmenu: false,
     };
@@ -289,7 +300,7 @@ export default class HeaderRtl extends Component {
           </Col>
           <Col span={24} md={18} className="header-control">
             <Badge size="small" count={4}>
-              <Dropdown overlay={menu} trigger={["click"]}>
+              <Dropdown overlay={menu} trigger={['click']}>
                 <a
                   className="ant-dropdown-link"
                   onClick={(e) => e.preventDefault()}

@@ -1,7 +1,18 @@
-import React, { Component } from "react";
-import { Menu, Button } from "antd";
-import logo from "../images/logo.png";
-import { NavLink } from "react-router-dom";
+/*!
+=========================================================
+* Muse Ant Design Dashboard - v1.0.0
+=========================================================
+* Product Page: https://www.creative-tim.com/product/muse-ant-design-dashboard
+* Copyright 2021 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://github.com/creativetimofficial/muse-ant-design-dashboard/blob/main/LICENSE.md)
+* Coded by Creative Tim
+=========================================================
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+*/
+import React, { Component } from 'react';
+import { Menu, Button } from 'antd';
+import logo from '../images/logo.png';
+import { NavLink } from 'react-router-dom';
 
 const tables = [
   <svg
@@ -119,7 +130,7 @@ export default class SidebarMenu extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentSection: "",
+      currentSection: '',
     };
   }
 
@@ -162,7 +173,7 @@ export default class SidebarMenu extends Component {
           mode="inline"
           onClick={this.handleClick}
           selectedKeys={[this.state.currentSection]}
-          defaultSelectedKeys={["1"]}
+          defaultSelectedKeys={['1']}
         >
           <Menu.Item key="1">
             <NavLink to="/dashboard">
@@ -170,9 +181,9 @@ export default class SidebarMenu extends Component {
                 className="icon"
                 style={{
                   background:
-                    this.state.currentSection === "1"
+                    this.state.currentSection === '1'
                       ? this.props.sidebarColor
-                      : "",
+                      : '',
                 }}
               >
                 {dashboard}
@@ -186,9 +197,9 @@ export default class SidebarMenu extends Component {
                 className="icon"
                 style={{
                   background:
-                    this.state.currentSection === "2"
+                    this.state.currentSection === '2'
                       ? this.props.sidebarColor
-                      : "",
+                      : '',
                 }}
               >
                 {tables}
@@ -202,9 +213,9 @@ export default class SidebarMenu extends Component {
                 className="icon"
                 style={{
                   background:
-                    this.state.currentSection === "3"
+                    this.state.currentSection === '3'
                       ? this.props.sidebarColor
-                      : "",
+                      : '',
                 }}
               >
                 {billing}
@@ -218,9 +229,9 @@ export default class SidebarMenu extends Component {
                 className="icon"
                 style={{
                   background:
-                    this.state.currentSection === "4"
+                    this.state.currentSection === '4'
                       ? this.props.sidebarColor
-                      : "",
+                      : '',
                 }}
               >
                 {rtl}
@@ -237,9 +248,9 @@ export default class SidebarMenu extends Component {
                 className="icon"
                 style={{
                   background:
-                    this.state.currentSection === "6"
+                    this.state.currentSection === '6'
                       ? this.props.sidebarColor
-                      : "",
+                      : '',
                 }}
               >
                 {profile}
@@ -253,9 +264,9 @@ export default class SidebarMenu extends Component {
                 className="icon"
                 style={{
                   background:
-                    this.state.currentSection === "7"
+                    this.state.currentSection === '7'
                       ? this.props.sidebarColor
-                      : "",
+                      : '',
                 }}
               >
                 {signin}
@@ -269,9 +280,9 @@ export default class SidebarMenu extends Component {
                 className="icon"
                 style={{
                   background:
-                    this.state.currentSection === "8"
+                    this.state.currentSection === '8'
                       ? this.props.sidebarColor
-                      : "",
+                      : '',
                 }}
               >
                 {signup}

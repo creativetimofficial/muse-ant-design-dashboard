@@ -1,6 +1,17 @@
-import React, { Component } from "react";
+/*!
+=========================================================
+* Muse Ant Design Dashboard - v1.0.0
+=========================================================
+* Product Page: https://www.creative-tim.com/product/muse-ant-design-dashboard
+* Copyright 2021 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://github.com/creativetimofficial/muse-ant-design-dashboard/blob/main/LICENSE.md)
+* Coded by Creative Tim
+=========================================================
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+*/
+import React, { Component } from 'react';
 
-import BgProfile from "../images/bg-profile.jpg";
+import BgProfile from '../images/bg-profile.jpg';
 import {
   Layout,
   Row,
@@ -14,22 +25,22 @@ import {
   Switch,
   Upload,
   message,
-} from "antd";
-import profilavatar from "../images/face-1.jpg";
-import convesionImg from "../images/face-3.jpg";
-import convesionImg2 from "../images/face-4.jpg";
-import convesionImg3 from "../images/face-5.jpeg";
-import convesionImg4 from "../images/face-6.jpeg";
-import convesionImg5 from "../images/face-2.jpg";
-import project1 from "../images/home-decor-1.jpeg";
-import project2 from "../images/home-decor-2.jpeg";
-import project3 from "../images/home-decor-3.jpeg";
+} from 'antd';
+import profilavatar from '../images/face-1.jpg';
+import convesionImg from '../images/face-3.jpg';
+import convesionImg2 from '../images/face-4.jpg';
+import convesionImg3 from '../images/face-5.jpeg';
+import convesionImg4 from '../images/face-6.jpeg';
+import convesionImg5 from '../images/face-2.jpg';
+import project1 from '../images/home-decor-1.jpeg';
+import project2 from '../images/home-decor-2.jpeg';
+import project3 from '../images/home-decor-3.jpeg';
 import {
   FacebookOutlined,
   TwitterOutlined,
   InstagramOutlined,
   VerticalAlignTopOutlined,
-} from "@ant-design/icons";
+} from '@ant-design/icons';
 
 function onChange(e) {
   console.log(`radio checked:${e.target.value}`);
@@ -56,18 +67,18 @@ const pencil = [
 ];
 function getBase64(img, callback) {
   const reader = new FileReader();
-  reader.addEventListener("load", () => callback(reader.result));
+  reader.addEventListener('load', () => callback(reader.result));
   reader.readAsDataURL(img);
 }
 
 function beforeUpload(file) {
-  const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
+  const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
   if (!isJpgOrPng) {
-    message.error("You can only upload JPG/PNG file!");
+    message.error('You can only upload JPG/PNG file!');
   }
   const isLt2M = file.size / 1024 / 1024 < 2;
   if (!isLt2M) {
-    message.error("Image must smaller than 2MB!");
+    message.error('Image must smaller than 2MB!');
   }
   return isJpgOrPng && isLt2M;
 }
@@ -75,47 +86,43 @@ export default class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-     
-      placement: "left",
+      placement: 'left',
       loading: false,
-    
     };
   }
-  
 
   handleChange = (info) => {
-    if (info.file.status === "uploading") {
+    if (info.file.status === 'uploading') {
       this.setState({ loading: false });
       return;
     }
-    if (info.file.status === "done") {
+    if (info.file.status === 'done') {
       // Get this url from response in real world.
       getBase64(info.file.originFileObj, (imageUrl) =>
         this.setState({
           imageUrl: false,
           loading: false,
-        })
+        }),
       );
     }
   };
 
-
   render() {
     function getBase64(img, callback) {
       const reader = new FileReader();
-      reader.addEventListener("load", () => callback(reader.result));
+      reader.addEventListener('load', () => callback(reader.result));
       reader.readAsDataURL(img);
     }
 
     function beforeUpload(file) {
       const isJpgOrPng =
-        file.type === "image/jpeg" || file.type === "image/png";
+        file.type === 'image/jpeg' || file.type === 'image/png';
       if (!isJpgOrPng) {
-        message.error("You can only upload JPG/PNG file!");
+        message.error('You can only upload JPG/PNG file!');
       }
       const isLt2M = file.size / 1024 / 1024 < 2;
       if (!isLt2M) {
-        message.error("Image must smaller than 2MB!");
+        message.error('Image must smaller than 2MB!');
       }
       return isJpgOrPng && isLt2M;
     }
@@ -127,71 +134,71 @@ export default class Profile extends Component {
     const uploadButton = (
       <div className="ant-upload-text font-semibold text-dark">
         {/* {loading ? <LoadingOutlined /> :<VerticalAlignTopOutlined /> } */}
-        {<VerticalAlignTopOutlined style={{ width: 20, color: "#000" }} />}
+        {<VerticalAlignTopOutlined style={{ width: 20, color: '#000' }} />}
         <div>Upload New Project</div>
       </div>
     );
     const data = [
       {
-        title: "Sophie B.",
+        title: 'Sophie B.',
         avatar: convesionImg,
-        description: "Hi! I need more information…",
+        description: 'Hi! I need more information…',
       },
       {
-        title: "Anne Marie",
+        title: 'Anne Marie',
         avatar: convesionImg2,
-        description: "Awesome work, can you…",
+        description: 'Awesome work, can you…',
       },
       {
-        title: "Ivan",
+        title: 'Ivan',
         avatar: convesionImg3,
-        description: "About files I can…",
+        description: 'About files I can…',
       },
       {
-        title: "Peterson",
+        title: 'Peterson',
         avatar: convesionImg4,
-        description: "Have a great afternoon…",
+        description: 'Have a great afternoon…',
       },
       {
-        title: "Nick Daniel",
+        title: 'Nick Daniel',
         avatar: convesionImg5,
-        description: "Hi! I need more information…",
+        description: 'Hi! I need more information…',
       },
     ];
 
     const project = [
       {
         img: project1,
-        titlesub: "Project #1",
-        title: "Modern",
+        titlesub: 'Project #1',
+        title: 'Modern',
         disciption:
-          "As Uber works through a huge amount of internal management turmoil.",
+          'As Uber works through a huge amount of internal management turmoil.',
       },
       {
         img: project2,
-        titlesub: "Project #2",
-        title: "Scandinavian",
+        titlesub: 'Project #2',
+        title: 'Scandinavian',
         disciption:
-          "Music is something that every person has his or her own specific opinion about.",
+          'Music is something that every person has his or her own specific opinion about.',
       },
       {
         img: project3,
-        titlesub: "Project #3",
-        title: "Minimalist",
+        titlesub: 'Project #3',
+        title: 'Minimalist',
         disciption:
-          "Different people have different taste, and various types of music, Zimbali Resort",
+          'Different people have different taste, and various types of music, Zimbali Resort',
       },
     ];
     return (
       <>
         <div
           className="profile-nav-bg"
-          style={{ backgroundImage: "url(" + BgProfile + ")" }}
+          style={{ backgroundImage: 'url(' + BgProfile + ')' }}
         ></div>
 
         <Card
           className="card-profile-head"
-          bodyStyle={{ display: "none" }}
+          bodyStyle={{ display: 'none' }}
           title={
             <Row justify="space-between" align="middle" gutter={[24, 0]}>
               <Col span={24} md={12} className="col-info">
@@ -208,9 +215,9 @@ export default class Profile extends Component {
                 span={24}
                 md={12}
                 style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "flex-end",
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'flex-end',
                 }}
               >
                 <Radio.Group onChange={onChange} defaultValue="a">
@@ -276,11 +283,11 @@ export default class Profile extends Component {
               bodyStyle={{ paddingTop: 0, paddingBottom: 16 }}
             >
               <p className="text-dark">
-                {" "}
+                {' '}
                 Hi, I’m Alec Thompson, Decisions: If you can’t decide, the
                 answer is no. If two equally difficult paths, choose the one
                 more painful in the short term (pain avoidance is creating an
-                illusion of equality).{" "}
+                illusion of equality).{' '}
               </p>
               <hr className="my-25" />
               <Descriptions title="Oliver Liam">
@@ -301,10 +308,10 @@ export default class Profile extends Component {
                     {<TwitterOutlined />}
                   </a>
                   <a href="#" className="mx-5 px-5">
-                    {<FacebookOutlined style={{ color: "#344e86" }} />}
+                    {<FacebookOutlined style={{ color: '#344e86' }} />}
                   </a>
                   <a href="#" className="mx-5 px-5">
-                    {<InstagramOutlined style={{ color: "#e1306c" }} />}
+                    {<InstagramOutlined style={{ color: '#e1306c' }} />}
                   </a>
                 </Descriptions.Item>
               </Descriptions>
@@ -385,7 +392,7 @@ export default class Profile extends Component {
                 onChange={this.handleChange}
               >
                 {imageUrl ? (
-                  <img src={imageUrl} alt="avatar" style={{ width: "100%" }} />
+                  <img src={imageUrl} alt="avatar" style={{ width: '100%' }} />
                 ) : (
                   uploadButton
                 )}
