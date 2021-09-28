@@ -1,0 +1,14 @@
+/**
+ * @param {Options} [options]
+ * @returns {ToMarkdownExtension}
+ */
+export function gfmToMarkdown(
+  options?: import('mdast-util-gfm-table').Options | undefined
+): ToMarkdownExtension
+/**
+ * @type {Array.<FromMarkdownExtension>}
+ */
+export const gfmFromMarkdown: Array<FromMarkdownExtension>
+export type FromMarkdownExtension = import('mdast-util-from-markdown').Extension
+export type ToMarkdownExtension = import('mdast-util-to-markdown').Options
+export type Options = import('mdast-util-gfm-table').Options
