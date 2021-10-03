@@ -1,16 +1,17 @@
 /*!
-=========================================================
-* Muse Ant Design Dashboard - v1.0.0
-=========================================================
-* Product Page: https://www.creative-tim.com/product/muse-ant-design-dashboard
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/muse-ant-design-dashboard/blob/main/LICENSE.md)
-* Coded by Creative Tim
-=========================================================
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+  =========================================================
+  * Muse Ant Design Dashboard - v1.0.0
+  =========================================================
+  * Product Page: https://www.creative-tim.com/product/muse-ant-design-dashboard
+  * Copyright 2021 Creative Tim (https://www.creative-tim.com)
+  * Licensed under MIT (https://github.com/creativetimofficial/muse-ant-design-dashboard/blob/main/LICENSE.md)
+  * Coded by Creative Tim
+  =========================================================
+  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
-import React, { Component } from 'react';
-import avtar from '../images/team-2.jpg';
+
+import { useState, useEffect } from "react";
+
 import {
   Row,
   Col,
@@ -24,16 +25,18 @@ import {
   Drawer,
   Typography,
   Switch,
-} from 'antd';
+} from "antd";
+
 import {
   SearchOutlined,
   StarOutlined,
   TwitterOutlined,
   FacebookFilled,
-} from '@ant-design/icons';
+} from "@ant-design/icons";
 
-import { NavLink, Link } from 'react-router-dom';
-import styled from 'styled-components';
+import { NavLink, Link } from "react-router-dom";
+import styled from "styled-components";
+import avtar from "../assets/images/team-2.jpg";
 
 const ButtonContainer = styled.div`
   .ant-btn-primary {
@@ -55,7 +58,7 @@ const ButtonContainer = styled.div`
     background-color: #1890ff;
   }
 `;
-const { Title, Text, Paragraph } = Typography;
+
 const bell = [
   <svg
     width="20"
@@ -75,6 +78,7 @@ const bell = [
     ></path>
   </svg>,
 ];
+
 const wifi = [
   <svg
     width="20"
@@ -100,6 +104,7 @@ const wifi = [
     </g>
   </svg>,
 ];
+
 const credit = [
   <svg
     width="20"
@@ -121,6 +126,7 @@ const credit = [
     ></path>
   </svg>,
 ];
+
 const clockicon = [
   <svg
     width="20"
@@ -138,21 +144,22 @@ const clockicon = [
     ></path>
   </svg>,
 ];
+
 const data = [
   {
-    title: 'New message from Sophie',
+    title: "New message from Sophie",
     description: <>{clockicon} 2 days ago</>,
 
     avatar: avtar,
   },
   {
-    title: 'New album by Travis Scott',
+    title: "New album by Travis Scott",
     description: <>{clockicon} 2 days ago</>,
 
     avatar: <Avatar shape="square">{wifi}</Avatar>,
   },
   {
-    title: 'Payment completed',
+    title: "Payment completed",
     description: <>{clockicon} 2 days ago</>,
     avatar: <Avatar shape="square">{credit}</Avatar>,
   },
@@ -175,6 +182,7 @@ const menu = (
     )}
   />
 );
+
 const logsetting = [
   <svg
     width="20"
@@ -192,6 +200,7 @@ const logsetting = [
     ></path>
   </svg>,
 ];
+
 const profile = [
   <svg
     width="20"
@@ -209,6 +218,7 @@ const profile = [
     ></path>
   </svg>,
 ];
+
 const toggler = [
   <svg
     width="20"
@@ -220,6 +230,7 @@ const toggler = [
     <path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path>
   </svg>,
 ];
+
 const setting = [
   <svg
     width="20"
@@ -237,209 +248,185 @@ const setting = [
     ></path>
   </svg>,
 ];
-export default class HeaderTop extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      visible: false,
-      color: [],
-      sidenavType: 'transparent',
-    };
-  }
-  componentDidMount() {
-    window.scrollTo(0, 0);
-  }
 
-  showDrawer = () => {
-    this.setState({
-      visible: true,
-    });
-  };
+function Header({
+  placement,
+  name,
+  subName,
+  onPress,
+  handleSidenavColor,
+  handleSidenavType,
+  handleFixedNavbar,
+}) {
+  const { Title, Text } = Typography;
 
-  onClose = () => {
-    this.setState({
-      visible: false,
-    });
-  };
+  const [visible, setVisible] = useState(false);
+  const [sidenavType, setSidenavType] = useState("transparent");
 
-  // onChange = (e) => {
-  //   this.setState({
-  //     placement: e.target.value,
-  //   });
-  // };
-  handleSizeChange = (e) => {
-    this.setState({ size: e.target.value });
-  };
-  render() {
-    const { visible, color } = this.state;
-    const { placement } = this.props;
-    return (
-      <>
-        <div className="setting-drwer" onClick={this.showDrawer}>
-          {setting}
-        </div>
-        <Row gutter={[24, 0]}>
-          <Col span={24} md={6}>
-            <Breadcrumb>
-              <Breadcrumb.Item>
-                <NavLink to="/">Pages</NavLink>
-              </Breadcrumb.Item>
-              <Breadcrumb.Item>{this.props.name}</Breadcrumb.Item>
-            </Breadcrumb>
-            <div className="ant-page-header-heading">
-              <span className="ant-page-header-heading-title">
-                {this.props.subname}
-              </span>
-            </div>
-          </Col>
-          <Col span={24} md={18} className="header-control">
-            <Badge size="small" count={4}>
-              <Dropdown overlay={menu} trigger={['click']}>
-                <a
-                  className="ant-dropdown-link"
-                  onClick={(e) => e.preventDefault()}
-                >
-                  {bell}
-                </a>
-              </Dropdown>
-            </Badge>
-            <Button type="link" onClick={this.showDrawer}>
-              {logsetting}
-            </Button>
-            <Button
-              type="link"
-              className="sidebar-toggler"
-              onClick={() => this.props.onPress()}
-            >
-              {toggler}
-            </Button>
-            <Drawer
-              className="settings-drawer "
-              mask={true}
-              width={360}
-              onClose={this.onClose}
-              placement={placement}
-              visible={this.state.visible}
-            >
-              <div layout="vertical">
-                <div className="header-top">
-                  <Title level={4}>
-                    Configurator
-                    <Text className="subtitle">See our dashboard options.</Text>
-                  </Title>
+  useEffect(() => window.scrollTo(0, 0));
+
+  const showDrawer = () => setVisible(true);
+  const hideDrawer = () => setVisible(false);
+
+  return (
+    <>
+      <div className="setting-drwer" onClick={showDrawer}>
+        {setting}
+      </div>
+      <Row gutter={[24, 0]}>
+        <Col span={24} md={6}>
+          <Breadcrumb>
+            <Breadcrumb.Item>
+              <NavLink to="/">Pages</NavLink>
+            </Breadcrumb.Item>
+            <Breadcrumb.Item>{name}</Breadcrumb.Item>
+          </Breadcrumb>
+          <div className="ant-page-header-heading">
+            <span className="ant-page-header-heading-title">{subName}</span>
+          </div>
+        </Col>
+        <Col span={24} md={18} className="header-control">
+          <Badge size="small" count={4}>
+            <Dropdown overlay={menu} trigger={["click"]}>
+              <a
+                href="#pablo"
+                className="ant-dropdown-link"
+                onClick={(e) => e.preventDefault()}
+              >
+                {bell}
+              </a>
+            </Dropdown>
+          </Badge>
+          <Button type="link" onClick={showDrawer}>
+            {logsetting}
+          </Button>
+          <Button
+            type="link"
+            className="sidebar-toggler"
+            onClick={() => onPress()}
+          >
+            {toggler}
+          </Button>
+          <Drawer
+            className="settings-drawer settings-drawer-rtl"
+            mask={true}
+            width={360}
+            onClose={hideDrawer}
+            placement={placement}
+            visible={visible}
+          >
+            <div layout="vertical">
+              <div className="header-top">
+                <Title level={4}>
+                  Configurator
+                  <Text className="subtitle">See our dashboard options.</Text>
+                </Title>
+              </div>
+
+              <div className="sidebar-color">
+                <Title level={5}>Sidebar Color</Title>
+                <div className="theme-color mb-2">
+                  <ButtonContainer>
+                    <Button
+                      type="primary"
+                      onClick={() => handleSidenavColor("#1890ff")}
+                    >
+                      1
+                    </Button>
+                    <Button
+                      type="success"
+                      onClick={() => handleSidenavColor("#52c41a")}
+                    >
+                      1
+                    </Button>
+                    <Button
+                      type="danger"
+                      onClick={() => handleSidenavColor("#d9363e")}
+                    >
+                      1
+                    </Button>
+                    <Button
+                      type="yellow"
+                      onClick={() => handleSidenavColor("#fadb14")}
+                    >
+                      1
+                    </Button>
+
+                    <Button
+                      type="black"
+                      onClick={() => handleSidenavColor("black")}
+                    >
+                      1
+                    </Button>
+                  </ButtonContainer>
                 </div>
 
-                <div className="sidebar-color">
-                  <Title level={5}>Sidebar Color</Title>
-                  <div className="theme-color mb-2">
-                    <ButtonContainer>
-                      <Button
-                        type="primary"
-                        onClick={() => this.props.handleSidebarColor('#1890ff')}
-                      >
-                        1
-                      </Button>
-                      <Button
-                        type="success"
-                        onClick={() => this.props.handleSidebarColor('#52c41a')}
-                      >
-                        1
-                      </Button>
-                      <Button
-                        type="danger"
-                        onClick={() => this.props.handleSidebarColor('#d9363e')}
-                      >
-                        1
-                      </Button>
-                      <Button
-                        type="yellow"
-                        onClick={() => this.props.handleSidebarColor('#fadb14')}
-                      >
-                        1
-                      </Button>
+                <div className="sidebarnav-color mb-2">
+                  <Title level={5}>Sidenav Type</Title>
+                  <Text>Choose between 2 different sidenav types.</Text>
+                  <ButtonContainer className="trans">
+                    <Button
+                      type={sidenavType === "transparent" ? "primary" : "white"}
+                      onClick={() => {
+                        handleSidenavType("transparent");
+                        setSidenavType("transparent");
+                      }}
+                    >
+                      TRANSPARENT
+                    </Button>
+                    <Button
+                      type={sidenavType === "white" ? "primary" : "white"}
+                      onClick={() => {
+                        handleSidenavType("#fff");
+                        setSidenavType("white");
+                      }}
+                    >
+                      WHITE
+                    </Button>
+                  </ButtonContainer>
+                </div>
+                <div className="fixed-nav mb-2">
+                  <Title level={5}>Navbar Fixed </Title>
+                  <Switch onChange={(e) => handleFixedNavbar(e)} />
+                </div>
+                <div className="ant-docment">
+                  <ButtonContainer>
+                    <Button type="black" size="large">
+                      FREE DOWNLOAD
+                    </Button>
+                    <Button size="large">VIEW DOCUMENTATION</Button>
+                  </ButtonContainer>
+                </div>
+                <div className="viewstar">
+                  <a href="#pablo">{<StarOutlined />} Star</a>
+                  <a href="#pablo"> 190</a>
+                </div>
 
-                      <Button
-                        type="black"
-                        onClick={() => this.props.handleSidebarColor('black')}
-                      >
-                        1
-                      </Button>
-                    </ButtonContainer>
-                  </div>
-
-                  <div className="sidebarnav-color mb-2">
-                    <Title level={5}>Sidenav Type</Title>
-                    <Text>Choose between 2 different sidenav types.</Text>
-                    <ButtonContainer className="trans">
-                      <Button
-                        type={
-                          this.state.sidenavType === 'transparent'
-                            ? 'primary'
-                            : 'white'
-                        }
-                        onClick={() => {
-                          this.props.handleSidenavType('transparent');
-                          this.setState({ sidenavType: 'transparent' });
-                        }}
-                      >
-                        TRANSPARENT
-                      </Button>
-                      <Button
-                        type={
-                          this.state.sidenavType === 'white'
-                            ? 'primary'
-                            : 'white'
-                        }
-                        onClick={() => {
-                          this.props.handleSidenavType('#fff');
-                          this.setState({ sidenavType: 'white' });
-                        }}
-                      >
-                        WHITE
-                      </Button>
-                    </ButtonContainer>
-                  </div>
-                  <div className="fixed-nav mb-2">
-                    <Title level={5}>Navbar Fixed </Title>
-                    <Switch onChange={(e) => this.props.handleFixedNavbar(e)} />
-                  </div>
-                  <div className="ant-docment">
-                    <ButtonContainer>
-                      <Button type="black" size="large">
-                        FREE DOWNLOAD
-                      </Button>
-                      <Button size="large">VIEW DOCUMENTATION</Button>
-                    </ButtonContainer>
-                  </div>
-                  <div className="viewstar">
-                    <a href="#">{<StarOutlined />} Star</a>
-                    <a href="#"> 190</a>
-                  </div>
-
-                  <div className="ant-thank">
-                    <Title level={5} className="mb-2">
-                      Thank you for sharing!
-                    </Title>
-                    <ButtonContainer className="social">
-                      <Button type="black">{<TwitterOutlined />}TWEET</Button>
-                      <Button type="black">{<FacebookFilled />}SHARE</Button>
-                    </ButtonContainer>
-                  </div>
+                <div className="ant-thank">
+                  <Title level={5} className="mb-2">
+                    Thank you for sharing!
+                  </Title>
+                  <ButtonContainer className="social">
+                    <Button type="black">{<TwitterOutlined />}TWEET</Button>
+                    <Button type="black">{<FacebookFilled />}SHARE</Button>
+                  </ButtonContainer>
                 </div>
               </div>
-            </Drawer>
-            <Link to="/sign-in" className="btn-sign-in">
-              {profile}
-              <span>Sign in</span>
-            </Link>
-            <Input
-              className="header-search"
-              placeholder="Type here..."
-              prefix={<SearchOutlined />}
-            />
-          </Col>
-        </Row>
-      </>
-    );
-  }
+            </div>
+          </Drawer>
+          <Link to="/sign-in" className="btn-sign-in">
+            {profile}
+            <span>Sign in</span>
+          </Link>
+          <Input
+            className="header-search"
+            placeholder="Type here..."
+            prefix={<SearchOutlined />}
+          />
+        </Col>
+      </Row>
+    </>
+  );
 }
+
+export default Header;
