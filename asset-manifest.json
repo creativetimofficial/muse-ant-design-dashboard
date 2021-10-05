@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/muse-ant-design-dashboard/static/css/main.ffe8258a.chunk.css",
-    "main.js": "/muse-ant-design-dashboard/static/js/main.4de1531b.chunk.js",
-    "main.js.map": "/muse-ant-design-dashboard/static/js/main.4de1531b.chunk.js.map",
+    "main.js": "/muse-ant-design-dashboard/static/js/main.2c46da78.chunk.js",
+    "main.js.map": "/muse-ant-design-dashboard/static/js/main.2c46da78.chunk.js.map",
     "runtime-main.js": "/muse-ant-design-dashboard/static/js/runtime-main.f2e65b27.js",
     "runtime-main.js.map": "/muse-ant-design-dashboard/static/js/runtime-main.f2e65b27.js.map",
     "static/css/2.5f5f9133.chunk.css": "/muse-ant-design-dashboard/static/css/2.5f5f9133.chunk.css",
@@ -16,7 +16,7 @@
     "static/css/3.25c6e38c.chunk.css.map": "/muse-ant-design-dashboard/static/css/3.25c6e38c.chunk.css.map",
     "static/css/main.ffe8258a.chunk.css.map": "/muse-ant-design-dashboard/static/css/main.ffe8258a.chunk.css.map",
     "static/js/2.bf27b9e4.chunk.js.LICENSE.txt": "/muse-ant-design-dashboard/static/js/2.bf27b9e4.chunk.js.LICENSE.txt",
-    "static/js/main.4de1531b.chunk.js.LICENSE.txt": "/muse-ant-design-dashboard/static/js/main.4de1531b.chunk.js.LICENSE.txt",
+    "static/js/main.2c46da78.chunk.js.LICENSE.txt": "/muse-ant-design-dashboard/static/js/main.2c46da78.chunk.js.LICENSE.txt",
     "static/media/Google__G__Logo.svg.bb49f97a.png": "/muse-ant-design-dashboard/static/media/Google__G__Logo.svg.bb49f97a.png",
     "static/media/alipay-circle.svg": "/muse-ant-design-dashboard/static/media/alipay-circle.4f125baa.svg",
     "static/media/alipay.svg": "/muse-ant-design-dashboard/static/media/alipay.b817558d.svg",
@@ -338,6 +338,6 @@
     "static/css/2.5f5f9133.chunk.css",
     "static/js/2.bf27b9e4.chunk.js",
     "static/css/main.ffe8258a.chunk.css",
-    "static/js/main.4de1531b.chunk.js"
+    "static/js/main.2c46da78.chunk.js"
   ]
 }
