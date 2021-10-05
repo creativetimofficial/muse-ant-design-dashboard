@@ -42,7 +42,9 @@ function Menu() {
           <div className="header-nav">
             <AntMenu selectedKeys={[current]} mode="inline-block">
               <AntMenu.Item key="mail" className="ant-menu-item">
-                <a href="/">Live Preview</a>
+                <a href="https://demos.creative-tim.com/muse-ant-design-dashboard">
+                  Live Preview
+                </a>
               </AntMenu.Item>
               <AntMenu.Item key="app">
                 <a

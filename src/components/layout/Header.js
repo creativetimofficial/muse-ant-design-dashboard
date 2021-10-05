@@ -409,7 +409,7 @@ function Header({
                         FREE DOWNLOAD
                       </Button>
                     </a>
-                    <a href="/#/docs/overview">
+                    <a href="https://demos.creative-tim.com/muse-ant-design-dashboard/#/docs/overview">
                       <Button size="large">VIEW DOCUMENTATION</Button>
                     </a>
                   </ButtonContainer>

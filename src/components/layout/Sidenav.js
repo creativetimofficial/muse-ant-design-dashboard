@@ -261,7 +261,7 @@ function Sidenav({ color }) {
           </span>
           <h6>Need Help?</h6>
           <p>Please check our docs</p>
-          <a href="/#/docs/overview">
+          <a href="https://demos.creative-tim.com/muse-ant-design-dashboard/#/docs/overview">
             <Button type="primary" className="ant-btn-sm ant-btn-block">
               DOCUMENTATION
             </Button>
