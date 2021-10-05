@@ -1,4 +1,4 @@
-# [Muse Ant Design Dashboard](https://demos.creative-tim.com/material-tailwind-dashboard-react/#/?ref=readme-madd)
+# [Muse Ant Design Dashboard](https://demos.creative-tim.com/muse-ant-design-dashboard/#/dashboard?ref=readme-madd)
 
 ![version](https://img.shields.io/badge/version-1.0.0-blue.svg) [![GitHub issues open](https://img.shields.io/github/issues/creativetimofficial/muse-ant-design-dashboard.svg?maxAge=2592000)](https://github.com/creativetimofficial/muse-ant-design-dashboard/issues?q=is%3Aopen+is%3Aissue) [![GitHub issues closed](https://img.shields.io/github/issues-closed-raw/creativetimofficial/material-tailwind-dashboard-react.svg?maxAge=2592000)](https://github.com/creativetimofficial/muse-ant-design-dashboard/issues?q=is%3Aissue+is%3Aclosed)
 
@@ -29,13 +29,13 @@ React
 
 ## Demo
 
-- [Dashboard](https://demos.creative-tim.com/material-tailwind-dashboard-react/#/?ref=readme-madd)
-- [Tables](https://demos.creative-tim.com/material-tailwind-dashboard-react/#/tables?ref=readme-madd)
-- [Billing](https://demos.creative-tim.com/material-tailwind-dashboard-react/#/billing?ref=readme-madd)
-- [RTL](https://demos.creative-tim.com/material-tailwind-dashboard-react/#/rtl?ref=readme-madd)
-- [Profile](https://demos.creative-tim.com/material-tailwind-dashboard-react/#/profile?ref=readme-madd)
-- [Sign In](https://demos.creative-tim.com/material-tailwind-dashboard-react/#/sign-in?ref=readme-madd)
-- [Sign Up](https://demos.creative-tim.com/material-tailwind-dashboard-react/#/sign-up?ref=readme-madd)
+- [Dashboard](https://demos.creative-tim.com/muse-ant-design-dashboard/#/dashboard?ref=readme-madd)
+- [Tables](https://demos.creative-tim.com/muse-ant-design-dashboard/#/tables?ref=readme-madd)
+- [Billing](https://demos.creative-tim.com/muse-ant-design-dashboard/#/billing?ref=readme-madd)
+- [RTL](https://demos.creative-tim.com/muse-ant-design-dashboard/#/rtl?ref=readme-madd)
+- [Profile](https://demos.creative-tim.com/muse-ant-design-dashboard/#/profile?ref=readme-madd)
+- [Sign In](https://demos.creative-tim.com/muse-ant-design-dashboard/#/sign-in?ref=readme-madd)
+- [Sign Up](https://demos.creative-tim.com/muse-ant-design-dashboard/#/sign-up?ref=readme-madd)
 
 ## Quick start
 
@@ -50,7 +50,7 @@ Quick start options:
 
 ## Documentation
 
-Muse Ant Design Dashboard build using Material Tailwind and the documentation of Material Tailwind is hosted at [Material Tailwinl](https://material-tailwind.com/documentation/quick-start?ref=readme-madd).
+Muse Ant Design Dashboard build using Material Tailwind and the documentation of Material Tailwind is hosted at [website](https://demos.creative-tim.com/muse-ant-design-dashboard/#/docs/overview?ref=readme-madd).
 
 ### What's included
 
@@ -65,19 +65,22 @@ Muse Ant Design Dashboard
     │   │   ├── minifest.json
     │   │   └── robots.txt
     │   ├── src
+    │   │   ├── assets
+    │   │   │   ├── images
+    │   │   │   └── styles
     │   │   ├── components
     │   │   │   ├── chart
-    │   │   │   ├── images
-    │   │   │   ├── layouts
-    │   │   │   ├── pages
+    │   │   │   └── layout
+    │   │   ├── pages
+    │   │   │   ├── Billing.js
+    │   │   │   ├── Home.js
+    │   │   │   ├── Profile.js
+    │   │   │   ├── Rtl.js
+    │   │   │   ├── SignIn.js
+    │   │   │   ├── SignUp.js
+    │   │   │   └── Tables.js
     │   │   ├── App.js
-    │   │   ├── App.css
-    │   │   ├── App.test.js
-    │   │   ├── index.js
-    │   │   ├── index.css
-    │   │   ├── reportWebVitals.js
-    │   │   ├── responsive.css
-    │   │   └── setup.test.js
+    │   │   └── index.js
     │   ├── CHANGELOG.md
     │   ├── LICENSE
     │   ├── package.json

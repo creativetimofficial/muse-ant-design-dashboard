@@ -12,6 +12,9 @@
 
 import { useState, useEffect } from "react";
 
+// react-github-btn
+import GitHubButton from "react-github-btn";
+
 import {
   Row,
   Col,
@@ -29,7 +32,6 @@ import {
 
 import {
   SearchOutlined,
-  StarOutlined,
   TwitterOutlined,
   FacebookFilled,
 } from "@ant-design/icons";
@@ -398,15 +400,30 @@ function Header({
                 </div>
                 <div className="ant-docment">
                   <ButtonContainer>
-                    <Button type="black" size="large">
-                      FREE DOWNLOAD
-                    </Button>
-                    <Button size="large">VIEW DOCUMENTATION</Button>
+                    <a
+                      href="https://www.creative-tim.com/product/muse-ant-design-dashboard"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <Button type="black" size="large">
+                        FREE DOWNLOAD
+                      </Button>
+                    </a>
+                    <a href="/#/docs/overview">
+                      <Button size="large">VIEW DOCUMENTATION</Button>
+                    </a>
                   </ButtonContainer>
                 </div>
                 <div className="viewstar">
-                  <a href="#pablo">{<StarOutlined />} Star</a>
-                  <a href="#pablo"> 190</a>
+                  <GitHubButton
+                    href="https://github.com/creativetimofficial/muse-ant-design-dashboard"
+                    data-icon="octicon-star"
+                    data-size="large"
+                    data-show-count="true"
+                    aria-label="Star creativetimofficial/muse-ant-design-dashboard on GitHub"
+                  >
+                    Star
+                  </GitHubButton>
                 </div>
 
                 <div className="ant-thank">
@@ -414,8 +431,20 @@ function Header({
                     Thank you for sharing!
                   </Title>
                   <ButtonContainer className="social">
-                    <Button type="black">{<TwitterOutlined />}TWEET</Button>
-                    <Button type="black">{<FacebookFilled />}SHARE</Button>
+                    <a
+                      href="//twitter.com/intent/tweet?text=Check%20Muse%20Ant%20Design%20Dashboard%20made%20by%20%40CreativeTim%20%23webdesign%20%23dashboard%20%23ant-design&url=https%3A%2F%2Fwww.creative-tim.com%2Fproduct%2Fmuse-ant-design-dashboard"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <Button type="black">{<TwitterOutlined />}TWEET</Button>
+                    </a>
+                    <a
+                      href="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/muse-ant-design-dashboard"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <Button type="black">{<FacebookFilled />}SHARE</Button>
+                    </a>
                   </ButtonContainer>
                 </div>
               </div>

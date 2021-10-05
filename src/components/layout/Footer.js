@@ -23,7 +23,12 @@ function Footer() {
           <div className="copyright">
             © 2021, made with
             {<HeartFilled />} by
-            <a href="#pablo" className="font-weight-bold" target="_blank">
+            <a
+              href="https://www.creative-tim.com/"
+              className="font-weight-bold"
+              target="_blank"
+              rel="noreferrer"
+            >
               Creative Tim
             </a>
             for a better web.
@@ -34,36 +39,40 @@ function Footer() {
             <ul>
               <li className="nav-item">
                 <a
-                  href="#pablo"
+                  href="https://www.creative-tim.com/"
                   className="nav-link text-muted"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   Creative Tim
                 </a>
               </li>
               <li className="nav-item">
                 <a
-                  href="#pablo"
+                  href="https://www.creative-tim.com/presentation"
                   className="nav-link text-muted"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   About Us
                 </a>
               </li>
               <li className="nav-item">
                 <a
-                  href="#pablo"
+                  href="https://www.creative-tim.com/blog"
                   className="nav-link text-muted"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   Blog
                 </a>
               </li>
               <li className="nav-item">
                 <a
-                  href="#pablo"
+                  href="https://www.creative-tim.com/license"
                   className="nav-link pe-0 text-muted"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   License
                 </a>

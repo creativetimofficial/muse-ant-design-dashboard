@@ -423,7 +423,7 @@ function Home() {
                           <h6>
                             <img
                               src={d.img}
-                              alt=""
+                              alt={d.title}
                               className="avatar-sm mr-10"
                             />{" "}
                             {d.Title}

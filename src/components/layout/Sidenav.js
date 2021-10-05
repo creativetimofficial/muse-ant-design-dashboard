@@ -9,8 +9,6 @@
   =========================================================
   * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
-
-// import { useState } from "react";
 import { Menu, Button } from "antd";
 import { NavLink, useLocation } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
@@ -162,10 +160,12 @@ function Sidenav({ color }) {
 
   return (
     <>
-      <div className="brand">
-        <img src={logo} alt="" />
-        <span>Muse Dashboard</span>
-      </div>
+      <NavLink to="/dashboard">
+        <div className="brand">
+          <img src={logo} alt="logo" />
+          <span className="text-dark">Muse Dashboard</span>
+        </div>
+      </NavLink>
       <hr />
       <Menu theme="light" mode="inline">
         <Menu.Item key="1">
@@ -261,9 +261,11 @@ function Sidenav({ color }) {
           </span>
           <h6>Need Help?</h6>
           <p>Please check our docs</p>
-          <Button type="primary" className="ant-btn-sm ant-btn-block">
-            DOCUMENTATION
-          </Button>
+          <a href="/#/docs/overview">
+            <Button type="primary" className="ant-btn-sm ant-btn-block">
+              DOCUMENTATION
+            </Button>
+          </a>
         </div>
       </div>
     </>
