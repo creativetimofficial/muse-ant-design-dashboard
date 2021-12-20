@@ -32,6 +32,13 @@ import { SelectComponentPage } from "../pages/sidebarPages/dataEntry.pages/selec
 import { SwitchComponentPage } from "../pages/sidebarPages/dataEntry.pages/switch.componentPage.jsx";
 import { UploadComponentPage } from "../pages/sidebarPages/dataEntry.pages/upload.componentPage.jsx";
 
+import { Kanban } from "../pages/sidebarPages/plugins.pages/kanban.componentPage.jsx";
+
+import { Quill } from "../pages/sidebarPages/plugins.pages/quill.componentPage.jsx";
+import { ChartjsComponentPage } from "../pages/sidebarPages/plugins.pages/chartJs.component.page/chartjs.componentPage.jsx";
+import FullCalendarComponentPage from "../pages/sidebarPages/plugins.pages/fullCalendar.component.page/fullCalendar.ComponentPage.jsx";
+import PhotoSwipeComponentPage from "../pages/sidebarPages/plugins.pages/photoswipe/photoswipe.componentPage.jsx";
+
 export const routes = [
   {
     id: "overview",
@@ -76,8 +83,8 @@ export const routes = [
     exact: true,
   },
   {
-    id: "alter",
-    path: "/alter",
+    id: "alert",
+    path: "/alert",
     component: AlertComponentPage,
     exact: true,
   },
@@ -230,6 +237,36 @@ export const routes = [
     id: "upload",
     path: "/upload",
     component: UploadComponentPage,
+    exact: true,
+  },
+  {
+    id: "fullcalendar",
+    path: "/fullcalendar",
+    component: FullCalendarComponentPage,
+    exact: true,
+  },
+  {
+    id: "chartjs",
+    path: "/chartjs",
+    component: ChartjsComponentPage,
+    exact: true,
+  },
+  {
+    id: "photoswipe",
+    path: "/photoswipe",
+    component: PhotoSwipeComponentPage,
+    exact: true,
+  },
+  {
+    id: "quill",
+    path: "/quill",
+    component: Quill,
+    exact: true,
+  },
+  {
+    id: "kanban",
+    path: "/kanban",
+    component: Kanban,
     exact: true,
   },
 ];

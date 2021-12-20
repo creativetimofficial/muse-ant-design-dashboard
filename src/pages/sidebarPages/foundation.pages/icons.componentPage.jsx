@@ -1,5 +1,7 @@
-import { Alert, Anchor } from "antd";
-import React, { useEffect, useState } from "react";
+import { Anchor } from "antd";
+import React, { useState } from "react";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import AlertOnClick from "../../../utils/alertOnClick";
 import { Icons } from "../../../utils/icons.utils";
 const { Link } = Anchor;
 export const IconsComponentPage = () => {
@@ -18,31 +20,14 @@ export const IconsComponentPage = () => {
   const otherJSON = Icons.filter((icon) => icon.category === "other");
   const otherIcons = importSVG(otherJSON);
 
-  const [text, setText] = useState("");
-  const [isCopied, setIsCopied] = useState(false);
-  useEffect(() => {
-    if (text) {
-      setIsCopied(true);
-    } else {
-      setIsCopied(false);
-    }
-  }, [text]);
+  const [alert, setAlert] = useState(false);
+
   return (
     <div>
       <div className="page-row page-component-padding">
         <div className="page-content">
-          {isCopied ? (
-            <Alert
-              message={text}
-              type="success"
-              showIcon={true}
-              closable={true}
-              onClick={() => setText("")}
-            />
-          ) : (
-            ""
-          )}
           <section className="mb-24">
+            <AlertOnClick state={alert} />
             <h1>Icons</h1>{" "}
             <p className="text-dark">Semantic vector graphics.</p>
           </section>
@@ -128,29 +113,38 @@ export const IconsComponentPage = () => {
             role="separator"
             className="ant-divider ant-divider-horizontal"
           ></div>
-          <section id="directionalIcons" className="mb-24">
+          <section id="Directional-Icons" className="mb-24">
             <h2>
               Directional Icons <small>( {directionIcons.length} )</small>
             </h2>
             <ul className="icons-list">
               {directionIcons.map((icon) => {
                 return (
-                  <li
-                    onClick={() => {
-                      const toCopy = `<a-icon type="${icon.id}" theme="outlined" /> copied!`;
-
-                      setText(toCopy);
-                      navigator.clipboard.writeText(toCopy);
-                    }}
+                  <CopyToClipboard
+                    text={`<a-icon type="${icon.id}" theme="outlined" />`}
                   >
-                    <i
-                      aria-label={`icon: ${icon.id}`}
-                      className={`anticon ${icon.id}`}
+                    <li
+                      onClick={() => {
+                        setAlert(!alert);
+
+                        setTimeout(() => {
+                          setAlert(false);
+                        }, 2000);
+                        //   const toCopy = `<a-icon type="${icon.id}" theme="outlined" /> copied!`;
+
+                        //    setText(toCopy);
+                        //    navigator.clipboard.writeText(toCopy);
+                      }}
                     >
-                      <img src={icon.icon} alt="icon" />
-                    </i>
-                    <code>{icon.id}</code>
-                  </li>
+                      <i
+                        aria-label={`icon: ${icon.id}`}
+                        className={`anticon ${icon.id}`}
+                      >
+                        <img src={icon.icon} alt="icon" />
+                      </i>
+                      <code>{icon.id}</code>
+                    </li>
+                  </CopyToClipboard>
                 );
               })}
             </ul>
@@ -159,29 +153,38 @@ export const IconsComponentPage = () => {
             role="separator"
             className="ant-divider ant-divider-horizontal"
           ></div>{" "}
-          <section id="suggestedIcons" className="mb-24">
+          <section id="Suggested-Icons" className="mb-24">
             <h2>
               Suggested Icons <small>( 24 )</small>
             </h2>{" "}
             <ul className="icons-list">
               {suggestionIcons.map((icon) => {
                 return (
-                  <li
-                    onClick={() => {
-                      const toCopy = `<a-icon type="${icon.id}" theme="outlined" /> copied!`;
-
-                      setText(toCopy);
-                      navigator.clipboard.writeText(toCopy);
-                    }}
+                  <CopyToClipboard
+                    text={`<a-icon type="${icon.id}" theme="outlined" />`}
                   >
-                    <i
-                      aria-label={`icon: ${icon.id}`}
-                      className={`anticon ${icon.id}`}
+                    <li
+                      onClick={() => {
+                        setAlert(!alert);
+
+                        setTimeout(() => {
+                          setAlert(false);
+                        }, 2000);
+                        // const toCopy = `<a-icon type="${icon.id}" theme="outlined" /> copied!`;
+
+                        //  setText(toCopy);
+                        //  navigator.clipboard.writeText(toCopy);
+                      }}
                     >
-                      <img src={icon.icon} alt="icon" />
-                    </i>
-                    <code>{icon.id}</code>
-                  </li>
+                      <i
+                        aria-label={`icon: ${icon.id}`}
+                        className={`anticon ${icon.id}`}
+                      >
+                        <img src={icon.icon} alt="icon" />
+                      </i>
+                      <code>{icon.id}</code>
+                    </li>
+                  </CopyToClipboard>
                 );
               })}
             </ul>
@@ -190,29 +193,38 @@ export const IconsComponentPage = () => {
             role="separator"
             className="ant-divider ant-divider-horizontal"
           ></div>{" "}
-          <section id="editorIcons" className="mb-24">
+          <section id="Logo-Icons" className="mb-24">
             <h2>
               Logo Icons <small>( {logoIcons.length} )</small>
             </h2>{" "}
             <ul className="icons-list">
               {logoIcons.map((icon) => {
                 return (
-                  <li
-                    onClick={() => {
-                      const toCopy = `<a-icon type="${icon.id}" theme="outlined" /> copied!`;
-
-                      setText(toCopy);
-                      navigator.clipboard.writeText(toCopy);
-                    }}
+                  <CopyToClipboard
+                    text={`<a-icon type="${icon.id}" theme="outlined" /> `}
                   >
-                    <i
-                      aria-label={`icon: ${icon.id}`}
-                      className={`anticon ${icon.id}`}
+                    <li
+                      onClick={() => {
+                        setAlert(!alert);
+
+                        setTimeout(() => {
+                          setAlert(false);
+                        }, 2000);
+                        // const toCopy = `<a-icon type="${icon.id}" theme="outlined" /> copied!`;
+
+                        // setText(toCopy);
+                        //  navigator.clipboard.writeText(toCopy);
+                      }}
                     >
-                      <img src={icon.icon} alt="icon" />
-                    </i>
-                    <code>{icon.id}</code>
-                  </li>
+                      <i
+                        aria-label={`icon: ${icon.id}`}
+                        className={`anticon ${icon.id}`}
+                      >
+                        <img src={icon.icon} alt="icon" />
+                      </i>
+                      <code>{icon.id}</code>
+                    </li>
+                  </CopyToClipboard>
                 );
               })}
             </ul>
@@ -221,29 +233,38 @@ export const IconsComponentPage = () => {
             role="separator"
             className="ant-divider ant-divider-horizontal"
           ></div>{" "}
-          <section id="dataIcons" className="mb-24">
+          <section id="Other-Icons" className="mb-24">
             <h2>
               Other Icons <small>( {otherIcons.length} )</small>
             </h2>{" "}
             <ul className="icons-list">
               {otherIcons.map((icon) => {
                 return (
-                  <li
-                    onClick={() => {
-                      const toCopy = `<a-icon type="${icon.id}" theme="outlined" /> copied!`;
-
-                      setText(toCopy);
-                      navigator.clipboard.writeText(toCopy);
-                    }}
+                  <CopyToClipboard
+                    text={`<a-icon type="${icon.id}" theme="outlined" /> `}
                   >
-                    <i
-                      aria-label={`icon: ${icon.id}`}
-                      className={`anticon ${icon.id}`}
+                    <li
+                      onClick={() => {
+                        setAlert(!alert);
+
+                        setTimeout(() => {
+                          setAlert(false);
+                        }, 2000);
+                        //  const toCopy = `<a-icon type="${icon.id}" theme="outlined" /> copied!`;
+
+                        //  setText(toCopy);
+                        //  navigator.clipboard.writeText(toCopy);
+                      }}
                     >
-                      <img src={icon.icon} alt="icon" />
-                    </i>
-                    <code>{icon.id}</code>
-                  </li>
+                      <i
+                        aria-label={`icon: ${icon.id}`}
+                        className={`anticon ${icon.id}`}
+                      >
+                        <img src={icon.icon} alt="icon" />
+                      </i>
+                      <code>{icon.id}</code>
+                    </li>
+                  </CopyToClipboard>
                 );
               })}
             </ul>

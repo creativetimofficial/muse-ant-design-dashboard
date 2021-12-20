@@ -37,7 +37,7 @@ const SidebarMenuItems = [
     title: "Components",
     icon: <CopyFilled className="icon" />,
     children: [
-      { id: "alter", title: "Alter", toPath: "/alter" },
+      { id: "alert", title: "Alert", toPath: "/alert" },
       { id: "avtar", title: "Avatar", toPath: "/avtar" },
       { id: "badge", title: "Badge", toPath: "/badge" },
       { id: "button", title: "Button", toPath: "/button" },
@@ -84,6 +84,43 @@ const SidebarMenuItems = [
       { id: "select", title: "Select", toPath: "/select" },
       { id: "switch", title: "Switch", toPath: "/switch" },
       { id: "upload", title: "Upload", toPath: "/upload" },
+    ],
+  },
+  {
+    id: 7,
+    title: "Plugins",
+    icon: <HomeFilled className="icon" />,
+    children: [
+      {
+        id: "fullcalendar",
+        title: "Full Calendar",
+        toPath: "/fullcalendar",
+        label: <span class="ant-pro-tag">PRO</span>,
+      },
+      {
+        id: "chartjs",
+        title: "ChartJS",
+        toPath: "/chartjs",
+        label: <span class="ant-pro-tag">PRO</span>,
+      },
+      {
+        id: "quill",
+        title: "Quill",
+        toPath: "/quill",
+        label: <span class="ant-pro-tag">PRO</span>,
+      },
+      {
+        id: "kanban",
+        title: "Kanban",
+        toPath: "/kanban",
+        label: <span class="ant-pro-tag">PRO</span>,
+      },
+      {
+        id: "photoswipe",
+        title: "Photo Swipe",
+        toPath: "/photoswipe",
+        label: <span class="ant-pro-tag">PRO</span>,
+      },
     ],
   },
 ];

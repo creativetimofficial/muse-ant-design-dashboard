@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { Alert, Anchor, Button } from "antd";
+import { Anchor } from "antd";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import CopyClipboard from "../../../utils/copyClipboard";
+import AlertOnClick from "../../../utils/alertOnClick";
 const { Link } = Anchor;
 
 const code = `
@@ -92,8 +94,6 @@ ${code2}
 
 export const BadgeComponentPage = () => {
   const [alert, setAlert] = useState(false);
-  const [alert2, setAlert2] = useState(false);
-  const [alert3, setAlert3] = useState(false);
 
   return (
     <div>
@@ -102,6 +102,7 @@ export const BadgeComponentPage = () => {
           <div className="page-row">
             <div className="page-content">
               <section className="mb-24">
+                <AlertOnClick state={alert} />
                 <h1>Badge</h1>
                 <p className="text-dark">
                   Small numerical value or status descriptor for UI elements.
@@ -135,10 +136,7 @@ export const BadgeComponentPage = () => {
                 </p>
                 <div className="showcase showcase-remove-borderline">
                   <span className="mr-10 ant-badge">
-                    <a
-                      href="#"
-                      className="head-example head-example-badge-icon"
-                    ></a>
+                    <a className="head-example head-example-badge-icon"></a>
                     <sup
                       title="5"
                       className="ant-scroll-number ant-badge-count"
@@ -235,10 +233,7 @@ export const BadgeComponentPage = () => {
                     </sup>
                   </span>
                   <span className="mr-10 ant-badge">
-                    <a
-                      href="#"
-                      className="head-example head-example-badge-icon"
-                    ></a>
+                    <a className="head-example head-example-badge-icon"></a>
                     <i
                       aria-label="icon: clock-circle"
                       className="
@@ -265,42 +260,12 @@ export const BadgeComponentPage = () => {
                   </span>
                 </div>
                 <section className="highlight-section">
-                  <button
-                    type="button"
-                    className="btn-copy ant-btn ant-btn-primary ant-btn-sm"
-                    onClick={() => {
-                      navigator.clipboard.writeText(code);
-                      setAlert(!alert);
-                    }}
-                  >
-                    <i aria-label="icon: copy" className="anticon anticon-copy">
-                      <svg
-                        viewBox="64 64 896 896"
-                        data-icon="copy"
-                        width="1em"
-                        height="1em"
-                        fill="currentColor"
-                        aria-hidden="true"
-                        focusable="false"
-                        className=""
-                      >
-                        <path d="M832 64H296c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h496v688c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V96c0-17.7-14.3-32-32-32zM704 192H192c-17.7 0-32 14.3-32 32v530.7c0 8.5 3.4 16.6 9.4 22.6l173.3 173.3c2.2 2.2 4.7 4 7.4 5.5v1.9h4.2c3.5 1.3 7.2 2 11 2H704c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32zM350 856.2L263.9 770H350v86.2zM664 888H414V746c0-22.1-17.9-40-40-40H232V264h432v624z"></path>
-                      </svg>
-                    </i>
-                    <span>Copy</span>
-                  </button>
-                  {alert ? (
-                    <Alert
-                      message="Copied!"
-                      type="success"
-                      showIcon
-                      action={<Button size="small" type="text"></Button>}
-                      closable
-                      className="alert-copy-code"
-                    />
-                  ) : (
-                    ""
-                  )}
+                  <CopyClipboard
+                    text={code}
+                    state={alert}
+                    setState={setAlert}
+                  />
+
                   <ReactMarkdown
                     children={markdown}
                     components={{
@@ -382,42 +347,12 @@ export const BadgeComponentPage = () => {
                   </span>
                 </div>
                 <section className="highlight-section">
-                  <button
-                    type="button"
-                    className="btn-copy ant-btn ant-btn-primary ant-btn-sm"
-                    onClick={() => {
-                      navigator.clipboard.writeText(code1);
-                      setAlert2(!alert2);
-                    }}
-                  >
-                    <i aria-label="icon: copy" className="anticon anticon-copy">
-                      <svg
-                        viewBox="64 64 896 896"
-                        data-icon="copy"
-                        width="1em"
-                        height="1em"
-                        fill="currentColor"
-                        aria-hidden="true"
-                        focusable="false"
-                        className=""
-                      >
-                        <path d="M832 64H296c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h496v688c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V96c0-17.7-14.3-32-32-32zM704 192H192c-17.7 0-32 14.3-32 32v530.7c0 8.5 3.4 16.6 9.4 22.6l173.3 173.3c2.2 2.2 4.7 4 7.4 5.5v1.9h4.2c3.5 1.3 7.2 2 11 2H704c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32zM350 856.2L263.9 770H350v86.2zM664 888H414V746c0-22.1-17.9-40-40-40H232V264h432v624z"></path>
-                      </svg>
-                    </i>
-                    <span>Copy</span>
-                  </button>
-                  {alert2 ? (
-                    <Alert
-                      message="Copied!"
-                      type="success"
-                      showIcon
-                      action={<Button size="small" type="text"></Button>}
-                      closable
-                      className="alert-copy-code"
-                    />
-                  ) : (
-                    ""
-                  )}
+                  <CopyClipboard
+                    text={code1}
+                    state={alert}
+                    setState={setAlert}
+                  />
+
                   <ReactMarkdown
                     children={markdown1}
                     components={{
@@ -573,45 +508,12 @@ export const BadgeComponentPage = () => {
                   </div>
                 </div>
                 <section className="highlight-section">
-                  <button
-                    type="button"
-                    className="btn-copy ant-btn ant-btn-primary ant-btn-sm"
-                    onClick={() => {
-                      navigator.clipboard.writeText(code2);
-                      setAlert3(!alert3);
-                    }}
-                  >
-                    <i
-                      aria-label="icon: copied!"
-                      className="anticon anticon-copy"
-                    >
-                      <svg
-                        viewBox="64 64 896 896"
-                        data-icon="copy"
-                        width="1em"
-                        height="1em"
-                        fill="currentColor"
-                        aria-hidden="true"
-                        focusable="false"
-                        className=""
-                      >
-                        <path d="M832 64H296c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h496v688c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V96c0-17.7-14.3-32-32-32zM704 192H192c-17.7 0-32 14.3-32 32v530.7c0 8.5 3.4 16.6 9.4 22.6l173.3 173.3c2.2 2.2 4.7 4 7.4 5.5v1.9h4.2c3.5 1.3 7.2 2 11 2H704c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32zM350 856.2L263.9 770H350v86.2zM664 888H414V746c0-22.1-17.9-40-40-40H232V264h432v624z"></path>
-                      </svg>
-                    </i>
-                    <span>Copy</span>
-                  </button>
-                  {alert3 ? (
-                    <Alert
-                      message="Copied!"
-                      type="success"
-                      showIcon
-                      action={<Button size="small" type="text"></Button>}
-                      closable
-                      className="alert-copy-code"
-                    />
-                  ) : (
-                    ""
-                  )}
+                  <CopyClipboard
+                    text={code2}
+                    state={alert}
+                    setState={setAlert}
+                  />
+
                   <ReactMarkdown
                     children={markdown2}
                     components={{

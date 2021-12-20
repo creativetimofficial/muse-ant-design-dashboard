@@ -1,17 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
+
 import { Anchor } from "antd";
 import { Typography } from "antd";
+import ReactMarkdown from "react-markdown";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import CopyClipboard from "../../../utils/copyClipboard";
+import AlertOnClick from "../../../utils/alertOnClick";
 
+const code = `
+import { Typography } from 'antd';
+
+const { Title } = Typography;
+
+ReactDOM.render(
+  <>
+    <Title>h1. Ant Design</Title>
+    <Title level={2}>h2. Ant Design</Title>
+    <Title level={3}>h3. Ant Design</Title>
+    <Title level={4}>h4. Ant Design</Title>
+    <Title level={5}>h5. Ant Design</Title>
+  </>,
+  mountNode,
+);`;
+const markdown = `
+
+~~~jsx
+${code}
+~~~
+`;
 const { Title } = Typography;
 
 const { Link } = Anchor;
 
 export const TypographyComponentPage = () => {
+  const [alert, setAlert] = useState(false);
   return (
     <div>
       <div className="page-row page-component-padding">
         <div className="page-content">
           <section className="mb-24">
+            <AlertOnClick state={alert} />
             <h1>Typography</h1>{" "}
             <p className="text-dark">
               Documentation and examples for Muse Dashboard typography.
@@ -110,6 +138,14 @@ export const TypographyComponentPage = () => {
               <button
                 type="button"
                 className="btn-copy ant-btn ant-btn-primary ant-btn-sm"
+                onClick={() => {
+                  navigator.clipboard.writeText(code);
+                  setAlert(!alert);
+
+                  setTimeout(() => {
+                    setAlert(false);
+                  }, 2000);
+                }}
               >
                 <i aria-label="icon: copy" className="anticon anticon-copy">
                   <svg
@@ -208,27 +244,29 @@ export const TypographyComponentPage = () => {
               </tbody>
             </table>{" "}
             <section className="highlight-section">
-              <button
-                type="button"
-                className="btn-copy ant-btn ant-btn-primary ant-btn-sm"
-              >
-                <i aria-label="icon: copy" className="anticon anticon-copy">
-                  <svg
-                    viewBox="64 64 896 896"
-                    data-icon="copy"
-                    width="1em"
-                    height="1em"
-                    fill="currentColor"
-                    aria-hidden="true"
-                    focusable="false"
-                    className=""
-                  >
-                    <path d="M832 64H296c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h496v688c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V96c0-17.7-14.3-32-32-32zM704 192H192c-17.7 0-32 14.3-32 32v530.7c0 8.5 3.4 16.6 9.4 22.6l173.3 173.3c2.2 2.2 4.7 4 7.4 5.5v1.9h4.2c3.5 1.3 7.2 2 11 2H704c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32zM350 856.2L263.9 770H350v86.2zM664 888H414V746c0-22.1-17.9-40-40-40H232V264h432v624z"></path>
-                  </svg>
-                </i>
-                <span>Copy</span>
-              </button>{" "}
-              <pre style={{ maxHeight: "500px" }}>
+              <CopyClipboard text={code} state={alert} setState={setAlert} />
+              <ReactMarkdown
+                children={markdown}
+                components={{
+                  code({ node, inline, className, children, ...props }) {
+                    const match = /language-(\w+)/.exec(className || "");
+                    return !inline && match ? (
+                      <SyntaxHighlighter
+                        children={String(children).replace(/\n$/, "")}
+                        language={match[1]}
+                        PreTag="div"
+                        {...props}
+                        className="codetext"
+                      />
+                    ) : (
+                      <code className={className} {...props}>
+                        {children}
+                      </code>
+                    );
+                  },
+                }}
+              />
+              {/*<pre style={{ maxHeight: "500px" }}>
                 <code className="hljs html">
                   <span className="hljs-tag">
                     &lt;<span className="hljs-name">h1</span>{" "}
@@ -285,7 +323,7 @@ export const TypographyComponentPage = () => {
                     &lt;/<span className="hljs-name">h6</span>&gt;
                   </span>
                 </code>
-              </pre>
+              </pre>*/}
             </section>
           </section>{" "}
           <section className="mb-24">
@@ -366,27 +404,29 @@ export const TypographyComponentPage = () => {
               </tbody>
             </table>{" "}
             <section className="highlight-section">
-              <button
-                type="button"
-                className="btn-copy ant-btn ant-btn-primary ant-btn-sm"
-              >
-                <i aria-label="icon: copy" className="anticon anticon-copy">
-                  <svg
-                    viewBox="64 64 896 896"
-                    data-icon="copy"
-                    width="1em"
-                    height="1em"
-                    fill="currentColor"
-                    aria-hidden="true"
-                    focusable="false"
-                    className=""
-                  >
-                    <path d="M832 64H296c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h496v688c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V96c0-17.7-14.3-32-32-32zM704 192H192c-17.7 0-32 14.3-32 32v530.7c0 8.5 3.4 16.6 9.4 22.6l173.3 173.3c2.2 2.2 4.7 4 7.4 5.5v1.9h4.2c3.5 1.3 7.2 2 11 2H704c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32zM350 856.2L263.9 770H350v86.2zM664 888H414V746c0-22.1-17.9-40-40-40H232V264h432v624z"></path>
-                  </svg>
-                </i>
-                <span>Copy</span>
-              </button>{" "}
-              <pre style={{ maxHeight: "500px" }}>
+              <CopyClipboard text={code} state={alert} setState={setAlert} />
+              <ReactMarkdown
+                children={markdown}
+                components={{
+                  code({ node, inline, className, children, ...props }) {
+                    const match = /language-(\w+)/.exec(className || "");
+                    return !inline && match ? (
+                      <SyntaxHighlighter
+                        children={String(children).replace(/\n$/, "")}
+                        language={match[1]}
+                        PreTag="div"
+                        {...props}
+                        className="codetext"
+                      />
+                    ) : (
+                      <code className={className} {...props}>
+                        {children}
+                      </code>
+                    );
+                  },
+                }}
+              />
+              {/*<pre style={{ maxHeight: "500px" }}>
                 <code className="hljs html">
                   <span className="hljs-tag">
                     &lt;<span className="hljs-name">h1</span>&gt;
@@ -431,7 +471,7 @@ export const TypographyComponentPage = () => {
                     &lt;/<span className="hljs-name">h6</span>&gt;
                   </span>
                 </code>
-              </pre>
+              </pre>*/}
             </section>
           </section>{" "}
           <section id="Heading-Classes" className="mb-24">
@@ -511,27 +551,29 @@ export const TypographyComponentPage = () => {
               </tbody>
             </table>{" "}
             <section className="highlight-section">
-              <button
-                type="button"
-                className="btn-copy ant-btn ant-btn-primary ant-btn-sm"
-              >
-                <i aria-label="icon: copy" className="anticon anticon-copy">
-                  <svg
-                    viewBox="64 64 896 896"
-                    data-icon="copy"
-                    width="1em"
-                    height="1em"
-                    fill="currentColor"
-                    aria-hidden="true"
-                    focusable="false"
-                    className=""
-                  >
-                    <path d="M832 64H296c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h496v688c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V96c0-17.7-14.3-32-32-32zM704 192H192c-17.7 0-32 14.3-32 32v530.7c0 8.5 3.4 16.6 9.4 22.6l173.3 173.3c2.2 2.2 4.7 4 7.4 5.5v1.9h4.2c3.5 1.3 7.2 2 11 2H704c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32zM350 856.2L263.9 770H350v86.2zM664 888H414V746c0-22.1-17.9-40-40-40H232V264h432v624z"></path>
-                  </svg>
-                </i>
-                <span>Copy</span>
-              </button>{" "}
-              <pre style={{ maxHeight: "500px" }}>
+              <CopyClipboard text={code} state={alert} setState={setAlert} />
+              <ReactMarkdown
+                children={markdown}
+                components={{
+                  code({ node, inline, className, children, ...props }) {
+                    const match = /language-(\w+)/.exec(className || "");
+                    return !inline && match ? (
+                      <SyntaxHighlighter
+                        children={String(children).replace(/\n$/, "")}
+                        language={match[1]}
+                        PreTag="div"
+                        {...props}
+                        className="codetext"
+                      />
+                    ) : (
+                      <code className={className} {...props}>
+                        {children}
+                      </code>
+                    );
+                  },
+                }}
+              />
+              {/*<pre style={{ maxHeight: "500px" }}>
                 <code className="hljs html">
                   <span className="hljs-tag">
                     &lt;<span className="hljs-name">p</span>{" "}
@@ -588,7 +630,7 @@ export const TypographyComponentPage = () => {
                     &lt;/<span className="hljs-name">p</span>&gt;
                   </span>
                 </code>
-              </pre>
+              </pre>*/}
             </section>
           </section>{" "}
           <section id="Paragraphs" className="mb-24">
@@ -602,26 +644,14 @@ export const TypographyComponentPage = () => {
               </p>
             </div>{" "}
             <section className="highlight-section">
-              <button
-                type="button"
-                className="btn-copy ant-btn ant-btn-primary ant-btn-sm"
-              >
-                <i aria-label="icon: copy" className="anticon anticon-copy">
-                  <svg
-                    viewBox="64 64 896 896"
-                    data-icon="copy"
-                    width="1em"
-                    height="1em"
-                    fill="currentColor"
-                    aria-hidden="true"
-                    focusable="false"
-                    className=""
-                  >
-                    <path d="M832 64H296c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h496v688c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V96c0-17.7-14.3-32-32-32zM704 192H192c-17.7 0-32 14.3-32 32v530.7c0 8.5 3.4 16.6 9.4 22.6l173.3 173.3c2.2 2.2 4.7 4 7.4 5.5v1.9h4.2c3.5 1.3 7.2 2 11 2H704c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32zM350 856.2L263.9 770H350v86.2zM664 888H414V746c0-22.1-17.9-40-40-40H232V264h432v624z"></path>
-                  </svg>
-                </i>
-                <span>Copy</span>
-              </button>{" "}
+              <CopyClipboard
+                text={`Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                  Libero porro voluptatum laboriosam eveniet asperiores,
+                  expedita provident commodi ullam perferendis id, rem enim
+                  quisquam earum architecto ut nobis repellendus magni dolorum.`}
+                state={alert}
+                setState={setAlert}
+              />
               <pre style={{ maxHeight: "500px" }}>
                 <code className="hljs html">
                   <span className="hljs-tag">

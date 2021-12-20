@@ -18,7 +18,9 @@ export const SideMenuItemslayout = (props) => {
           return (
             <Menu.Item key={child.id}>
               <Fragment key={child.id}>
-                <NavLink to={child.toPath}>{child.title}</NavLink>
+                <NavLink to={child.toPath}>
+                  {child.title} {child.label}
+                </NavLink>
               </Fragment>
             </Menu.Item>
           );

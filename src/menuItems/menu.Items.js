@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import "antd/dist/antd.css";
 import "../App.css";
-import { Layout, Menu } from "antd";
+import { Layout, Menu, Drawer } from "antd";
 import logo from "../component/images/logo.png";
 import { NavLink } from "react-router-dom";
 import { GettingStartedMenuItemsComponent } from "./menuItems.components/gettingStarted.menuItemsComponent";
 // import { slide as MenuSidebar } from "react-burger-menu";
+import { DownloadOutlined } from "@ant-design/icons";
 
 const { Header, Sider } = Layout;
-
+const { Item } = Menu;
 const MenuItems = () => {
   const [current, setCurrent] = useState("mail");
   const [open, setOpen] = useState(false);
@@ -16,6 +17,13 @@ const MenuItems = () => {
   const handleClick = (e) => {
     console.log("click ", e);
     setCurrent(e.key);
+  };
+  const [visible, setVisible] = useState(false);
+  const showDrawer = () => {
+    setVisible(true);
+  };
+  const onClose = () => {
+    setVisible(false);
   };
 
   return (
@@ -31,7 +39,7 @@ const MenuItems = () => {
             <button
               type="button"
               className="sidebar-toggler ant-btn ant-btn-link"
-              onClick={() => setOpen(!open)}
+              onClick={showDrawer}
             >
               <svg
                 fill="#141414"
@@ -62,11 +70,26 @@ const MenuItems = () => {
               <Menu.Item key="mail" className="ant-menu-item">
                 <NavLink to="/">Download free</NavLink>
               </Menu.Item>
+
+              <a
+                href="/"
+                className="mx-20 ant-btn ant-btn-primary"
+                style={{ color: "#fff" }}
+              >
+                <DownloadOutlined /> Upgrade To PRO
+              </a>
             </Menu>
           </div>
         </Header>
 
         <Layout>
+          <Drawer placement="left" onClose={onClose} visible={visible}>
+            <Sider width={250} style={{ left: "0px" }}>
+              <Menu className="ant-menu ant-menu-inline ant-menu-root ant-menu-light">
+                <GettingStartedMenuItemsComponent />
+              </Menu>
+            </Sider>
+          </Drawer>
           <Sider width={250} style={{ background: "#fff" }}>
             <Menu className="ant-menu ant-menu-inline ant-menu-root ant-menu-light">
               <GettingStartedMenuItemsComponent />

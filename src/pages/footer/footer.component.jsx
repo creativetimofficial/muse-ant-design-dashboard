@@ -2,7 +2,7 @@ import React from "react";
 
 export const FooterComponent = () => {
   return (
-    <div class="ant-row-flex" style={{ display: "flex" }}>
+    <div class="ant-row-flex">
       <div class="ant-col ant-col-24 ant-col-md-12">
         <p class="copyright">
           © 2021, made with
@@ -30,7 +30,7 @@ export const FooterComponent = () => {
       >
         <ul
           role="menu"
-          class="ant-menu ant-menu-horizontal ant-menu-root ant-menu-light"
+          class="ant-menu ant-menu-horizontal ant-menu-root ant-menu-light ant-spacebox"
         >
           <li
             role="menuitem"

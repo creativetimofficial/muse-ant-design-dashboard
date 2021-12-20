@@ -10196,11 +10196,12 @@ body {
   .page-row {
     display: flex;
   }
-}
-
-.footer-content {
+  .footer-content {
   margin-left: 249px !important;
 }
+}
+
+
 
 .page-row .page-content {
   flex: 1 1 0;
@@ -10821,4 +10822,60 @@ body {
 .site-card-border-less-wrapper {
   padding: 30px;
   background: #ececec;
+}
+
+.alert-copy-code-color-page {
+  position: absolute;
+  width: 59%;
+  position: fixed;
+  top: 18%;
+  z-index: 5;
+}
+
+.ant-pro-tag {
+  align-items: center;
+  display: flex;
+  margin: 0;
+  color: #1a45d3;
+  font-weight: 700;
+  background-color: #eaecfb;
+  font-size: 9px;
+  line-height: 2.3;
+  border: none;
+  height: 20px;
+  justify-content: center;
+  width: 31px;
+  border-radius: 22%;
+}
+
+.ant-card-bordered-padding {
+  padding: 6px;
+}
+.content-Style {
+  height: "160px";
+  color: "#fff";
+  line-height: "160px";
+  text-align: "center";
+  background: "#364d79";
+}
+.cart-product-new-style {
+  display: table;
+  width: 100%;
+}
+
+@media (max-width: 992px) {
+  .ant-spacebox li {
+    padding: 0px 15px !important;
+  }
+  .ant-anchor-wrapper {
+    display: none;
+  }
+  .ant-layout-header .header-nav .ant-menu-inline-block {
+    background: transparent;
+    box-shadow: none;
+    display: flex;
+  }
+  section#Neutral-colors .ant-col.ant-col-24.ant-col-md-12.ant-col-lg-6 {
+    width: 100% !important;
+  }
 }

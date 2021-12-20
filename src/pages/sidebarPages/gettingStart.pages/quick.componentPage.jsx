@@ -1,9 +1,63 @@
-import React from "react";
+import React, { useState } from "react";
 import { Anchor } from "antd";
+import ReactMarkdown from "react-markdown";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+
+import CopyClipboard from "../../../utils/copyClipboard";
+
+import AlertOnClick from "../../../utils/alertOnClick";
 
 const { Link } = Anchor;
 
+const codeForYarn = `
+$ npm add antd`;
+const markdownForYarn = `
+
+~~~jsx
+${codeForYarn}
+~~~
+`;
+const codeForDirectDownload = `
+$ npm install
+# OR
+yarn`;
+const markdownForDirectDownload = `
+
+~~~jsx
+${codeForDirectDownload}
+~~~
+`;
+
+const codeForCreateNewProject = `
+$ npx create-react-app antd-demo`;
+const markdownForCreateNewProject = `
+
+~~~jsx
+${codeForCreateNewProject}
+~~~
+`;
+
+const codeForFullyModify = `
+import React from 'react';
+import { Button } from 'antd';
+import './App.css';
+
+const App = () => (
+  <div className="App">
+    <Button type="primary">Button</Button>
+  </div>
+);
+
+export default App;`;
+const markdownForFullyModify = `
+
+~~~jsx
+${codeForFullyModify}
+~~~
+`;
+
 export const QuickComponentPage = () => {
+  const [alert, setAlert] = useState(false);
   return (
     <div>
       <div className="main-content">
@@ -11,10 +65,11 @@ export const QuickComponentPage = () => {
           <div className="page-row">
             <div className="page-content">
               <section id="Quick-Start" className="mb-24">
-                <h1>Quick Start</h1>{" "}
+                <AlertOnClick state={alert} />
+                <h1>Quick Start</h1>
                 <p className="text-dark">
                   Ant Design React is dedicated to providing a good development
-                  experience for programmers. Make sure that you had installed{" "}
+                  experience for programmers. Make sure that you had installed
                   <a href="https://nodejs.org/">Node.js</a> (&gt; v8.9)
                   correctly.
                 </p>
@@ -29,10 +84,13 @@ export const QuickComponentPage = () => {
                   To install the Muse Dashboard Template, you only have run this
                   command in your npm project :
                 </p>{" "}
-                <section className="highlight-section">
+                {/*<section className="highlight-section">
                   <button
                     type="button"
                     className="btn-copy ant-btn ant-btn-primary ant-btn-sm"
+                    onClick={() => {
+                      navigator.clipboard.writeText(codeForYarn);
+                    }}
                   >
                     <i aria-label="icon: copy" className="anticon anticon-copy">
                       <svg
@@ -50,9 +108,55 @@ export const QuickComponentPage = () => {
                     </i>
                     <span>Copy</span>
                   </button>{" "}
-                  <pre style={{ maxHeight: "500px" }}>
-                    <code className="hljs bash">npm install muse-antd</code>
-                  </pre>
+                  <ReactMarkdown
+                    children={markdownForNpm}
+                    components={{
+                      code({ node, inline, className, children, ...props }) {
+                        const match = /language-(\w+)/.exec(className || "");
+                        return !inline && match ? (
+                          <SyntaxHighlighter
+                            children={String(children).replace(/\n$/, "")}
+                            language={match[1]}
+                            PreTag="div"
+                            {...props}
+                            className="codetext"
+                          />
+                        ) : (
+                          <code className={className} {...props}>
+                            {children}
+                          </code>
+                        );
+                      },
+                    }}
+                  />
+                </section>*/}
+                <section className="highlight-section">
+                  <CopyClipboard
+                    text={codeForYarn}
+                    state={alert}
+                    setState={setAlert}
+                  />
+                  <ReactMarkdown
+                    children={markdownForYarn}
+                    components={{
+                      code({ node, inline, className, children, ...props }) {
+                        const match = /language-(\w+)/.exec(className || "");
+                        return !inline && match ? (
+                          <SyntaxHighlighter
+                            children={String(children).replace(/\n$/, "")}
+                            language={match[1]}
+                            PreTag="div"
+                            {...props}
+                            className="codetext"
+                          />
+                        ) : (
+                          <code className={className} {...props}>
+                            {children}
+                          </code>
+                        );
+                      },
+                    }}
+                  />
                 </section>
               </section>{" "}
               <section id="Direct-Download" className="mb-24">
@@ -62,27 +166,33 @@ export const QuickComponentPage = () => {
                   run one of the installation commands below :
                 </p>{" "}
                 <section className="highlight-section">
-                  <button
-                    type="button"
-                    className="btn-copy ant-btn ant-btn-primary ant-btn-sm"
-                  >
-                    <i aria-label="icon: copy" className="anticon anticon-copy">
-                      <svg
-                        viewBox="64 64 896 896"
-                        data-icon="copy"
-                        width="1em"
-                        height="1em"
-                        fill="currentColor"
-                        aria-hidden="true"
-                        focusable="false"
-                        className=""
-                      >
-                        <path d="M832 64H296c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h496v688c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V96c0-17.7-14.3-32-32-32zM704 192H192c-17.7 0-32 14.3-32 32v530.7c0 8.5 3.4 16.6 9.4 22.6l173.3 173.3c2.2 2.2 4.7 4 7.4 5.5v1.9h4.2c3.5 1.3 7.2 2 11 2H704c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32zM350 856.2L263.9 770H350v86.2zM664 888H414V746c0-22.1-17.9-40-40-40H232V264h432v624z"></path>
-                      </svg>
-                    </i>
-                    <span>Copy</span>
-                  </button>{" "}
-                  <pre style={{ maxHeight: "500px" }}>
+                  <CopyClipboard
+                    text={codeForDirectDownload}
+                    state={alert}
+                    setState={setAlert}
+                  />
+                  <ReactMarkdown
+                    children={markdownForDirectDownload}
+                    components={{
+                      code({ node, inline, className, children, ...props }) {
+                        const match = /language-(\w+)/.exec(className || "");
+                        return !inline && match ? (
+                          <SyntaxHighlighter
+                            children={String(children).replace(/\n$/, "")}
+                            language={match[1]}
+                            PreTag="div"
+                            {...props}
+                            className="codetext"
+                          />
+                        ) : (
+                          <code className={className} {...props}>
+                            {children}
+                          </code>
+                        );
+                      },
+                    }}
+                  />
+                  {/* <pre style={{ maxHeight: "500px" }}>
                     <code className="hljs bash">
                       npm install
                       <span className="hljs-comment"># OR</span>
@@ -135,7 +245,7 @@ export const QuickComponentPage = () => {
                       <span className="hljs-comment"># OR</span>
                       yarn global add @antd/cli
                     </code>
-                  </pre>
+                  </pre>*/}
                 </section>
               </section>{" "}
               <section className="mb-24">
@@ -149,29 +259,35 @@ export const QuickComponentPage = () => {
                 </div>{" "}
                 <p>A new project can be created using CLI tools.</p>{" "}
                 <section className="highlight-section">
-                  <button
-                    type="button"
-                    className="btn-copy ant-btn ant-btn-primary ant-btn-sm"
-                  >
-                    <i aria-label="icon: copy" className="anticon anticon-copy">
-                      <svg
-                        viewBox="64 64 896 896"
-                        data-icon="copy"
-                        width="1em"
-                        height="1em"
-                        fill="currentColor"
-                        aria-hidden="true"
-                        focusable="false"
-                        className=""
-                      >
-                        <path d="M832 64H296c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h496v688c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V96c0-17.7-14.3-32-32-32zM704 192H192c-17.7 0-32 14.3-32 32v530.7c0 8.5 3.4 16.6 9.4 22.6l173.3 173.3c2.2 2.2 4.7 4 7.4 5.5v1.9h4.2c3.5 1.3 7.2 2 11 2H704c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32zM350 856.2L263.9 770H350v86.2zM664 888H414V746c0-22.1-17.9-40-40-40H232V264h432v624z"></path>
-                      </svg>
-                    </i>
-                    <span>Copy</span>
-                  </button>{" "}
-                  <pre style={{ maxHeight: "500px" }}>
+                  <CopyClipboard
+                    text={codeForCreateNewProject}
+                    state={alert}
+                    setState={setAlert}
+                  />
+                  <ReactMarkdown
+                    children={markdownForCreateNewProject}
+                    components={{
+                      code({ node, inline, className, children, ...props }) {
+                        const match = /language-(\w+)/.exec(className || "");
+                        return !inline && match ? (
+                          <SyntaxHighlighter
+                            children={String(children).replace(/\n$/, "")}
+                            language={match[1]}
+                            PreTag="div"
+                            {...props}
+                            className="codetext"
+                          />
+                        ) : (
+                          <code className={className} {...props}>
+                            {children}
+                          </code>
+                        );
+                      },
+                    }}
+                  />
+                  {/*<pre style={{ maxHeight: "500px" }}>
                     <code className="hljs bash">npm create antd-demo</code>
-                  </pre>
+                  </pre>*/}
                 </section>{" "}
                 <p>And, setup your React project configuration.</p>
               </section>{" "}
@@ -186,53 +302,65 @@ export const QuickComponentPage = () => {
                 </div>{" "}
                 <p>A new project can be created using CLI tools.</p>{" "}
                 <section className="highlight-section">
-                  <button
-                    type="button"
-                    className="btn-copy ant-btn ant-btn-primary ant-btn-sm"
-                  >
-                    <i aria-label="icon: copy" className="anticon anticon-copy">
-                      <svg
-                        viewBox="64 64 896 896"
-                        data-icon="copy"
-                        width="1em"
-                        height="1em"
-                        fill="currentColor"
-                        aria-hidden="true"
-                        focusable="false"
-                        className=""
-                      >
-                        <path d="M832 64H296c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h496v688c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V96c0-17.7-14.3-32-32-32zM704 192H192c-17.7 0-32 14.3-32 32v530.7c0 8.5 3.4 16.6 9.4 22.6l173.3 173.3c2.2 2.2 4.7 4 7.4 5.5v1.9h4.2c3.5 1.3 7.2 2 11 2H704c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32zM350 856.2L263.9 770H350v86.2zM664 888H414V746c0-22.1-17.9-40-40-40H232V264h432v624z"></path>
-                      </svg>
-                    </i>
-                    <span>Copy</span>
-                  </button>{" "}
-                  <pre style={{ maxHeight: "500px" }}>
+                  <CopyClipboard
+                    text={codeForYarn}
+                    state={alert}
+                    setState={setAlert}
+                  />
+                  <ReactMarkdown
+                    children={markdownForYarn}
+                    components={{
+                      code({ node, inline, className, children, ...props }) {
+                        const match = /language-(\w+)/.exec(className || "");
+                        return !inline && match ? (
+                          <SyntaxHighlighter
+                            children={String(children).replace(/\n$/, "")}
+                            language={match[1]}
+                            PreTag="div"
+                            {...props}
+                            className="codetext"
+                          />
+                        ) : (
+                          <code className={className} {...props}>
+                            {children}
+                          </code>
+                        );
+                      },
+                    }}
+                  />
+                  {/*<pre style={{ maxHeight: "500px" }}>
                     <code className="hljs bash">npm i --save antd</code>
-                  </pre>
+                  </pre>*/}
                 </section>{" "}
                 <p>Fully import</p>{" "}
                 <section className="highlight-section">
-                  <button
-                    type="button"
-                    className="btn-copy ant-btn ant-btn-primary ant-btn-sm"
-                  >
-                    <i aria-label="icon: copy" className="anticon anticon-copy">
-                      <svg
-                        viewBox="64 64 896 896"
-                        data-icon="copy"
-                        width="1em"
-                        height="1em"
-                        fill="currentColor"
-                        aria-hidden="true"
-                        focusable="false"
-                        className=""
-                      >
-                        <path d="M832 64H296c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h496v688c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V96c0-17.7-14.3-32-32-32zM704 192H192c-17.7 0-32 14.3-32 32v530.7c0 8.5 3.4 16.6 9.4 22.6l173.3 173.3c2.2 2.2 4.7 4 7.4 5.5v1.9h4.2c3.5 1.3 7.2 2 11 2H704c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32zM350 856.2L263.9 770H350v86.2zM664 888H414V746c0-22.1-17.9-40-40-40H232V264h432v624z"></path>
-                      </svg>
-                    </i>
-                    <span>Copy</span>
-                  </button>{" "}
-                  <pre style={{ maxHeight: "500px" }}>
+                  <CopyClipboard
+                    text={codeForFullyModify}
+                    state={alert}
+                    setState={setAlert}
+                  />
+                  <ReactMarkdown
+                    children={markdownForFullyModify}
+                    components={{
+                      code({ node, inline, className, children, ...props }) {
+                        const match = /language-(\w+)/.exec(className || "");
+                        return !inline && match ? (
+                          <SyntaxHighlighter
+                            children={String(children).replace(/\n$/, "")}
+                            language={match[1]}
+                            PreTag="div"
+                            {...props}
+                            className="codetext"
+                          />
+                        ) : (
+                          <code className={className} {...props}>
+                            {children}
+                          </code>
+                        );
+                      },
+                    }}
+                  />
+                  {/*<pre style={{ maxHeight: "500px" }}>
                     <code className="hljs javascript">
                       <span className="hljs-keyword">import</span> antd{" "}
                       <span className="hljs-keyword">from</span>{" "}
@@ -249,7 +377,7 @@ export const QuickComponentPage = () => {
                       <span className="hljs-literal">false</span>;
                       React.use(Antd);
                       <span className="hljs-comment">
-                        /* eslint-disable no-new */
+                        /* eslint-disable no-new 
                       </span>
                       <span className="hljs-keyword">new</span> React(
                       {<span className="hljs-attr">el</span>}{" "}
@@ -259,7 +387,7 @@ export const QuickComponentPage = () => {
                       <span className="hljs-string">'&lt;App/&gt;'</span>,{"}"}
                       );
                     </code>
-                  </pre>
+                  </pre>*/}
                 </section>{" "}
                 <p>
                   The above imports Antd entirely. Note that CSS file needs to
@@ -267,27 +395,33 @@ export const QuickComponentPage = () => {
                 </p>{" "}
                 <h6>Only import the components you need</h6>{" "}
                 <section className="highlight-section">
-                  <button
-                    type="button"
-                    className="btn-copy ant-btn ant-btn-primary ant-btn-sm"
-                  >
-                    <i aria-label="icon: copy" className="anticon anticon-copy">
-                      <svg
-                        viewBox="64 64 896 896"
-                        data-icon="copy"
-                        width="1em"
-                        height="1em"
-                        fill="currentColor"
-                        aria-hidden="true"
-                        focusable="false"
-                        className=""
-                      >
-                        <path d="M832 64H296c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h496v688c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V96c0-17.7-14.3-32-32-32zM704 192H192c-17.7 0-32 14.3-32 32v530.7c0 8.5 3.4 16.6 9.4 22.6l173.3 173.3c2.2 2.2 4.7 4 7.4 5.5v1.9h4.2c3.5 1.3 7.2 2 11 2H704c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32zM350 856.2L263.9 770H350v86.2zM664 888H414V746c0-22.1-17.9-40-40-40H232V264h432v624z"></path>
-                      </svg>
-                    </i>
-                    <span>Copy</span>
-                  </button>{" "}
-                  <pre style={{ maxHeight: "500px" }}>
+                  <CopyClipboard
+                    text={codeForYarn}
+                    state={alert}
+                    setState={setAlert}
+                  />
+                  <ReactMarkdown
+                    children={markdownForYarn}
+                    components={{
+                      code({ node, inline, className, children, ...props }) {
+                        const match = /language-(\w+)/.exec(className || "");
+                        return !inline && match ? (
+                          <SyntaxHighlighter
+                            children={String(children).replace(/\n$/, "")}
+                            language={match[1]}
+                            PreTag="div"
+                            {...props}
+                            className="codetext"
+                          />
+                        ) : (
+                          <code className={className} {...props}>
+                            {children}
+                          </code>
+                        );
+                      },
+                    }}
+                  />
+                  {/*<pre style={{ maxHeight: "500px" }}>
                     <code className="hljs javascript">
                       <span className="hljs-keyword">import</span> antd{" "}
                       <span className="hljs-keyword">from</span>{" "}
@@ -300,7 +434,7 @@ export const QuickComponentPage = () => {
                       <span className="hljs-keyword">from</span>{" "}
                       <span className="hljs-string">'./App'</span>;
                     </code>
-                  </pre>
+                  </pre>*/}
                 </section>
               </section>{" "}
               <section id="Compatibility" className="mb-24">

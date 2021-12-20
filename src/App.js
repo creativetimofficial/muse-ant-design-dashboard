@@ -20,7 +20,7 @@ function App() {
             <Content>
               {routes.map((item) => (
                 <Route
-                  // exact={item.exact}
+                  exact={item.exact}
                   path={item.path}
                   component={item.component}
                 />
