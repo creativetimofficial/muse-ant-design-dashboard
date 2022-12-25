@@ -141,29 +141,29 @@ function Home() {
   ];
   const count = [
     {
-      today: "Today’s Sales",
-      title: "$53,000",
+      today: "This month Loan",
+      title: "410,000",
       persent: "+30%",
       icon: dollor,
       bnb: "bnb2",
     },
     {
-      today: "Today’s Users",
-      title: "3,200",
+      today: "This month Users",
+      title: "63",
       persent: "+20%",
       icon: profile,
       bnb: "bnb2",
     },
     {
-      today: "New Clients",
+      today: "Total Clients",
       title: "+1,200",
-      persent: "-20%",
+      // persent: "-20%",
       icon: heart,
       bnb: "redtext",
     },
     {
       today: "New Orders",
-      title: "$13,200",
+      title: "13,200",
       persent: "10%",
       icon: cart,
       bnb: "bnb2",

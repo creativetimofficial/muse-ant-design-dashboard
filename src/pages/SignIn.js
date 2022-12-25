@@ -128,7 +128,7 @@ export default class SignIn extends Component {
         <Layout className="layout-default layout-signin">
           <Header>
             <div className="header-col header-brand">
-              <h5>Muse Dashboard</h5>
+              <h5>Green Finserv</h5>
             </div>
             <div className="header-col header-nav">
               <Menu mode="horizontal" defaultSelectedKeys={["1"]}>
