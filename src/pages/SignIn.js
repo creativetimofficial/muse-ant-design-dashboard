@@ -22,7 +22,7 @@ import {
   Input,
   Switch,
 } from "antd";
-import signinbg from "../assets/images/img-signin.jpg";
+import signinbg from "../assets/images/green-timing.jpeg";
 import {
   DribbbleOutlined,
   TwitterOutlined,
@@ -244,7 +244,7 @@ export default class SignIn extends Component {
               </Col>
             </Row>
           </Content>
-          <Footer>
+          {/* <Footer>
             <Menu mode="horizontal">
               <Menu.Item>Company</Menu.Item>
               <Menu.Item>About Us</Menu.Item>
@@ -283,7 +283,7 @@ export default class SignIn extends Component {
               {" "}
               Copyright © 2021 Muse by <a href="#pablo">Creative Tim</a>.{" "}
             </p>
-          </Footer>
+          </Footer> */}
         </Layout>
       </>
     );
