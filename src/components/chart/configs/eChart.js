@@ -1,106 +1,60 @@
 const eChart = {
-  series: [
-    {
-      name: "Sales",
-      data: [450, 200, 100, 220, 500, 100, 400, 230, 500],
-      color: "#fff",
-    },
-  ],
+  
+  series: [{
+    name: 'Consumption',
+    type: 'column',
+    data: [440, 505, 414, 671, 227, 413, 201, 352, 752,250.300,500,100],
+    color:"rgb(44, 178, 231)",
+  }, {
+    name: 'Consumption-Pre',
+    type: 'line',
+    data: [12, 22, 15, 17, 33, 22, 17, 21, 12,8,5,13],
+    color: '#28E8C3'
+  }],
 
-  options: {
+
+  options : {
     chart: {
-      type: "bar",
-      width: "100%",
+      width:"100%",  
       height: "auto",
-
-      toolbar: {
-        show: false,
-      },
+      type: 'line'
     },
-    plotOptions: {
-      bar: {
-        horizontal: false,
-        columnWidth: "55%",
-        borderRadius: 5,
-      },
-    },
-    dataLabels: {
-      enabled: false,
-    },
-    stroke: {
-      show: true,
-      width: 1,
-      colors: ["transparent"],
-    },
-    grid: {
-      show: true,
-      borderColor: "#ccc",
-      strokeDashArray: 2,
-    },
-    xaxis: {
-      categories: [
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-      ],
-      labels: {
-        show: true,
-        align: "right",
-        minWidth: 0,
-        maxWidth: 160,
-        style: {
-          colors: [
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-          ],
-        },
-      },
-    },
-    yaxis: {
-      labels: {
-        show: true,
-        align: "right",
-        minWidth: 0,
-        maxWidth: 160,
-        style: {
-          colors: [
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-          ],
-        },
-      },
-    },
-
-    tooltip: {
-      y: {
-        formatter: function (val) {
-          return "$ " + val + " thousands";
-        },
-      },
+  plotOptions: {
+    bar: {
+      horizontal: false,
+      columnWidth: "40%",
     },
   },
-};
+  stroke:{
+    width:[1,3],
+    curve: "straight",
+  },
+  markers: {
+    size: [2, 3]
+  },  
+  title: {
+    text: 'Consumption Comparsion'
+  },
+  dataLabels: {
+    enabled: false,
+   // enabledOnSeries: [1]
+  },
+  labels: ['12 AM', '1 AM', '2 AM', '3 AM', '4 AM', '5 AM', '5 PM', '7 PM', '8 PM', '9 PM', '10 PM', '11 PM'],
+  xaxis: {
 
+  },
+  yaxis: [{
+    title: {
+      text: 'Consumption',
+    },
+  
+  }, {
+    opposite: true,
+    title: {
+      text: 'Consumption-Pre'
+    }
+  }]
+  }
+
+}
 export default eChart;

@@ -44,7 +44,7 @@ function EChart() {
           options={eChart.options}
           series={eChart.series}
           type="bar"
-          height={220}
+          height={350}
         />
       </div>
       <div className="chart-vistior">

@@ -1,16 +1,5 @@
-/*!
-  =========================================================
-  * Muse Ant Design Dashboard - v1.0.0
-  =========================================================
-  * Product Page: https://www.creative-tim.com/product/muse-ant-design-dashboard
-  * Copyright 2021 Creative Tim (https://www.creative-tim.com)
-  * Licensed under MIT (https://github.com/creativetimofficial/muse-ant-design-dashboard/blob/main/LICENSE.md)
-  * Coded by Creative Tim
-  =========================================================
-  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
 import { useState } from "react";
-
+import {Select,DatePicker, Space } from "antd";
 import {
   Card,
   Col,
@@ -45,6 +34,7 @@ import team2 from "../assets/images/team-2.jpg";
 import team3 from "../assets/images/team-3.jpg";
 import team4 from "../assets/images/team-4.jpg";
 import card from "../assets/images/info-card-1.jpg";
+const { RangePicker } = DatePicker;
 
 function Home() {
   const { Title, Text } = Typography;
@@ -53,123 +43,117 @@ function Home() {
 
   const [reverse, setReverse] = useState(false);
 
-  const dollor = [
-    <svg
-      width="22"
-      height="22"
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      key={0}
-    >
-      <path
-        d="M8.43338 7.41784C8.58818 7.31464 8.77939 7.2224 9 7.15101L9.00001 8.84899C8.77939 8.7776 8.58818 8.68536 8.43338 8.58216C8.06927 8.33942 8 8.1139 8 8C8 7.8861 8.06927 7.66058 8.43338 7.41784Z"
-        fill="#fff"
-      ></path>
-      <path
-        d="M11 12.849L11 11.151C11.2206 11.2224 11.4118 11.3146 11.5666 11.4178C11.9308 11.6606 12 11.8861 12 12C12 12.1139 11.9308 12.3394 11.5666 12.5822C11.4118 12.6854 11.2206 12.7776 11 12.849Z"
-        fill="#fff"
-      ></path>
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18ZM11 5C11 4.44772 10.5523 4 10 4C9.44772 4 9 4.44772 9 5V5.09199C8.3784 5.20873 7.80348 5.43407 7.32398 5.75374C6.6023 6.23485 6 7.00933 6 8C6 8.99067 6.6023 9.76515 7.32398 10.2463C7.80348 10.5659 8.37841 10.7913 9.00001 10.908L9.00002 12.8492C8.60902 12.7223 8.31917 12.5319 8.15667 12.3446C7.79471 11.9275 7.16313 11.8827 6.74599 12.2447C6.32885 12.6067 6.28411 13.2382 6.64607 13.6554C7.20855 14.3036 8.05956 14.7308 9 14.9076L9 15C8.99999 15.5523 9.44769 16 9.99998 16C10.5523 16 11 15.5523 11 15L11 14.908C11.6216 14.7913 12.1965 14.5659 12.676 14.2463C13.3977 13.7651 14 12.9907 14 12C14 11.0093 13.3977 10.2348 12.676 9.75373C12.1965 9.43407 11.6216 9.20873 11 9.09199L11 7.15075C11.391 7.27771 11.6808 7.4681 11.8434 7.65538C12.2053 8.07252 12.8369 8.11726 13.254 7.7553C13.6712 7.39335 13.7159 6.76176 13.354 6.34462C12.7915 5.69637 11.9405 5.26915 11 5.09236V5Z"
-        fill="#fff"
-      ></path>
-    </svg>,
+  const consumption = [
+     <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M23.25 26.5v7.8q0 .6.575.75.575.15.825-.4l5.8-12.05q.2-.4-.025-.75t-.625-.35h-4.75v-7.9q0-.6-.575-.75-.575-.15-.825.4L17.5 25.4q-.2.4.025.75t.625.35ZM24 44q-4.1 0-7.75-1.575-3.65-1.575-6.375-4.3-2.725-2.725-4.3-6.375Q4 28.1 4 24t1.575-7.75q1.575-3.65 4.3-6.375 2.725-2.725 6.375-4.3Q19.9 4 24 4t7.75 1.575q3.65 1.575 6.375 4.3 2.725 2.725 4.3 6.375Q44 19.9 44 24t-1.575 7.75q-1.575 3.65-4.3 6.375-2.725 2.725-6.375 4.3Q28.1 44 24 44Zm0-20Zm0 17q7 0 12-5t5-12q0-7-5-12T24 7q-7 0-12 5T7 24q0 7 5 12t12 5Z"/></svg>
+  
+   
   ];
-  const profile = [
-    <svg
-      width="22"
-      height="22"
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      key={0}
-    >
-      <path
-        d="M9 6C9 7.65685 7.65685 9 6 9C4.34315 9 3 7.65685 3 6C3 4.34315 4.34315 3 6 3C7.65685 3 9 4.34315 9 6Z"
-        fill="#fff"
-      ></path>
-      <path
-        d="M17 6C17 7.65685 15.6569 9 14 9C12.3431 9 11 7.65685 11 6C11 4.34315 12.3431 3 14 3C15.6569 3 17 4.34315 17 6Z"
-        fill="#fff"
-      ></path>
-      <path
-        d="M12.9291 17C12.9758 16.6734 13 16.3395 13 16C13 14.3648 12.4393 12.8606 11.4998 11.6691C12.2352 11.2435 13.0892 11 14 11C16.7614 11 19 13.2386 19 16V17H12.9291Z"
-        fill="#fff"
-      ></path>
-      <path
-        d="M6 11C8.76142 11 11 13.2386 11 16V17H1V16C1 13.2386 3.23858 11 6 11Z"
-        fill="#fff"
-      ></path>
-    </svg>,
+  const energy = [
+    <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M24 44q-1.35 0-2.375-.65t-1.325-1.8h-.7q-1.2 0-2.1-.9-.9-.9-.9-2.1V31.4q-3.3-2.15-5.2-5.5-1.9-3.35-1.9-7.4 0-6.05 4.225-10.275Q17.95 4 24 4q6.05 0 10.275 4.225Q38.5 12.45 38.5 18.5q0 4.05-1.9 7.4-1.9 3.35-5.2 5.5v7.15q0 1.2-.9 2.1-.9.9-2.1.9h-.7q-.3 1.15-1.325 1.8Q25.35 44 24 44Zm-4.4-5.45h8.8v-2.2h-8.8Zm0-4.2h8.8v-2h-8.8Zm-.45-5h3.7V22.5l-4.6-4.6 1.55-1.55 4.2 4.2 4.2-4.2 1.55 1.55-4.6 4.6v6.85h3.7q3-1.4 4.825-4.35 1.825-2.95 1.825-6.5 0-4.85-3.325-8.175Q28.85 7 24 7q-4.85 0-8.175 3.325Q12.5 13.65 12.5 18.5q0 3.55 1.825 6.5t4.825 4.35Zm4.85-8.8Zm0-2.4Z"/></svg>
+
   ];
-  const heart = [
-    <svg
-      width="22"
-      height="22"
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      key={0}
-    >
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M3.17157 5.17157C4.73367 3.60948 7.26633 3.60948 8.82843 5.17157L10 6.34315L11.1716 5.17157C12.7337 3.60948 15.2663 3.60948 16.8284 5.17157C18.3905 6.73367 18.3905 9.26633 16.8284 10.8284L10 17.6569L3.17157 10.8284C1.60948 9.26633 1.60948 6.73367 3.17157 5.17157Z"
-        fill="#fff"
-      ></path>
-    </svg>,
+  const co2 = [
+    <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M12.55 40q-4.4 0-7.475-3.075Q2 33.85 2 29.45q0-4.05 2.525-6.875t6.325-3.525q.9-4.7 4.625-7.875T24.05 8q5.55 0 9.45 4.075 3.9 4.075 3.9 9.825v1.2q3.75 0 6.175 2.425T46 31.55q0 3.45-2.5 5.95T37.55 40Zm0-3h25q2.25 0 3.85-1.6t1.6-3.85q0-2.25-1.6-3.85t-3.85-1.6H34.4v-4.2q0-4.4-2.975-7.65T24.05 11q-3.5 0-6.45 2.175T13.75 19q4 .55 6.6 3.2 2.6 2.65 2.6 6.8h-3q0-3.15-2.2-5.125T12.4 21.9q-3.15 0-5.275 2.2Q5 26.3 5 29.45q0 3.15 2.2 5.35Q9.4 37 12.55 37Z"/></svg>
   ];
-  const cart = [
-    <svg
-      width="22"
-      height="22"
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      key={0}
-    >
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M10 2C7.79086 2 6 3.79086 6 6V7H5C4.49046 7 4.06239 7.38314 4.00612 7.88957L3.00612 16.8896C2.97471 17.1723 3.06518 17.455 3.25488 17.6669C3.44458 17.8789 3.71556 18 4 18H16C16.2844 18 16.5554 17.8789 16.7451 17.6669C16.9348 17.455 17.0253 17.1723 16.9939 16.8896L15.9939 7.88957C15.9376 7.38314 15.5096 7 15 7H14V6C14 3.79086 12.2091 2 10 2ZM12 7V6C12 4.89543 11.1046 4 10 4C8.89543 4 8 4.89543 8 6V7H12ZM6 10C6 9.44772 6.44772 9 7 9C7.55228 9 8 9.44772 8 10C8 10.5523 7.55228 11 7 11C6.44772 11 6 10.5523 6 10ZM13 9C12.4477 9 12 9.44772 12 10C12 10.5523 12.4477 11 13 11C13.5523 11 14 10.5523 14 10C14 9.44772 13.5523 9 13 9Z"
-        fill="#fff"
-      ></path>
-    </svg>,
-  ];
-  const count = [
-    {
-      today: "Today’s Sales",
-      title: "$53,000",
-      persent: "+30%",
-      icon: dollor,
-      bnb: "bnb2",
-    },
-    {
-      today: "Today’s Users",
-      title: "3,200",
-      persent: "+20%",
-      icon: profile,
-      bnb: "bnb2",
-    },
-    {
-      today: "New Clients",
-      title: "+1,200",
-      persent: "-20%",
-      icon: heart,
-      bnb: "redtext",
-    },
-    {
-      today: "New Orders",
-      title: "$13,200",
-      persent: "10%",
-      icon: cart,
-      bnb: "bnb2",
-    },
+ 
+  const sun = [
+    <svg xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path d="M18.958 8.5V2.542h2.084V8.5Zm9.917 4.083-1.458-1.416 4.166-4.292 1.5 1.5Zm2.625 8.459v-2.084h5.958v2.084ZM18.958 37.458v-5.916h2.084v5.916Zm-7.833-24.916-4.25-4.125 1.542-1.5 4.208 4.208Zm20.5 20.583-4.208-4.292 1.416-1.375 4.25 4.084ZM2.542 21.042v-2.084H8.5v2.084Zm5.875 12.083-1.5-1.542 4.166-4.125.75.709.792.708ZM20 29.167q-3.833 0-6.5-2.667T10.833 20q0-3.833 2.667-6.5t6.5-2.667q3.833 0 6.5 2.667t2.667 6.5q0 3.833-2.667 6.5T20 29.167Zm0-2.084q2.917 0 5-2.062 2.083-2.063 2.083-5.021 0-2.917-2.062-5-2.063-2.083-5.021-2.083-2.917 0-5 2.062-2.083 2.063-2.083 5.021 0 2.917 2.062 5 2.063 2.083 5.021 2.083ZM20 20Z"/></svg>
   ];
 
+const air = [
+  <svg xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path d="M19.292 32.708q-1.875 0-3.104-1.062-1.23-1.063-1.396-2.938h2.291q.125.917.688 1.417.562.5 1.521.5 1.041 0 1.646-.604.604-.604.604-1.729t-.604-1.771q-.605-.646-1.646-.646H3.75v-2.083h15.542q1.958 0 3.166 1.187 1.209 1.188 1.209 3.313 0 2.041-1.209 3.229-1.208 1.187-3.166 1.187ZM3.75 16.292v-2.084H26q1.458 0 2.292-.854.833-.854.833-2.396 0-1.583-.833-2.416-.834-.834-2.292-.834-1.375 0-2.188.771-.812.771-.895 1.979h-2.125q.125-2.125 1.541-3.479Q23.75 5.625 26 5.625q2.333 0 3.792 1.458 1.458 1.459 1.458 3.875 0 2.375-1.458 3.855-1.459 1.479-3.792 1.479ZM31.5 29.583v-2.125q1.25-.125 1.958-.958.709-.833.709-2.208 0-1.5-.875-2.334-.875-.833-2.292-.833H3.75v-2.083H31q2.333 0 3.792 1.458 1.458 1.458 1.458 3.792 0 2.25-1.271 3.708-1.271 1.458-3.479 1.583Z"/></svg>
+]
+const thunderStrome = [<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40"><path d="m20.417 39.583 3.75-4.25-3.334-1.666 4.292-4.917h2.792L24.167 33l3.333 1.667-4.292 4.916Zm-10 0 3.75-4.25-3.334-1.666 4.292-4.917h2.792L14.167 33l3.333 1.667-4.292 4.916Zm1.875-13.75q-3.542 0-6.042-2.5t-2.5-6.041q0-3.25 2.271-5.729 2.271-2.48 5.646-2.771 1.291-2.334 3.458-3.688Q17.292 3.75 20 3.75q3.667 0 6.25 2.396t3.083 5.937q3.209.167 5.063 2.167 1.854 2 1.854 4.708 0 2.875-2 4.875t-4.875 2Zm0-2.083h17.083q2 0 3.396-1.417 1.396-1.416 1.396-3.375 0-2-1.396-3.395-1.396-1.396-3.396-1.396h-2.083v-1.042q0-3-2.125-5.146T20 5.833q-2.208 0-4.021 1.188-1.812 1.187-2.687 3.187l-.25.625h-.834q-2.625.084-4.5 1.959t-1.875 4.5q0 2.666 1.896 4.562 1.896 1.896 4.563 1.896ZM20 14.792Z"/></svg>]
+
+
+const clearNight = [<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M26.2 46q-4.2 0-7.875-1.6t-6.4-4.325Q9.2 37.35 7.6 33.675 6 30 6 25.8q0-7.3 4.65-12.875T22.5 6q-.9 4.9.55 9.625 1.45 4.725 5 8.275 3.55 3.55 8.275 5.025Q41.05 30.4 46 29.5q-1.3 7.2-6.9 11.85Q33.5 46 26.2 46Zm0-3q5 0 9.1-2.85t6.6-7.25q-4.5-.4-8.65-2.075Q29.1 29.15 25.95 26q-3.2-3.15-4.85-7.275-1.65-4.125-2.05-8.575-4.4 2.4-7.225 6.525Q9 20.8 9 25.8q0 7.15 5.025 12.175T26.2 43Zm-.3-17Z"/></svg>]
+  const count = [
+    {
+      today: "Consumption",
+      title:"8087.3KWh",
+      dec:"Energy in Kwh, That has been consumed ",
+      icon: consumption,
+      bnb: "bnb2",
+    },
+    {
+      today: "Energy Cost",
+      title: "$1374.6",
+      dec:"Usage Cost Only",
+      icon: energy,
+      bnb: "bnb2",
+    },
+    {
+      today: "CO2e",
+      title: "63Kg",
+      dec:"tree seedlings equivalent to 10 years",
+
+      icon: co2,
+      bnb: "redtext",
+    },
+    // {
+    //   today: "New Orders",
+    //   title: "$13,200",
+    //   persent: "10%",
+    //   icon: cart,
+    //   bnb: "bnb2",
+    // },
+  ];
+
+  const count1 = [
+    {
+      today: "31.6°C",
+      title: "Parth",
+      dec: "Clear",
+      icon: <span> {clearNight} 21&#8451;</span>,
+      bnb: "bnb2",
+      Pressure:"1014.6",
+      Humidity:"10%",
+      Wind:"6.3m/s",
+    }
+  ];
+  const day=[
+    {
+      day:"sat",
+      icon:air,
+      temp:'12-33'
+    },
+    {
+      day:"sun",
+      icon:sun,
+      temp:'12-33'
+    },
+    {
+      day:"mon",
+      icon:thunderStrome,
+      temp:'29-44'
+
+    },
+    {
+      day:"tue",
+      icon:air,
+      temp:'29-30'
+    },
+    {
+      day:"wed",
+      icon:sun,
+      temp:'19-44'
+    },
+    {
+      day:"thu",
+      icon:sun,
+      temp:'29-34'
+    },
+    {
+      day:"fri",
+      icon:thunderStrome,
+      temp:'29-44'
+    },
+    {
+      day:"sat",
+      icon:air,temp:'09-14'
+    },
+  ];
+  
   const list = [
     {
       img: ava1,
@@ -339,47 +323,168 @@ function Home() {
       }
     },
   };
+  const provinceData = ['Zhejiang', 'Jiangsu'];
+const cityData = {
+  Zhejiang: ['Hangzhou', 'Ningbo', 'Wenzhou'],
+  Jiangsu: ['Nanjing', 'Suzhou', 'Zhenjiang'],
+};
+  const [cities, setCities] = useState(cityData[provinceData[0]]);
+  const [secondCity, setSecondCity] = useState(cityData[provinceData[0]][0]);
+  const handleProvinceChange = (value) => {
+    setCities(cityData[value]);
+    setSecondCity(cityData[value][0]);
+  };
+  const onSecondCityChange = (value) => {
+    setSecondCity(value);
+  };
 
   return (
     <>
+    <Row><Select
+        style={{
+          width: 160,
+          marginBottom:15,
+          marginRight:25
+        }}
+        value={secondCity}
+        onChange={onSecondCityChange}
+        options={cities.map((city) => ({
+          label: city,
+          value: city,
+        }))}
+      />
+      <Space direction="vertical" size={12}>
+    <RangePicker />
+   
+   
+  </Space>
+  <Select
+        style={{
+          width: 100,
+          marginBottom:25,
+          marginLeft:25
+        }}
+        value={secondCity}
+        onChange={onSecondCityChange}
+        options={cities.map((city) => ({
+          label: city,
+          value: city,
+        }))}
+      /></Row>
       <div className="layout-content">
+        
         <Row className="rowgap-vbox" gutter={[24, 0]}>
+        
           {count.map((c, index) => (
             <Col
               key={index}
               xs={24}
               sm={24}
               md={12}
-              lg={6}
-              xl={6}
+              lg={5}
+              xl={5}
               className="mb-24"
             >
               <Card bordered={false} className="criclebox ">
                 <div className="number">
                   <Row align="middle" gutter={[24, 0]}>
-                    <Col xs={18}>
-                      <span>{c.today}</span>
-                      <Title level={3}>
-                        {c.title} <small className={c.bnb}>{c.persent}</small>
+                  
+                  <Col xs={15}>
+
+                      <div className="icon-box ">{c.icon}</div>
+                      
+                    </Col>  
+
+                    <Col className="col text-center"  xs={24}>
+                      <span className="consumption" >{c.today}</span>
+                      <Title level={2}>
+
+                       <span className="consumptionTitle">{c.title}</span> 
+                        
+                        <small className={c.bnb}>{c.persent}</small><p>{c.dec}</p>
+              
+                        
                       </Title>
+                      
                     </Col>
-                    <Col xs={6}>
-                      <div className="icon-box">{c.icon}</div>
+                   
+                  </Row>
+                </div>
+              </Card>
+            </Col>
+            
+          ))}
+          <Col 
+          xs={24}
+          sm={24}
+          md={12}
+          lg={12}
+          xl={9}
+          className="mb-24"
+          >
+          <Row className="" gutter={[24, 0]}>
+          {count1.map((d, index) => (
+            <Col
+              key={index}
+              xs={24}
+              sm={24}
+              md={24}
+              lg={24}
+              xl={24}
+              className="mb-24"
+            >
+              <Card bordered={false} className="criclebox ">
+                <div className="number">
+                
+                  <Row>
+                    <Col xs={12}>
+                      <span> {d.title} </span>
+                      <div>
+
+                      <h4>{d.dec}</h4>
+                      </div>
+                      {d.icon}
+                      {/* <small>{c.today}</small> */}
                     </Col>
+                    <Col xs={12}>
+                      <h4>Pressure: {d.Pressure}<br/> </h4> 
+                      <h4>Humidity: {d.Humidity}<br/></h4>
+                      <h4>wind: {d.Wind}</h4> 
+                    </Col>
+                  </Row>
+                  <Row>
+                  {day.map((d, index) => (
+                    <Col className="days" xs={3}>
+                      <Row >
+                         < div className="iconText"> {d.day}  </div> 
+                      </Row>
+                         <div className="">
+                         <small> 
+                        {d.icon}
+                    </small>
+
+                    {d.temp}
+
+                         </div>
+                    </Col>
+                  ))}
                   </Row>
                 </div>
               </Card>
             </Col>
           ))}
         </Row>
+          </Col>
+        </Row>
+
 
         <Row gutter={[24, 0]}>
-          <Col xs={24} sm={24} md={12} lg={12} xl={10} className="mb-24">
+          <Col xs={24} sm={24} md={12} lg={12} xl={12} className="mb-24">
             <Card bordered={false} className="criclebox h-full">
               <Echart />
             </Card>
           </Col>
-          <Col xs={24} sm={24} md={12} lg={12} xl={14} className="mb-24">
+          <Col xs={24} sm={24} md={12} lg={12} xl={12} className="mb-24">
             <Card bordered={false} className="criclebox h-full">
               <LineChart />
             </Card>

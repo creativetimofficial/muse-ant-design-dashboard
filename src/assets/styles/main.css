@@ -18,6 +18,7 @@ body {
   line-height: 1.6;
   font-weight: 400;
   font-family: open sans, Helvetica, Arial, sans-serif;
+  
 }
 .ant-layout.ant-layout-has-sider {
   flex-direction: row;
@@ -44,7 +45,7 @@ body {
   padding: 33px 20px;
 }
 .layout-dashboard .ant-layout-sider.sider-primary .brand img {
-  height: 30px;
+  width: 140px;
 }
 .layout-dashboard .ant-layout-sider.sider-primary hr {
   margin: 18px 0;
@@ -949,13 +950,17 @@ button.ant-btn.bell strong {
 
 .number span {
   font-weight: 600;
-  color: #8c8c8c;
-  font-size: 14px;
+  font-size: 25px;
 }
 .number h3 {
   font-weight: 700;
   margin-bottom: 0px;
   font-size: 30px;
+}
+
+.number h4 {
+  color: #8c8c8c;
+  font-size: 18px;
 }
 
 .number h3 small {
@@ -966,11 +971,38 @@ button.ant-btn.bell strong {
   width: 48px;
   height: 48px;
   text-align: center;
-  background: #1890ff;
-  color: #fff;
-  border-radius: 0.5rem;
+  border-radius: 50px;
   margin-left: auto;
   line-height: 55px;
+  font-family: open sans, Helvetica, Arial, sans-serif;
+  margin-top: 10px;
+}
+.number p {
+  font-weight: 600;
+  color: #8c8c8c;
+  font-size: 18px;
+  margin-top: 8px;
+}
+.col {
+  height: 160px;
+  width: auto;
+}
+
+.consumptionTitle {
+  background-color: rgb(44, 178, 231);
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  color: #fff;
+  font-family: open sans, Helvetica, Arial, sans-serif;
+  border-radius: 0.2rem;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.consumption {
+  font-size: 25px;
+  color: #8c8c8c;
+  font-family: open sans, Helvetica, Arial, sans-serif;
 }
 
 .icon-box span {
@@ -982,12 +1014,12 @@ button.ant-btn.bell strong {
   padding-top: 15px;
 }
 .bar-chart {
-  background: transparent
-    linear-gradient(62deg, #00369e 0%, #005cfd 53%, #a18dff 100%) 0% 0%
-    no-repeat padding-box;
+  /* background: transparent
+    linear-gradient(62deg, #00369e 0%, #005cfd 53%, #a18dff 100%) 0% 0% */
+  /* no-repeat padding-box; */
   box-shadow: 0px 4px 6px #0000001f;
-
   border-radius: 8px;
+  font-family: open sans, Helvetica, Arial, sans-serif;
 }
 
 .chart-vistior {
@@ -3045,4 +3077,30 @@ section.ant-layout.ant-layout-has-sider.layout-dashboard.layout-profile
   svg
   path {
   fill: #8c8c8c;
+}
+.days {
+  height: 90px;
+  border: 1px solid black;
+  border-radius: 5px 5px 5px 5px;
+  text-align: center;
+  padding: 0px;
+}
+
+.createBuildingForm {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 40px 40px 40px 40px;
+}
+
+.iconText {
+  margin-left: 12px;
+}
+
+.ant-table-thead > tr > th {
+  font-size: 15px;
+  color: rgb(30, 27, 27);
+}
+Form {
+justify-content: center;
+
 }

@@ -1,19 +1,6 @@
-/*!
-  =========================================================
-  * Muse Ant Design Dashboard - v1.0.0
-  =========================================================
-  * Product Page: https://www.creative-tim.com/product/muse-ant-design-dashboard
-  * Copyright 2021 Creative Tim (https://www.creative-tim.com)
-  * Licensed under MIT (https://github.com/creativetimofficial/muse-ant-design-dashboard/blob/main/LICENSE.md)
-  * Coded by Creative Tim
-  =========================================================
-  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-// import { useState } from "react";
 import { Menu, Button } from "antd";
 import { NavLink, useLocation } from "react-router-dom";
-import logo from "../../assets/images/logo.png";
+import logo from "../../assets/images/buildlogo.jpg";
 
 function Sidenav({ color }) {
   const { pathname } = useLocation();
@@ -42,7 +29,7 @@ function Sidenav({ color }) {
     </svg>,
   ];
 
-  const tables = [
+  const sites = [
     <svg
       width="20"
       height="20"
@@ -64,7 +51,7 @@ function Sidenav({ color }) {
     </svg>,
   ];
 
-  const billing = [
+  const buildings = [
     <svg
       width="20"
       height="20"
@@ -104,6 +91,8 @@ function Sidenav({ color }) {
     </svg>,
   ];
 
+  
+  
   const profile = [
     <svg
       width="20"
@@ -159,12 +148,22 @@ function Sidenav({ color }) {
       />
     </svg>,
   ];
+  const config = [
+    <svg xmlns="http://www.w3.org/2000/svg" height="22" width="22"><path d="M9.562 13.688h.834l.25-1.063q.416-.104.719-.271.302-.166.552-.437l1.041.333.417-.75-.75-.708q.083-.354.104-.782.021-.427-.083-.781l.729-.687-.417-.75-1.02.312q-.25-.271-.563-.448-.313-.177-.729-.281l-.229-1.063h-.855l-.208 1.063q-.416.104-.729.281-.313.177-.563.448l-1.02-.333-.417.771.75.687q-.104.375-.104.781 0 .407.104.782l-.75.708.417.771 1.041-.354q.25.25.552.427.303.177.719.281ZM10 11.5q-.625 0-1.062-.438Q8.5 10.625 8.5 10t.438-1.062Q9.375 8.5 10 8.5t1.062.438q.438.437.438 1.062t-.438 1.062q-.437.438-1.062.438Zm-5.25 5.083q-.562 0-.948-.385-.385-.386-.385-.948V4.75q0-.562.385-.948.386-.385.948-.385h10.5q.562 0 .948.385.385.386.385.948v10.5q0 .562-.385.948-.386.385-.948.385Z"/></svg>
+
+  ];
+  const report = [
+<svg xmlns="http://www.w3.org/2000/svg" height="22" width="22"><path d="M10 13.5q.25 0 .417-.167.166-.166.166-.416 0-.25-.166-.417-.167-.167-.417-.167-.25 0-.417.167-.166.167-.166.417 0 .25.166.416.167.167.417.167Zm-.542-2.312h1.084V6.167H9.458Zm-2.187 5.395-3.854-3.875V7.271l3.854-3.854h5.458l3.854 3.854v5.458l-3.875 3.854Z"/></svg>
+
+  ]
+
+  
 
   return (
     <>
       <div className="brand">
         <img src={logo} alt="" />
-        <span>Muse Dashboard</span>
+        {/* <span>Muse Dashboard</span> */}
       </div>
       <hr />
       <Menu theme="light" mode="inline">
@@ -189,9 +188,9 @@ function Sidenav({ color }) {
                 background: page === "tables" ? color : "",
               }}
             >
-              {tables}
+              {sites}
             </span>
-            <span className="label">Tables</span>
+            <span className="label">Sites</span>
           </NavLink>
         </Menu.Item>
         <Menu.Item key="3">
@@ -202,9 +201,9 @@ function Sidenav({ color }) {
                 background: page === "billing" ? color : "",
               }}
             >
-              {billing}
+              {buildings}
             </span>
-            <span className="label">Billing</span>
+            <span className="label">Buildings</span>
           </NavLink>
         </Menu.Item>
         <Menu.Item key="4">
@@ -217,13 +216,29 @@ function Sidenav({ color }) {
             >
               {rtl}
             </span>
-            <span className="label">RTL</span>
+            <span className="label">Meter</span>
           </NavLink>
         </Menu.Item>
-        <Menu.Item className="menu-item-header" key="5">
+
+        <Menu.Item key="5">
+          <NavLink to="/report">
+            <span
+              className="icon"
+              style={{
+                background: page === "report" ? color : "",
+              }}
+            >
+              {report}
+            </span>
+            <span className="label">Report</span>
+          </NavLink>
+        </Menu.Item>
+
+        
+        <Menu.Item className="menu-item-header" key="6">
           Account Pages
         </Menu.Item>
-        <Menu.Item key="6">
+        <Menu.Item key="7">
           <NavLink to="/profile">
             <span
               className="icon"
@@ -236,16 +251,22 @@ function Sidenav({ color }) {
             <span className="label">Profile</span>
           </NavLink>
         </Menu.Item>
-        <Menu.Item key="7">
+        <Menu.Item key="8">
           <NavLink to="/sign-in">
             <span className="icon">{signin}</span>
             <span className="label">Sign In</span>
           </NavLink>
         </Menu.Item>
-        <Menu.Item key="8">
+        <Menu.Item key="9">
           <NavLink to="/sign-up">
             <span className="icon">{signup}</span>
             <span className="label">Sign Up</span>
+          </NavLink>
+        </Menu.Item>
+        <Menu.Item key="10">
+          <NavLink to="/config">
+            <span className="icon">{config}</span>
+            <span className="label">Config</span>
           </NavLink>
         </Menu.Item>
       </Menu>
