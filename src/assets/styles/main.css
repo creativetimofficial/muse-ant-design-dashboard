@@ -3100,7 +3100,45 @@ section.ant-layout.ant-layout-has-sider.layout-dashboard.layout-profile
   font-size: 15px;
   color: rgb(30, 27, 27);
 }
-Form {
-justify-content: center;
+.modelForm {
+text-align: left;
+margin-right: 120px;
 
+
+}
+
+.middle button{
+  
+  margin-top: 10px;
+  color: white;
+  background-color: rgb(44, 178, 231);
+  border-top-left-radius: 13px;
+  border-bottom-right-radius: 13px;
+
+ 
+
+}
+.themes{
+  
+  font-size: 25px;
+  border-bottom: 1px solid rgb(231, 226, 226);
+  padding-bottom: 10px;
+  font-family: open sans, Helvetica, Arial, sans-serif;
+  
+  
+}
+.middle{
+  width: 100%;
+  margin-bottom: 20px;
+}
+.btnMiddle{
+  margin-left: 20px;
+  padding-right: 25px;
+  padding-left: 25px;
+}
+
+
+
+.colors{
+  border-bottom: 1px solid rgb(244, 233, 233);
 }
