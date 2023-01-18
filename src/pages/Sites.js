@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { InputNumber } from 'antd';
 
 
-function Tables() {
+function Sites() {
     const [open, setOpen] = useState(false);
   const columns = [
     {
@@ -105,4 +105,4 @@ function Tables() {
   );
 }
 
-export default Tables;
+export default Sites;

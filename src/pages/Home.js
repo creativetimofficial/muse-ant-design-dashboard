@@ -71,21 +71,21 @@ const clearNight = [<svg xmlns="http://www.w3.org/2000/svg" height="48" width="4
     {
       today: "Consumption",
       title:"8087.3KWh",
-      dec:"Energy in Kwh, That has been consumed ",
+      dec:"Energy in Kwh, that has been consumed ",
       icon: consumption,
       bnb: "bnb2",
     },
     {
       today: "Energy Cost",
       title: "$1374.6",
-      dec:"Usage Cost Only",
+      dec:"Usage cost only",
       icon: energy,
       bnb: "bnb2",
     },
     {
       today: "CO2e",
       title: "63Kg",
-      dec:"tree seedlings equivalent to 10 years",
+      dec:"Tree seedlings equivalent to 10 years",
 
       icon: co2,
       bnb: "redtext",
@@ -102,7 +102,7 @@ const clearNight = [<svg xmlns="http://www.w3.org/2000/svg" height="48" width="4
   const count1 = [
     {
       today: "31.6°C",
-      title: "Parth",
+      title: "Perth",
       dec: "Clear",
       icon: <span> {clearNight} 21&#8451;</span>,
       bnb: "bnb2",
@@ -449,7 +449,7 @@ const cityData = {
                     <Col xs={12}>
                       <h4>Pressure: {d.Pressure}<br/> </h4> 
                       <h4>Humidity: {d.Humidity}<br/></h4>
-                      <h4>wind: {d.Wind}</h4> 
+                      <h4>Wind: {d.Wind}</h4> 
                     </Col>
                   </Row>
                   <Row>

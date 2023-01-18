@@ -181,11 +181,11 @@ function Sidenav({ color }) {
           </NavLink>
         </Menu.Item>
         <Menu.Item key="2">
-          <NavLink to="/tables">
+          <NavLink to="/sites">
             <span
               className="icon"
               style={{
-                background: page === "tables" ? color : "",
+                background: page === "sites" ? color : "",
               }}
             >
               {sites}
@@ -194,11 +194,11 @@ function Sidenav({ color }) {
           </NavLink>
         </Menu.Item>
         <Menu.Item key="3">
-          <NavLink to="/billing">
+          <NavLink to="/building">
             <span
               className="icon"
               style={{
-                background: page === "billing" ? color : "",
+                background: page === "building" ? color : "",
               }}
             >
               {buildings}
@@ -220,7 +220,7 @@ function Sidenav({ color }) {
           </NavLink>
         </Menu.Item>
 
-        <Menu.Item key="5">
+          <Menu.Item key="5">
           <NavLink to="/report">
             <span
               className="icon"
@@ -233,6 +233,7 @@ function Sidenav({ color }) {
             <span className="label">Report</span>
           </NavLink>
         </Menu.Item>
+
 
         
         <Menu.Item className="menu-item-header" key="6">
