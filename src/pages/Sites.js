@@ -1,15 +1,36 @@
-
 import React from "react";
-import { Form, Input, Table } from "antd";
-import { Button, Modal } from 'antd';
-import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
-import { useState } from 'react';
-import { InputNumber } from 'antd';
+import { Select, Form, Input, Table } from "antd";
+import { Button, Modal } from "antd";
+import "reactjs-popup/dist/index.css";
+import { useState } from "react";
 
-
+const { TextArea } = Input;
+const layout = {
+  labelCol: {
+    span: 8,
+  },
+  wrapperCol: {
+    span: 16,
+  },
+};
 function Sites() {
-    const [open, setOpen] = useState(false);
+  const validateMessages = {
+    required: "${label} is required!",
+    types: {
+      email: "${label} is not a valid email!",
+      number: "${label} is not a valid number!",
+    },
+    number: {
+      range: "${label} must be between ${min} and ${max}",
+    },
+  };
+  const [open, setOpen] = useState(false);
+  console.log(open);
+
+  const onFinish = (values) => {
+    console.log(values);
+  };
+
   const columns = [
     {
       title: "No",
@@ -51,8 +72,6 @@ function Sites() {
       dataIndex: "delete",
       key: "delete",
     },
-    
-    
   ];
   const data = [
     {
@@ -64,9 +83,7 @@ function Sites() {
       clientAgentName: "suman",
       ptl: "mount st.",
       projectGroup: "NSW",
-      delete: '',
-     
-      
+      delete: "",
     },
     {
       key: "2",
@@ -77,7 +94,7 @@ function Sites() {
       clientAgentName: "suman",
       ptl: "mount st.",
       projectGroup: "NSW",
-      delete: '',
+      delete: "",
     },
     {
       key: "3",
@@ -88,12 +105,113 @@ function Sites() {
       clientAgentName: "suman",
       ptl: "mount st.",
       projectGroup: "NSW",
-      delete: '',
-      },
+      delete: "",
+    },
   ];
+  const onChange = (e)=>{
+    console.log('chnage',e.target.value)
+  }
   return (
-   
-   
+    <>
+      <Button className="mb-5" type="primary" onClick={() => setOpen(true)}>
+        Create New
+      </Button>
+      <Modal
+        style={{ textAlign: "left" }}
+        title="Create New"
+        centered
+        visible={open}
+        // onOk={() => setOpen(false)}
+        onCancel={() => setOpen(false)}
+        width={800}
+        footer={null}
+      >
+        <Form
+          className="modelForm"
+          {...layout}
+          name="nest-messages"
+          onFinish={onFinish}
+          validateMessages={validateMessages}
+          // style={{textAlign:'left'}}
+          labelAlign=""
+        >
+          <Form.Item name={["project", "name"]} label="Project Type">
+            <Select
+              showSearch
+              style={{
+                width: 421,
+              }}
+              placeholder="Search to Select"
+              optionFilterProp="children"
+              filterOption={(input, option) =>
+                (option?.label ?? "").includes(input)
+              }
+              filterSort={(optionA, optionB) =>
+                (optionA?.label ?? "")
+                  .toLowerCase()
+                  .localeCompare((optionB?.label ?? "").toLowerCase())
+              }
+              options={[
+                {
+                  value: "1",
+                  label: "Not Identified",
+                },
+                {
+                  value: "2",
+                  label: "Closed",
+                },
+                {
+                  value: "3",
+                  label: "Communicated",
+                },
+                {
+                  value: "4",
+                  label: "Identified",
+                },
+                {
+                  value: "5",
+                  label: "Resolved",
+                },
+                {
+                  value: "6",
+                  label: "Cancelled",
+                },
+              ]}
+            />
+            {/* <Input/> */}
+          </Form.Item>
+
+          <Form.Item label="Project Name">
+            <Input />
+          </Form.Item>
+          <Form.Item label="Client Contact">
+          <TextArea  showCount maxLength={100} placeholder={'Click to pick'} onChange={onChange} />
+          </Form.Item>
+          <Form.Item label="Agent Contact">
+          <TextArea  showCount maxLength={100} placeholder={'Click to pick'} onChange={onChange} />
+          </Form.Item>
+          
+          <Form.Item>
+            <Button
+              style={{ float: "right" }}
+              onClick={() => setOpen(false)}
+              type=""
+              htmlType="cancel"
+            >
+              Cancel
+            </Button>
+            <Button
+              className=""
+              style={{ float: "right", marginRight: 18 }}
+              onClick={() => setOpen(false)}
+              type="primary"
+              htmlType="submit"
+            >
+              Save
+            </Button>
+          </Form.Item>
+        </Form>
+      </Modal>
       <Table
         columns={columns}
         dataSource={data}
@@ -101,7 +219,7 @@ function Sites() {
           x: 1300,
         }}
       />
-    
+    </>
   );
 }
 

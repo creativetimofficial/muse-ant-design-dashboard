@@ -21,7 +21,7 @@ function LineChart() {
   return (
     <>
       <div className="linechart">
-        <div>
+        <div className="changeFamily">
           <Title level={5}>Active Users</Title>
           <Paragraph className="lastweek">
             than last week <span className="bnb2">+30%</span>
