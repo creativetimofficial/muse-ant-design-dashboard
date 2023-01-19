@@ -17,7 +17,8 @@ const eChart = {
     chart: {
       width:"100%",  
       height: "auto",
-      type: 'line'
+      type: 'line',
+      
     },
   plotOptions: {
     bar: {
@@ -33,7 +34,9 @@ const eChart = {
     size: [2, 3]
   },  
   title: {
-    text: 'Consumption Comparsion'
+    text: 'Consumption Comparsion',
+    
+    
   },
   dataLabels: {
     enabled: false,

@@ -13,7 +13,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Home from "./pages/Home";
 import Sites from "./pages/Sites";
 import Building from "./pages/Building";
-import Rtl from "./pages/Rtl";
+import Meter from "./pages/Meter";
 import Profile from "./pages/Profile";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
@@ -22,6 +22,7 @@ import "antd/dist/antd.css";
 import "./assets/styles/main.css";
 import "./assets/styles/responsive.css";
 import Config from "./pages/Config";
+import Alert from "./pages/Alert";
 
 function App() {
   return (
@@ -33,10 +34,11 @@ function App() {
           <Route exact path="/dashboard" component={Home} />
           <Route exact path="/sites" component={Sites} />
           <Route exact path="/building" component={Building} />
-          <Route exact path="/rtl" component={Rtl} />
+          <Route exact path="/meter" component={Meter} />
           <Route exact path="/profile" component={Profile} />
-          <Route exact path='/config' component={Config}/>
-          
+          <Route exact path="/config" component={Config} />
+          <Route exact path="/alert" component={Alert} />
+
           <Redirect from="*" to="/dashboard" />
         </Main>
       </Switch>

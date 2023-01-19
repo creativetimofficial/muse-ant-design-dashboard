@@ -17,8 +17,11 @@ body {
   font-size: 14px;
   line-height: 1.6;
   font-weight: 400;
-  font-family: open sans, Helvetica, Arial, sans-serif;
+  font-family:  Helvetica, Arial, sans-serif;
   
+}
+.changeFamily{
+  font-family: Open Sans, Helvetica, Arial, sans-serif;
 }
 .ant-layout.ant-layout-has-sider {
   flex-direction: row;
@@ -974,7 +977,7 @@ button.ant-btn.bell strong {
   border-radius: 50px;
   margin-left: auto;
   line-height: 55px;
-  font-family: open sans, Helvetica, Arial, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   margin-top: 10px;
 }
 .number p {
@@ -984,7 +987,7 @@ button.ant-btn.bell strong {
   margin-top: 8px;
 }
 .col {
-  height: 160px;
+  height: 166px;
   width: auto;
 }
 
@@ -994,7 +997,7 @@ button.ant-btn.bell strong {
   height: 40px;
   text-align: center;
   color: #fff;
-  font-family: open sans, Helvetica, Arial, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   border-radius: 0.2rem;
   padding-left: 10px;
   padding-right: 10px;
@@ -1002,7 +1005,7 @@ button.ant-btn.bell strong {
 .consumption {
   font-size: 25px;
   color: #8c8c8c;
-  font-family: open sans, Helvetica, Arial, sans-serif;
+  font-family:  Helvetica, Arial, sans-serif;
 }
 
 .icon-box span {
@@ -1019,16 +1022,23 @@ button.ant-btn.bell strong {
   /* no-repeat padding-box; */
   box-shadow: 0px 4px 6px #0000001f;
   border-radius: 8px;
-  font-family: open sans, Helvetica, Arial, sans-serif;
+  font-family:  Helvetica, Arial, sans-serif;
 }
 
 .chart-vistior {
   margin-top: 30px;
+  
+}
+.linechart{
+  
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 .chart-vistior h5 {
   margin: 0px;
   font-weight: 700;
+  
+  
 }
 .ant-typography.lastweek {
   color: #8c8c8c;
@@ -2382,7 +2392,7 @@ section.ant-layout.layout-content .ant-layout-content.content-ant {
   margin-bottom: 0;
 }
 .widget-2 .ant-statistic-content {
-  font-family: open sans, Helvetica, Arial, sans-serif;
+  font-family:  Helvetica, Arial, sans-serif;
   font-weight: 600;
   font-size: 20px;
   padding: 12px 16px;
@@ -3123,7 +3133,7 @@ margin-right: 120px;
   font-size: 25px;
   border-bottom: 1px solid rgb(231, 226, 226);
   padding-bottom: 10px;
-  font-family: open sans, Helvetica, Arial, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   
   
 }
@@ -3142,3 +3152,12 @@ margin-right: 120px;
 .colors{
   border-bottom: 1px solid rgb(244, 233, 233);
 }
+
+/* [data-theme="compact"] p, p {
+  margin: 0;
+}
+#components-collapse-demo-collapsible .ant-space {
+  width: 100%;
+} */
+
+
