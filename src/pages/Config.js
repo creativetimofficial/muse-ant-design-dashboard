@@ -227,10 +227,10 @@ function Config() {
               <small>Themes</small>
             </div>
 
-            <Button className="btnMiddle">GEG</Button>
-            <Button className="btnMiddle">Red</Button>
-            <Button className="btnMiddle">Green</Button>
-            <Button className="btnMiddle">Salmon</Button>
+            <Button className="btnGEG" id="">GEG</Button>
+            <Button className="btnRed" id="">Red</Button>
+            <Button className="btnGreen" id="">Green</Button>
+            <Button className="btnSalmon">Salmon</Button>
           </Card>
         </Col>
       </Row>
