@@ -325,7 +325,7 @@ function Header({
             <div layout="vertical">
               <div className="header-top">
                 <Title level={4}>
-                  Configurator
+                  Configuration
                   <Text className="subtitle">See our dashboard options.</Text>
                 </Title>
               </div>
@@ -393,30 +393,20 @@ function Header({
                   </ButtonContainer>
                 </div>
                 <div className="fixed-nav mb-2">
-                  <Title level={5}>Navbar Fixed </Title>
-                  <Switch onChange={(e) => handleFixedNavbar(e)} />
+                  {/* <Title level={5}>Navbar Fixed </Title> */}
+                  {/* <Switch onChange={(e) => handleFixedNavbar(e)} /> */}
                 </div>
                 <div className="ant-docment">
-                  <ButtonContainer>
-                    <Button type="black" size="large">
-                      FREE DOWNLOAD
-                    </Button>
-                    <Button size="large">VIEW DOCUMENTATION</Button>
-                  </ButtonContainer>
+                  {/* header setting part  */}
+                  
                 </div>
-                <div className="viewstar">
-                  <a href="#pablo">{<StarOutlined />} Star</a>
-                  <a href="#pablo"> 190</a>
-                </div>
+               
+               
 
                 <div className="ant-thank">
-                  <Title level={5} className="mb-2">
-                    Thank you for sharing!
-                  </Title>
-                  <ButtonContainer className="social">
-                    <Button type="black">{<TwitterOutlined />}TWEET</Button>
-                    <Button type="black">{<FacebookFilled />}SHARE</Button>
-                  </ButtonContainer>
+                  
+                
+                 
                 </div>
               </div>
             </div>

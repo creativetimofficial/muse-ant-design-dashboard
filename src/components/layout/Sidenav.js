@@ -210,6 +210,19 @@ function Sidenav({ color }) {
           </NavLink>
         </Menu.Item>
         <Menu.Item key="4">
+          <NavLink to="/buildingPerformance">
+            <span
+              className="icon"
+              style={{
+                background: page === "building" ? color : "",
+              }}
+            >
+              {buildings}
+            </span>
+            <span className="label">Building Performance</span>
+          </NavLink>
+        </Menu.Item>
+        <Menu.Item key="5">
           <NavLink to="/meter">
             <span
               className="icon"
@@ -222,7 +235,7 @@ function Sidenav({ color }) {
             <span className="label">Meter</span>
           </NavLink>
         </Menu.Item>
-        <Menu.Item key="4">
+        <Menu.Item key="6">
           <NavLink to="/alert">
             <span
               className="icon"
@@ -236,7 +249,7 @@ function Sidenav({ color }) {
           </NavLink>
         </Menu.Item>
 
-        <Menu.Item key="5">
+        <Menu.Item key="7">
           <NavLink to="/report">
             <span
               className="icon"
@@ -253,7 +266,7 @@ function Sidenav({ color }) {
         <Menu.Item className="menu-item-header" key="6">
           Account Pages
         </Menu.Item>
-        <Menu.Item key="7">
+        <Menu.Item key="8">
           <NavLink to="/profile">
             <span
               className="icon"
@@ -266,42 +279,28 @@ function Sidenav({ color }) {
             <span className="label">Profile</span>
           </NavLink>
         </Menu.Item>
-        <Menu.Item key="8">
+        <Menu.Item key="9">
           <NavLink to="/sign-in">
             <span className="icon">{signin}</span>
             <span className="label">Sign In</span>
           </NavLink>
         </Menu.Item>
-        <Menu.Item key="9">
+        <Menu.Item key="10">
           <NavLink to="/sign-up">
             <span className="icon">{signup}</span>
             <span className="label">Sign Up</span>
           </NavLink>
         </Menu.Item>
-        <Menu.Item key="10">
+        <Menu.Item key="11">
           <NavLink to="/config">
             <span className="icon">{config}</span>
             <span className="label">Config</span>
           </NavLink>
         </Menu.Item>
       </Menu>
-      <div className="aside-footer">
-        <div
-          className="footer-box"
-          style={{
-            background: color,
-          }}
-        >
-          <span className="icon" style={{ color }}>
-            {dashboard}
-          </span>
-          <h6>Need Help?</h6>
-          <p>Please check our docs</p>
-          <Button type="primary" className="ant-btn-sm ant-btn-block">
-            DOCUMENTATION
-          </Button>
-        </div>
-      </div>
+    
+    
+      
     </>
   );
 }

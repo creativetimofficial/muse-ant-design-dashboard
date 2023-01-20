@@ -23,6 +23,7 @@ import "./assets/styles/main.css";
 import "./assets/styles/responsive.css";
 import Config from "./pages/Config";
 import Alert from "./pages/Alert";
+import BuildingPerformance from "./pages/BuildingPerformance";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/config" component={Config} />
           <Route exact path="/alert" component={Alert} />
+          <Route exact path="/buildingPerformance" component={BuildingPerformance} />
 
           <Redirect from="*" to="/dashboard" />
         </Main>
