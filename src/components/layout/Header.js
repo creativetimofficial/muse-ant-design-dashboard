@@ -11,6 +11,7 @@
 */
 
 import { useState, useEffect } from "react";
+import {  Form, Upload, } from "antd";
 
 import {
   Row,
@@ -24,17 +25,14 @@ import {
   Input,
   Drawer,
   Typography,
-  Switch,
+  
 } from "antd";
 
 import {
-  SearchOutlined,
-  StarOutlined,
-  TwitterOutlined,
-  FacebookFilled,
+  
 } from "@ant-design/icons";
 
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, } from "react-router-dom";
 import styled from "styled-components";
 import avtar from "../../assets/images/team-2.jpg";
 
@@ -201,23 +199,6 @@ const logsetting = [
   </svg>,
 ];
 
-const profile = [
-  <svg
-    width="20"
-    height="20"
-    viewBox="0 0 20 20"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    key={0}
-  >
-    <path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M18 10C18 14.4183 14.4183 18 10 18C5.58172 18 2 14.4183 2 10C2 5.58172 5.58172 2 10 2C14.4183 2 18 5.58172 18 10ZM12 7C12 8.10457 11.1046 9 10 9C8.89543 9 8 8.10457 8 7C8 5.89543 8.89543 5 10 5C11.1046 5 12 5.89543 12 7ZM9.99993 11C7.98239 11 6.24394 12.195 5.45374 13.9157C6.55403 15.192 8.18265 16 9.99998 16C11.8173 16 13.4459 15.1921 14.5462 13.9158C13.756 12.195 12.0175 11 9.99993 11Z"
-      fill="#111827"
-    ></path>
-  </svg>,
-];
 
 const toggler = [
   <svg
@@ -325,7 +306,7 @@ function Header({
             <div layout="vertical">
               <div className="header-top">
                 <Title level={4}>
-                  Configuration
+                Configuration
                   <Text className="subtitle">See our dashboard options.</Text>
                 </Title>
               </div>
@@ -392,34 +373,62 @@ function Header({
                     </Button>
                   </ButtonContainer>
                 </div>
-                <div className="fixed-nav mb-2">
-                  {/* <Title level={5}>Navbar Fixed </Title> */}
-                  {/* <Switch onChange={(e) => handleFixedNavbar(e)} /> */}
-                </div>
-                <div className="ant-docment">
-                  {/* header setting part  */}
-                  
-                </div>
-               
-               
 
-                <div className="ant-thank">
-                  
-                
-                 
-                </div>
+                <Row gutter>
+                  <Col xs={24} md={24} lg={24}>
+                    <div className="sideheaderlogo">
+                      <Text>LOGO</Text>
+                      <div>
+                        <Upload>
+                          <Button style={{ width: "310px" }}>
+                            Click to Upload
+                          </Button>
+                        </Upload>
+                      </div>
+
+                      <div>
+                        <Form.Item
+                          style={{
+                            marginTop: 15,
+                          }}
+                          name="hight"
+                          label=""
+                        >
+                          HEIGHT
+                          <Input
+                            style={{ width: "310px" }}
+                            placeholder="eg 40 (optional)"
+                          />
+                        </Form.Item>
+                      </div>
+                      <div>
+                        <Form.Item>
+                          APP ICON
+                          <Input
+                            style={{ width: "310px" }}
+                            value="{{app.application builder}}"
+                          />
+                        </Form.Item>
+                      </div>
+                    </div>
+                  </Col>
+                </Row>
+
+                <Row>
+                  <Col className="middle2" xs={24} md={24} lg={24}>
+                    <div className="themes">
+                      <small>Themes</small>
+                    </div>
+
+                    <Button className="btnheaderGeg">Geg</Button>
+                    <Button className="btnheaderRed">Red</Button>
+                    <Button className="btnheaderGreen">Green</Button>
+                    <Button className="btnheaderSalmon">Salmon</Button>
+                  </Col>
+                </Row>
               </div>
             </div>
           </Drawer>
-          <Link to="/sign-in" className="btn-sign-in">
-            {profile}
-            <span>Sign in</span>
-          </Link>
-          <Input
-            className="header-search"
-            placeholder="Type here..."
-            prefix={<SearchOutlined />}
-          />
         </Col>
       </Row>
     </>

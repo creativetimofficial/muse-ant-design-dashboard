@@ -108,9 +108,9 @@ function Sites() {
       delete: "",
     },
   ];
-  const onChange = (e)=>{
-    console.log('chnage',e.target.value)
-  }
+  const onChange = (e) => {
+    console.log("chnage", e.target.value);
+  };
   return (
     <>
       <Button className="mb-5" type="primary" onClick={() => setOpen(true)}>
@@ -185,12 +185,22 @@ function Sites() {
             <Input />
           </Form.Item>
           <Form.Item label="Client Contact">
-          <TextArea  showCount maxLength={100} placeholder={'Click to pick'} onChange={onChange} />
+            <TextArea
+              showCount
+              maxLength={100}
+              placeholder={"Click to pick"}
+              onChange={onChange}
+            />
           </Form.Item>
           <Form.Item label="Agent Contact">
-          <TextArea  showCount maxLength={100} placeholder={'Click to pick'} onChange={onChange} />
+            <TextArea
+              showCount
+              maxLength={100}
+              placeholder={"Click to pick"}
+              onChange={onChange}
+            />
           </Form.Item>
-          
+
           <Form.Item>
             <Button
               style={{ float: "right" }}

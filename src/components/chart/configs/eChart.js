@@ -20,6 +20,7 @@ const eChart = {
       type: 'line',
       
     },
+    
   plotOptions: {
     bar: {
       horizontal: false,

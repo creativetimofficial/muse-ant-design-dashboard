@@ -1,4 +1,4 @@
-import { Menu, Button } from "antd";
+import { Menu} from "antd";
 import { NavLink, useLocation } from "react-router-dom";
 import logo from "../../assets/images/buildlogo.jpg";
 
@@ -214,7 +214,7 @@ function Sidenav({ color }) {
             <span
               className="icon"
               style={{
-                background: page === "building" ? color : "",
+                background: page === "buildingPerformance" ? color : "",
               }}
             >
               {buildings}

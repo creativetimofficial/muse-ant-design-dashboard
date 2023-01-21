@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import { DatePicker, Select } from "antd";
 import { Form, Input, Table } from "antd";
 import { Button, Modal } from "antd";
 import "reactjs-popup/dist/index.css";
-import { useState } from "react";
-import { InputNumber } from "antd";
-import { Select } from "antd";
+
 
 const layout = {
   labelCol: {
@@ -14,8 +13,13 @@ const layout = {
     span: 16,
   },
 };
+const OPTIONS = ["Apples", "Nails", "Bananas", "Helicopters"];
 
 function Building() {
+  const [selectedItems, setSelectedItems] = useState([]);
+
+  const filteredOptions = OPTIONS.filter((o) => !selectedItems.includes(o));
+
   // const [open, setOpen] = useState(false);
   const validateMessages = {
     required: "${label} is required!",
@@ -174,211 +178,133 @@ function Building() {
         visible={open}
         // onOk={() => setOpen(false)}
         onCancel={() => setOpen(false)}
-        width={800}
+        width={1300}
         footer={null}
       >
         <Form
-          className="modelForm"
           {...layout}
           name="nest-messages"
           onFinish={onFinish}
+          style={{ maxWidth: 1000 }}
           validateMessages={validateMessages}
-          style={{ textAlign: "left" }}
-          labelAlign=""
         >
-          <Form.Item name={["building", "name"]} label="Building Name">
+          <Form.Item
+            name={"buildingName"}
+            label="Building Name"
+            rules={[{ required: true }]}
+          >
             <Input />
-          </Form.Item>
-          <Form.Item name={["building", "project"]} label="Project Name">
-            <Select
-              showSearch
-              style={{
-                width: 421,
-              }}
-              placeholder="Search to Select"
-              optionFilterProp="children"
-              filterOption={(input, option) =>
-                (option?.label ?? "").includes(input)
-              }
-              filterSort={(optionA, optionB) =>
-                (optionA?.label ?? "")
-                  .toLowerCase()
-                  .localeCompare((optionB?.label ?? "").toLowerCase())
-              }
-              options={[
-                {
-                  value: "1",
-                  label: "Not Identified",
-                },
-                {
-                  value: "2",
-                  label: "Closed",
-                },
-                {
-                  value: "3",
-                  label: "Communicated",
-                },
-                {
-                  value: "4",
-                  label: "Identified",
-                },
-                {
-                  value: "5",
-                  label: "Resolved",
-                },
-                {
-                  value: "6",
-                  label: "Cancelled",
-                },
-              ]}
-            />
-            {/* <Input /> */}
-          </Form.Item>
-          <Form.Item label="Energy Profile">
-            <Select
-              showSearch
-              style={{
-                width: 421,
-              }}
-              placeholder="Search to Select"
-              optionFilterProp="children"
-              filterOption={(input, option) =>
-                (option?.label ?? "").includes(input)
-              }
-              filterSort={(optionA, optionB) =>
-                (optionA?.label ?? "")
-                  .toLowerCase()
-                  .localeCompare((optionB?.label ?? "").toLowerCase())
-              }
-              options={[
-                {
-                  value: "1",
-                  label: "Not Identified",
-                },
-                {
-                  value: "2",
-                  label: "Closed",
-                },
-                {
-                  value: "3",
-                  label: "Communicated",
-                },
-                {
-                  value: "4",
-                  label: "Identified",
-                },
-                {
-                  value: "5",
-                  label: "Resolved",
-                },
-                {
-                  value: "6",
-                  label: "Cancelled",
-                },
-              ]}
-            />
-            {/* <Input /> */}
           </Form.Item>
           <Form.Item
-            label="Building Number"
-            rules={[
-              {
-                type: "number",
-                min: 0,
-                max: 100000,
-              },
-            ]}
+            name={"project"}
+            label="Project"
+            rules={[{ required: true }]}
           >
-            <InputNumber style={{ width: 200 }} />
-          </Form.Item>
-          <Form.Item name={"street"} label="Street">
-            <Input />
-          </Form.Item>
-          <Form.Item name={"suburb"} label="Suburb">
-            <Input />
-          </Form.Item>
-          <Form.Item name={"state"} label="State">
-            <Input />
-          </Form.Item>
-          <Form.Item name={"postcode"} label="Postcode">
-            <Input />
-          </Form.Item>{" "}
-          <Form.Item name={"region"} label="Region">
             <Select
-              showSearch
-              style={{
-                width: 421,
-              }}
-              placeholder="Search to Select"
-              optionFilterProp="children"
-              filterOption={(input, option) =>
-                (option?.label ?? "").includes(input)
-              }
-              filterSort={(optionA, optionB) =>
-                (optionA?.label ?? "")
-                  .toLowerCase()
-                  .localeCompare((optionB?.label ?? "").toLowerCase())
-              }
-              options={[
-                {
-                  value: "1",
-                  label: "Not Identified",
-                },
-                {
-                  value: "2",
-                  label: "Closed",
-                },
-                {
-                  value: "3",
-                  label: "Communicated",
-                },
-                {
-                  value: "4",
-                  label: "Identified",
-                },
-                {
-                  value: "5",
-                  label: "Resolved",
-                },
-                {
-                  value: "6",
-                  label: "Cancelled",
-                },
-              ]}
+              mode="multiple"
+              placeholder="Select Project"
+              value={selectedItems}
+              onChange={setSelectedItems}
+              style={{ width: "100%" }}
+              options={filteredOptions.map((item) => ({
+                value: item,
+                label: item,
+              }))}
             />
-            {/* <Input /> */}
           </Form.Item>
-          <Form.Item name={"totalarea"} label="Total Area">
-            <Input />
-          </Form.Item>{" "}
-          <Form.Item name={"totallna"} label="Total LNA">
-            <Input />
+          <Form.Item
+            name={"energyProfile"}
+            label="Energy Profile"
+            rules={[{ required: "" }]}
+          >
+            <Select
+              mode="multiple"
+              placeholder="Select Type"
+              value={selectedItems}
+              onChange={setSelectedItems}
+              style={{ width: "100%" }}
+              options={filteredOptions.map((item) => ({
+                value: item,
+                label: item,
+              }))}
+            />
           </Form.Item>
-          <Form.Item name={"totalglar"} label="Total GLAR">
-            <Input />
+          <Form.Item
+            name={"buildingNumber"}
+            label="Building Number"
+            rules={[{ required: "" }]}
+          >
+            <Input style={{ width: "50%" }} /> <lebel> Street :</lebel>{" "}
+            <Input style={{ width: "41.5%" }} />
           </Form.Item>
-          <Form.Item name={"constructed"} label="Date Consrtucted">
-            <Input />
+          <Form.Item name={"suburb"} label="Suburb" rules={[{ required: "" }]}>
+            <Input style={{ width: "50%" }} /> <lebel> State :</lebel>{" "}
+            <Input style={{ width: "41.5%" }} />
           </Form.Item>
-          <Form.Item name={"refurbished"} label="Date Refurbished">
-            <Input />
+          <Form.Item
+            name={"postcode"}
+            label="Postcode"
+            rules={[{ required: true }]}
+          >
+            <Input style={{ width: "50%" }} /> <lebel> Region :</lebel>{" "}
+            <Select
+              mode="multiple"
+              placeholder="Select Type"
+              value={selectedItems}
+              onChange={setSelectedItems}
+              style={{ width: "40%" }}
+              options={filteredOptions.map((item) => ({
+                value: item,
+                label: item,
+              }))}
+            />
           </Form.Item>
-          <Form.Item>
-            <Button
-              style={{ float: "right" }}
-              onClick={() => setOpen(false)}
-              type=""
-              htmlType="cancel"
-            >
-              Cancel
+          <Form.Item
+            name={"totalArea"}
+            label="Total Area"
+            rules={[{ required: "" }]}
+          >
+            <Input style={{ width: "50%" }} />
+          </Form.Item>
+          <Form.Item
+            name={"totalLNA"}
+            label="Total LNA"
+            rules={[{ required: "" }]}
+          >
+            <Input style={{ width: "50%" }} />
+          </Form.Item>
+          <Form.Item
+            name={"totalGLAR"}
+            label="Total GLAR"
+            rules={[{ required: "" }]}
+          >
+            <Input style={{ width: "50%" }} />
+          </Form.Item>
+          <Form.Item
+            name={"constructed"}
+            label="Date Constructed"
+            rules={[{ required: "" }]}
+          >
+            <DatePicker />
+          </Form.Item>
+          <Form.Item
+            name={"refurbished"}
+            label="Date Refurbished"
+            rules={[{ required: "" }]}
+          >
+            <DatePicker />
+          </Form.Item>
+
+          <Form.Item
+            wrapperCol={{
+              offset: 8,
+              span: 16,
+            }}
+          >
+            <Button type="primary" htmlType="submit">
+              Submit
             </Button>
-            <Button
-              className=""
-              style={{ float: "right", marginRight: 8 }}
-              onClick={() => setOpen(false)}
-              type="primary"
-              htmlType="submit"
-            >
+            <Button type="" style={{ marginLeft: 10 }} htmlType="submit">
               Submit
             </Button>
           </Form.Item>
@@ -388,7 +314,7 @@ function Building() {
         columns={columns}
         dataSource={data}
         scroll={{
-          x: 1300,
+          x: 1400,
         }}
       />
     </>
