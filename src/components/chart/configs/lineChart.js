@@ -37,9 +37,12 @@ const lineChart = {
       labels: {
         style: {
           fontSize: "14px",
-          fontWeight: 600,
+          fontWeight: 100,
           colors: ["#8c8c8c"],
         },
+      },
+      title: {
+        text: 'kWh',
       },
     },
 
@@ -47,7 +50,7 @@ const lineChart = {
       labels: {
         style: {
           fontSize: "14px",
-          fontWeight: 600,
+          fontWeight: 10,
           colors: [
             "#8c8c8c",
             "#8c8c8c",
@@ -72,6 +75,9 @@ const lineChart = {
         "Sep",
         "Oct",
       ],
+      title: {
+        text: '',
+      },
     },
 
     tooltip: {

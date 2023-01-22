@@ -10,14 +10,9 @@ import {
   Upload,
   message,
   Button,
-  Timeline,
   Radio,
 } from "antd";
-import {
-  ToTopOutlined,
-  MenuUnfoldOutlined,
-  RightOutlined,
-} from "@ant-design/icons";
+import { ToTopOutlined } from "@ant-design/icons";
 import Paragraph from "antd/lib/typography/Paragraph";
 
 import Echart from "../components/chart/EChart";
@@ -33,15 +28,12 @@ import team1 from "../assets/images/team-1.jpg";
 import team2 from "../assets/images/team-2.jpg";
 import team3 from "../assets/images/team-3.jpg";
 import team4 from "../assets/images/team-4.jpg";
-import card from "../assets/images/info-card-1.jpg";
 const { RangePicker } = DatePicker;
 
 function Home() {
-  const { Title, Text } = Typography;
+  const { Title } = Typography;
 
   const onChange = (e) => console.log(`radio checked:${e.target.value}`);
-
-  const [reverse, setReverse] = useState(false);
 
   const consumption = [
     <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48">
@@ -84,8 +76,8 @@ function Home() {
   const count = [
     {
       today: "Consumption",
-      title: "8087.3KWh",
-      dec: "Energy in Kwh, that has been consumed ",
+      title: "8087.3kWh",
+      dec: "Energy in kwh, that has been consumed ",
       icon: consumption,
       bnb: "bnb2",
     },
@@ -104,13 +96,6 @@ function Home() {
       icon: co2,
       bnb: "redtext",
     },
-    // {
-    //   today: "New Orders",
-    //   title: "$13,200",
-    //   persent: "10%",
-    //   icon: cart,
-    //   bnb: "bnb2",
-    // },
   ];
 
   const count1 = [
@@ -118,7 +103,7 @@ function Home() {
       today: "31.6°C",
       title: "Perth",
       dec: "Clear",
-      icon: <span > {clearNight} 21&#8451;</span>,
+      icon: <span className="iconText"> {clearNight} 21&#8451;</span>,
       bnb: "bnb2",
       Pressure: "1014.6",
       Humidity: "10%",
@@ -129,42 +114,42 @@ function Home() {
     {
       day: "sat",
       icon: air,
-      temp: "12-33",
+      temp: "12-33°",
     },
     {
       day: "sun",
       icon: sun,
-      temp: "12-33",
+      temp: "12-33°",
     },
     {
       day: "mon",
       icon: thunderStrome,
-      temp: "29-44",
+      temp: "29-44°",
     },
     {
       day: "tue",
       icon: air,
-      temp: "29-30",
+      temp: "29-30°",
     },
     {
       day: "wed",
       icon: sun,
-      temp: "19-44",
+      temp: "19-44°",
     },
     {
       day: "thu",
       icon: sun,
-      temp: "29-34",
+      temp: "29-34°",
     },
     {
       day: "fri",
       icon: thunderStrome,
-      temp: "29-44",
+      temp: "29-44°",
     },
     {
       day: "sat",
       icon: air,
-      temp: "09-14",
+      temp: "09-14°",
     },
   ];
 
@@ -290,36 +275,6 @@ function Home() {
     },
   ];
 
-  const timelineList = [
-    {
-      title: "$2,400 - Redesign store",
-      time: "09 JUN 7:20 PM",
-      color: "green",
-    },
-    {
-      title: "New order #3654323",
-      time: "08 JUN 12:20 PM",
-      color: "green",
-    },
-    {
-      title: "Company server payments",
-      time: "04 JUN 3:10 PM",
-    },
-    {
-      title: "New card added for order #4826321",
-      time: "02 JUN 2:45 PM",
-    },
-    {
-      title: "Unlock folders for development",
-      time: "18 MAY 1:30 PM",
-    },
-    {
-      title: "New order #46282344",
-      time: "14 MAY 3:30 PM",
-      color: "gray",
-    },
-  ];
-
   const uploadProps = {
     name: "file",
     action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
@@ -355,22 +310,24 @@ function Home() {
   return (
     <>
       <Row>
-        <Select
-          style={{
-            width: 160,
-            marginBottom: 15,
-            marginRight: 25,
-          }}
-          value={secondCity}
-          onChange={onSecondCityChange}
-          options={cities.map((city) => ({
-            label: city,
-            value: city,
-          }))}
-        />
-        <Space direction="vertical" size={12}>
-          <RangePicker />
-        </Space>
+        <Col>
+          <Select
+            style={{
+              width: 160,
+              marginBottom: 15,
+              marginRight: 25,
+            }}
+            value={secondCity}
+            onChange={onSecondCityChange}
+            options={cities.map((city) => ({
+              label: city,
+              value: city,
+            }))}
+          />
+          <Space direction="vertical" size={12}>
+            <RangePicker />
+          </Space>
+        </Col>
         <Select
           style={{
             width: 100,
@@ -439,7 +396,7 @@ function Home() {
                             <h4>{d.dec}</h4>
                           </div>
 
-                         <span className="weatherIcon">{d.icon}</span> 
+                          <span className="weatherIcon">{d.icon}</span>
                           {/* <small>{c.today}</small> */}
                         </Col>
                         <Col xs={12}>
@@ -457,13 +414,14 @@ function Home() {
                       <Row>
                         {day.map((d, index) => (
                           <Col className="days" xs={3}>
-                            <Row>
+                            <Row justify="center">
                               <div className="iconText"> {d.day} </div>
                             </Row>
-                            <div className="weatherIcon">
-                              <s>{d.icon}</s>
-
-                             {d.temp}
+                            <div className="iconText">
+                              <Row justify="center">
+                                <s>{d.icon}</s>
+                              </Row>
+                              <Row justify="center">{d.temp}</Row>
                             </div>
                           </Col>
                         ))}
@@ -490,7 +448,7 @@ function Home() {
         </Row>
 
         <Row gutter={[24, 0]}>
-          <Col xs={24} sm={24} md={12} lg={12} xl={16} className="mb-24">
+          <Col xs={24} sm={24} md={24} lg={24} xl={24} className="mb-24">
             <Card bordered={false} className="criclebox cardbody h-full">
               <div className="project-ant">
                 <div>
@@ -556,36 +514,6 @@ function Home() {
                     <span className="click">Click to Upload</span>
                   </Button>
                 </Upload>
-              </div>
-            </Card>
-          </Col>
-          <Col xs={24} sm={24} md={12} lg={12} xl={8} className="mb-24">
-            <Card bordered={false} className="criclebox h-full">
-              <div className="timeline-box">
-                <Title level={5}>Orders History</Title>
-                <Paragraph className="lastweek" style={{ marginBottom: 24 }}>
-                  this month <span className="bnb2">20%</span>
-                </Paragraph>
-
-                <Timeline
-                  pending="Recording..."
-                  className="timelinelist"
-                  reverse={reverse}
-                >
-                  {timelineList.map((t, index) => (
-                    <Timeline.Item color={t.color} key={index}>
-                      <Title level={5}>{t.title}</Title>
-                      <Text>{t.time}</Text>
-                    </Timeline.Item>
-                  ))}
-                </Timeline>
-                <Button
-                  type="primary"
-                  className="width-100"
-                  onClick={() => setReverse(!reverse)}
-                >
-                  {<MenuUnfoldOutlined />} REVERSE
-                </Button>
               </div>
             </Card>
           </Col>

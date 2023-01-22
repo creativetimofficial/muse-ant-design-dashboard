@@ -15,12 +15,9 @@ import {
   Typography,
 } from "antd";
 import { useState } from "react";
-import { RightOutlined } from "@ant-design/icons";
-import { UploadOutlined } from "@ant-design/icons";
 import { message, Upload } from "antd";
-import { Collapse, Space } from "antd";
+import { Collapse } from "antd";
 const { Panel } = Collapse;
-const { TextArea } = Input;
 const layout = {
   labelCol: {
     span: 8,
@@ -30,23 +27,12 @@ const layout = {
   },
 };
 
-const validateMessages = {
-  required: "${label} is required!",
-  types: {
-    email: "${label} is not a valid email!",
-    number: "${label} is not a valid number!",
-  },
-  number: {
-    range: "${label} must be between ${min} and ${max}",
-  },
-};
+const validateMessages = {};
 
 const onFinish = (values) => {
   console.log(values);
 };
-const onChange = (values) => {
-  console.log(values);
-};
+
 const columns = [
   {
     title: "Master Type",
@@ -127,114 +113,8 @@ const props = {
 };
 function Config() {
   const [open, setOpen] = useState(false);
-  const { Title, Text } = Typography;
   return (
     <>
-      <Row gutter={[24, 0]}>
-        {/* <Button>save</Button> */}
-        <Col xs={24} md={12} sm={24} lg={12} xl={10} className="mb-24">
-          <Card bordered={false} className="criclebox card-info-2 h-full">
-            <div className=" h-full col-content">
-              <div className="card-content">
-                <Title level={5}>
-                  <h2>Application Styling</h2>
-                </Title>
-                <p>
-                  <p>
-                    {" "}
-                    Here you can adjust the styling and logo used in your
-                    application.
-                  </p>
-                  <strong>Important:</strong>Changes are not persisted until
-                  save is clicked. opportunity first.
-                </p>
-              </div>
-              <div className="card-footer">
-                <a className="icon-move-right" href="#pablo">
-                  <Button>Disabled</Button>
-                  {/* <RightOutlined /> */}
-                </a>
-              </div>
-            </div>
-          </Card>
-        </Col>
-        <Col xs={24} md={12} sm={24} lg={12} xl={14} className="mb-24">
-          <Card bordered={false} className="">
-            <Row gutter>
-              <Col
-                xs={24}
-                md={12}
-                sm={24}
-                lg={12}
-                xl={14}
-                className="mobile-24"
-              >
-                <div className="h-full col-content p-20">
-                  <Text>LOGO</Text>
-                  <div className="ant-muse">
-                    <Upload {...props}>
-                      <Button style={{ width: "300px" }}>
-                        Click to Upload
-                      </Button>
-                    </Upload>
-                  </div>
-
-                  <div className="card-footer">
-                    <Form.Item
-                      style={{
-                        marginTop: 15,
-                      }}
-                      name="hight"
-                      label=""
-                    >
-                      HEIGHT
-                      <Input
-                        style={{ width: "120%" }}
-                        placeholder="eg 40 (optional)"
-                      />
-                    </Form.Item>
-                  </div>
-                  <div>
-                    <Form.Item
-                      style={{
-                        marginTop: "",
-                      }}
-                      name="hight"
-                      label=""
-                    >
-                      APP ICON
-                      <Input
-                        style={{ width: "120%" }}
-                        value="{{app.application builder}}"
-                      />
-                    </Form.Item>
-                  </div>
-                </div>
-              </Col>
-              <Col xs={24} md={12} sm={24} lg={12} xl={10} className="col-img">
-                <div className="ant-cret text-right">
-                  {/* <img src={""} alt="" className="border10" /> */}
-                </div>
-              </Col>
-            </Row>
-          </Card>
-        </Col>
-      </Row>
-      <Row className="middle">
-        <Col xs={24} md={24} lg={24}>
-          <Card>
-            <div className="themes">
-              <small>Themes</small>
-            </div>
-
-            <Button className="btnGEG" id="">GEG</Button>
-            <Button className="btnRed" id="">Red</Button>
-            <Button className="btnGreen" id="">Green</Button>
-            <Button className="btnSalmon">Salmon</Button>
-          </Card>
-        </Col>
-      </Row>
-
       <Card>
         <div className="colors">
           <h2>Colors</h2>
@@ -412,10 +292,12 @@ function Config() {
                       </Form.Item>
                       <Form.Item
                         label="Mesure"
-                        style={{
-                          // width: 688,
-                          // display: "inline-block",
-                        }}
+                        style={
+                          {
+                            // width: 688,
+                            // display: "inline-block",
+                          }
+                        }
                       >
                         <Input />
                       </Form.Item>
@@ -431,7 +313,7 @@ function Config() {
 
                       <Form.Item>
                         <Button
-                          style={{ float: "right",marginTop:30 }}
+                          style={{ float: "right", marginTop: 30 }}
                           onClick={() => setOpen(false)}
                           type=""
                           htmlType="cancel"
@@ -440,7 +322,11 @@ function Config() {
                         </Button>
                         <Button
                           className=""
-                          style={{ float: "right", marginRight: 18,marginTop:30 }}
+                          style={{
+                            float: "right",
+                            marginRight: 18,
+                            marginTop: 30,
+                          }}
                           onClick={() => setOpen(false)}
                           type="primary"
                           htmlType="submit"
