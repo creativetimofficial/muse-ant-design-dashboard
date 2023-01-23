@@ -1,17 +1,7 @@
-/*!
-  =========================================================
-  * Muse Ant Design Dashboard - v1.0.0
-  =========================================================
-  * Product Page: https://www.creative-tim.com/product/muse-ant-design-dashboard
-  * Copyright 2021 Creative Tim (https://www.creative-tim.com)
-  * Licensed under MIT (https://github.com/creativetimofficial/muse-ant-design-dashboard/blob/main/LICENSE.md)
-  * Coded by Creative Tim
-  =========================================================
-  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-import { useState, useEffect } from "react";
-import {  Form, Upload, } from "antd";
+import { useState, useEffect, useContext } from "react";
+import { Form, Upload } from "antd";
+// import ImageUploading from 'react-images-uploading';
+import React from "react";
 
 import {
   Row,
@@ -25,16 +15,14 @@ import {
   Input,
   Drawer,
   Typography,
-  
 } from "antd";
 
-import {
-  
-} from "@ant-design/icons";
+import {} from "@ant-design/icons";
 
-import { NavLink, } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import avtar from "../../assets/images/team-2.jpg";
+import { AppContext } from "../../App";
 
 const ButtonContainer = styled.div`
   .ant-btn-primary {
@@ -199,7 +187,6 @@ const logsetting = [
   </svg>,
 ];
 
-
 const toggler = [
   <svg
     width="20"
@@ -239,6 +226,8 @@ function Header({
   handleSidenavType,
   handleFixedNavbar,
 }) {
+  const context = useContext(AppContext);
+
   const { Title, Text } = Typography;
 
   const [visible, setVisible] = useState(false);
@@ -248,6 +237,23 @@ function Header({
 
   const showDrawer = () => setVisible(true);
   const hideDrawer = () => setVisible(false);
+
+  const toBase64 = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
+
+  const uploadLogo = async (file, fileList) => {
+    try {
+      const resp = await toBase64(file);
+      context.setLogoUrl(resp);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -306,7 +312,7 @@ function Header({
             <div layout="vertical">
               <div className="header-top">
                 <Title level={4}>
-                Configuration
+                  Configuration
                   <Text className="subtitle">See our dashboard options.</Text>
                 </Title>
               </div>
@@ -379,7 +385,10 @@ function Header({
                     <div className="sideheaderlogo">
                       <Text>LOGO</Text>
                       <div>
-                        <Upload>
+                        <Upload
+                          showUploadList={false}
+                          beforeUpload={uploadLogo}
+                        >
                           <Button style={{ width: "310px" }}>
                             Click to Upload
                           </Button>

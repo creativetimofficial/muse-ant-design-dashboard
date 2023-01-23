@@ -304,8 +304,8 @@ function Building() {
             <Button type="primary" htmlType="submit">
               Submit
             </Button>
-            <Button type="" style={{ marginLeft: 10 }} htmlType="submit">
-              Submit
+            <Button type="" style={{ marginLeft: 10 }} htmlType="" onClick={()=>setOpen(false)}>
+              Cancel
             </Button>
           </Form.Item>
         </Form>
