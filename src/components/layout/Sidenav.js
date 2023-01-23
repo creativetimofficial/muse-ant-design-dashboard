@@ -1,8 +1,12 @@
 import { Menu} from "antd";
+import { useContext } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import logo from "../../assets/images/buildlogo.jpg";
-
+// import logo from "../../assets/images/buildlogo.jpg";
+import { AppContext } from "../../App";
 function Sidenav({ color }) {
+
+  const  context = useContext(AppContext)
+
   const { pathname } = useLocation();
   const page = pathname.replace("/", "");
 
@@ -165,8 +169,7 @@ function Sidenav({ color }) {
   return (
     <>
       <div className="brand">
-        <img src={logo} alt="" />
-        {/* <span>Muse Dashboard</span> */}
+        <img src={context.logoUrl} alt="" height={60} width={110} />
       </div>
       <hr />
       <Menu theme="light" mode="inline">

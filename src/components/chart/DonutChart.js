@@ -17,8 +17,9 @@ class Donut extends Component {
     };
 
     this.state1 = {
-      options1: {
+      options1: { 
         stroke: {
+          
           width: 0,
         },
         labels: ["Rainwater", "Potable"],
@@ -39,7 +40,7 @@ class Donut extends Component {
   render() {
     return (
       <Col span={24}>
-        <Row justify="space-between"  gutter={[16, 16]} >
+        <Row justify="space-between" gutter={[16, 16]}>
           <Card className="donutcard">
             <small>Portfollo Source Water Type Consumption Split</small>
             <Col span={8}>

@@ -12,10 +12,9 @@ import {
   Card,
   Col,
   Row,
-  Typography,
 } from "antd";
 import { useState } from "react";
-import { message, Upload } from "antd";
+import { message } from "antd";
 import { Collapse } from "antd";
 const { Panel } = Collapse;
 const layout = {

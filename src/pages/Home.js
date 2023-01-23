@@ -112,42 +112,42 @@ function Home() {
   ];
   const day = [
     {
-      day: "sat",
+      day: "Sat",
       icon: air,
       temp: "12-33°",
     },
     {
-      day: "sun",
+      day: "Sun",
       icon: sun,
       temp: "12-33°",
     },
     {
-      day: "mon",
+      day: "Mon",
       icon: thunderStrome,
       temp: "29-44°",
     },
     {
-      day: "tue",
+      day: "Tue",
       icon: air,
       temp: "29-30°",
     },
     {
-      day: "wed",
+      day: "Wed",
       icon: sun,
       temp: "19-44°",
     },
     {
-      day: "thu",
+      day: "Thu",
       icon: sun,
       temp: "29-34°",
     },
     {
-      day: "fri",
+      day: "Fri",
       icon: thunderStrome,
       temp: "29-44°",
     },
     {
-      day: "sat",
+      day: "Sat",
       icon: air,
       temp: "09-14°",
     },

@@ -36,24 +36,24 @@ function EChart() {
         />
       </div>
       <div className="chart-vistior">
-        <Title level={5}>Active Users</Title>
+        {/* <Title level={5}>Active Users</Title>
         <Paragraph className="lastweek">
           than last week <span className="bnb2">+30%</span>
         </Paragraph>
         <Paragraph className="lastweek">
           We have created multiple options for you to put together and customise
           into pixel perfect pages.
-        </Paragraph>
-        <Row gutter>
+        </Paragraph> */}
+        {/* <Row gutter>
           {items.map((v, index) => (
             <Col xs={6} xl={6} sm={6} md={6} key={index}>
               <div className="chart-visitor-count">
-                <Title level={4}>{v.Title}</Title>
+                <Title level={4}> <>{v.Title}</> </Title>
                 <span>{v.user}</span>
               </div>
             </Col>
           ))}
-        </Row>
+        </Row> */}
       </div>
     </>
   );
