@@ -14,6 +14,7 @@ import Config from "./pages/Config";
 import Alert from "./pages/Alert";
 import BuildingPerformance from "./pages/BuildingPerformance";
 import React, { useState } from "react";
+import Report from "./pages/Report";
 
 export const AppContext = React.createContext();
 
@@ -35,11 +36,13 @@ function App() {
             <Route exact path="/dashboard" component={Home} />
             <Route exact path="/sites" component={Sites} />
             <Route exact path="/building" component={Building} />
+            <Route exact path="/buildingPerformance" component={BuildingPerformance} />
             <Route exact path="/meter" component={Meter} />
+            <Route exact path="/alert" component={Alert} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/config" component={Config} />
-            <Route exact path="/alert" component={Alert} />
-            <Route exact path="/buildingPerformance" component={BuildingPerformance} />
+            <Route exact path="/report" component={Report} />
+
 
             <Redirect from="*" to="/dashboard" />
           </Main>

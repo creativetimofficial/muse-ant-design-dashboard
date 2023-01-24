@@ -10,6 +10,9 @@ function SatckedChart() {
             title: {
                 text: ''
             },
+            credits: {
+                enabled: false,
+              },
             xAxis: {
                 // categories: ['2020/21', '2019/20', '2018/19', '2017/18', '2016/17']
             },
@@ -22,6 +25,8 @@ function SatckedChart() {
             legend: {
                 reversed: true
             },
+           
+        
             plotOptions: {
                 series: {
                     stacking: 'normal',
@@ -30,6 +35,7 @@ function SatckedChart() {
                     }
                 }
             },
+            
             series: [{
                 // name: 'Cristiano Ronaldo',
                 data: [444, 4, 644, 15, 12,34,56,76,77,122,333,44,44]

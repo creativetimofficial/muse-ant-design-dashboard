@@ -98,6 +98,7 @@ function Mixchart() {
         [187.3, 1158]]
 
     Highcharts.chart("mix-container", {
+  
       chart: {
         zoomType: "x",
       },
@@ -105,6 +106,7 @@ function Mixchart() {
         text: "Portfolio-wide Electricity Consumption ",
         align: "left",
       },
+   
       subtitle: {
         text:
           document.ontouchstart === undefined
@@ -123,6 +125,9 @@ function Mixchart() {
       legend: {
         enabled: false,
       },
+      credits: {
+        enabled: false
+    },
       plotOptions: {
         area: {
           fillColor: {
