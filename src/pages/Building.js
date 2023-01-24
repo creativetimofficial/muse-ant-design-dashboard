@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { DatePicker, Select } from "antd";
 import { Form, Input, Table } from "antd";
-import { Button, Modal } from "antd";
+import { Button,Row,Col, Modal } from "antd";
 import "reactjs-popup/dist/index.css";
 
 
@@ -193,7 +193,7 @@ function Building() {
             label="Building Name"
             rules={[{ required: true }]}
           >
-            <Input />
+            <Input className="form_input"/>
           </Form.Item>
           <Form.Item
             name={"project"}
@@ -205,6 +205,7 @@ function Building() {
               placeholder="Select Project"
               value={selectedItems}
               onChange={setSelectedItems}
+              size='large'
               style={{ width: "100%" }}
               options={filteredOptions.map((item) => ({
                 value: item,
@@ -222,6 +223,7 @@ function Building() {
               placeholder="Select Type"
               value={selectedItems}
               onChange={setSelectedItems}
+              size='large'
               style={{ width: "100%" }}
               options={filteredOptions.map((item) => ({
                 value: item,
@@ -234,79 +236,116 @@ function Building() {
             label="Building Number"
             rules={[{ required: "" }]}
           >
-            <Input style={{ width: "50%" }} /> <lebel> Street :</lebel>{" "}
-            <Input style={{ width: "41.5%" }} />
+            <Row>
+              <Col lg={10} xs={24} sm={24} md={24}>
+              <Input className="form_input" style={{ width: "100%" }} /> 
+              </Col>
+              <Col lg={4} xs={24} sm={24} md={24} className="form_label">
+              <lebel> Street :</lebel>
+              </Col>
+              <Col lg={10} xs={24} sm={24} md={24}>
+              <Input className="form_input" style={{ width: "100%" }} />
+              </Col>
+            </Row>
           </Form.Item>
           <Form.Item name={"suburb"} label="Suburb" rules={[{ required: "" }]}>
-            <Input style={{ width: "50%" }} /> <lebel> State :</lebel>{" "}
-            <Input style={{ width: "41.5%" }} />
+              <Row>
+                <Col lg={10}  xs={24} sm={24} md={24}>
+                <Input className="form_input" style={{ width: "100%" }} /> 
+                </Col>
+                <Col lg={4} xs={24} sm={24} md={24} className="form_label">
+                <lebel>State :</lebel>
+                </Col>
+                <Col lg={10} xs={24} sm={24} md={24}>
+                <Input className="form_input" style={{ width: "100%" }} />
+                </Col>
+              </Row>
           </Form.Item>
           <Form.Item
             name={"postcode"}
             label="Postcode"
             rules={[{ required: true }]}
-          >
-            <Input style={{ width: "50%" }} /> <lebel> Region :</lebel>{" "}
-            <Select
-              mode="multiple"
-              placeholder="Select Type"
-              value={selectedItems}
-              onChange={setSelectedItems}
-              style={{ width: "40%" }}
-              options={filteredOptions.map((item) => ({
-                value: item,
-                label: item,
-              }))}
-            />
+          > 
+            <Row>
+                <Col lg={10} xs={24} sm={24} md={24}>
+                <Input className="form_input" style={{ width: "100%" }} /> 
+                </Col>
+                <Col lg={4} xs={24} sm={24} md={24} className="form_label">
+                <lebel>Region :</lebel>
+                </Col>
+                <Col lg={10} xs={24} sm={24} md={24}>
+                <Select
+                  mode="multiple"
+                  placeholder="Select Type"
+                  value={selectedItems}
+                  onChange={setSelectedItems}
+                  size='large'
+                  style={{ width: "100%" }}
+                  options={filteredOptions.map((item) => ({
+                    value: item,
+                    label: item,
+                  }))}
+                />
+                </Col>
+              </Row>
           </Form.Item>
           <Form.Item
             name={"totalArea"}
             label="Total Area"
             rules={[{ required: "" }]}
           >
-            <Input style={{ width: "50%" }} />
+            <Row>
+                <Col lg={10} xs={24} sm={24} md={24}>
+                <Input className="form_input" style={{ width: "100%" }} /> 
+                </Col>
+                <Col lg={4} xs={24} sm={24} md={24}  className="form_label">
+                <lebel>Constructed:</lebel>
+                </Col>
+                <Col lg={10} xs={24} sm={24} md={24}>
+                <DatePicker size='large' style={{ width: "100%" }}/>
+                </Col>
+              </Row>
           </Form.Item>
           <Form.Item
             name={"totalLNA"}
             label="Total LNA"
             rules={[{ required: "" }]}
           >
-            <Input style={{ width: "50%" }} />
+
+            <Row>
+                <Col lg={10} xs={24} sm={24} md={24}>
+                <Input className="form_input" style={{ width: "100%" }} /> 
+                </Col>
+                <Col lg={4} xs={24} sm={24} md={8} className="form_label">
+                <lebel>Refurbished:</lebel>
+                </Col>
+                <Col lg={10} xs={24} sm={24} md={16}>
+                <DatePicker size="large" style={{ width: "100%" }}/>
+                </Col>
+              </Row>
           </Form.Item>
           <Form.Item
             name={"totalGLAR"}
             label="Total GLAR"
             rules={[{ required: "" }]}
           >
-            <Input style={{ width: "50%" }} />
+            <Input className="form_input" style={{ width: "100%",borderRadius:0 }} />
           </Form.Item>
           <Form.Item
-            name={"constructed"}
-            label="Date Constructed"
-            rules={[{ required: "" }]}
-          >
-            <DatePicker />
-          </Form.Item>
-          <Form.Item
-            name={"refurbished"}
-            label="Date Refurbished"
-            rules={[{ required: "" }]}
-          >
-            <DatePicker />
-          </Form.Item>
-
-          <Form.Item
+            
             wrapperCol={{
               offset: 8,
               span: 16,
             }}
           >
+            <Row style={{justifyContent:'center'}}>
             <Button type="primary" htmlType="submit">
               Submit
             </Button>
-            <Button type="" style={{ marginLeft: 10 }} htmlType="" onClick={()=>setOpen(false)}>
+            <Button type="" style={{ marginLeft: 10 }} htmlType="" onClick={()=>setOpen(false)} >
               Cancel
             </Button>
+            </Row>
           </Form.Item>
         </Form>
       </Modal>

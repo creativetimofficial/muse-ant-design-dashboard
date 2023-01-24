@@ -292,10 +292,10 @@ function Home() {
       }
     },
   };
-  const provinceData = ["Zhejiang", "Jiangsu"];
+  const provinceData = ["site", ""];
   const cityData = {
-    Zhejiang: ["Hangzhou", "Ningbo", "Wenzhou"],
-    Jiangsu: ["Nanjing", "Suzhou", "Zhenjiang"],
+    site: ["select", "all site", "site A" ,"site B"],
+    // gav: ["Nanjing", "Suzhou", "Zhenjiang"],
   };
   const [cities, setCities] = useState(cityData[provinceData[0]]);
   const [secondCity, setSecondCity] = useState(cityData[provinceData[0]][0]);

@@ -105,7 +105,9 @@ function MeterChartS() {
                 enabled: false
               }
             }],
-        
+            credits: {
+              enabled: false,
+            },
             plotOptions: {
               solidgauge: {
                 borderWidth: '20px',
