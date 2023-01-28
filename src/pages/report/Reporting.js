@@ -76,17 +76,17 @@ const ReportTreeData = [ {
   },]
 
 
-function Report2() {
+function Reporting() {
   const [showLine, setShowLine] = useState(true);
   const [showIcon, setShowIcon] = useState(false);
   const [showLeafIcon, setShowLeafIcon] = useState(true);
   const onSelect = (selectedKeys, info) => {
     console.log("selected", selectedKeys, info);
   };
-const arrow = [
-<svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m6.05 19 5-7-5-7H8.5l5 7-5 7ZM12 19l5-7-5-7h2.45l5 7-5 7Z"/></svg>
+// const arrow = [
+// <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="m6.05 19 5-7-5-7H8.5l5 7-5 7ZM12 19l5-7-5-7h2.45l5 7-5 7Z"/></svg>
 
-]
+// ]
 
   const handleLeafIconChange = (value) => {
     if (value === "custom") {
@@ -99,10 +99,10 @@ const arrow = [
   };
   return (
     <>
-      <div className="site-card-wrapper" style={{paddingLeft:10}}>
+      <div className="site-card-wrapper" style={{marginTop:16,}}>
         {/* <Row> */}
           {/* <Col xs={{ span: 11, offset: 1 }} lg={{ span: 7 }}> */}
-            <Tree
+            <Tree style={{height:435 ,marginTop:15 }}
               showLine={
                 showLine
                   ? {
@@ -123,7 +123,7 @@ const arrow = [
 }
 
 
-export default Report2;
+export default Reporting;
 
 
 

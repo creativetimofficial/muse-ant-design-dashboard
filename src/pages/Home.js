@@ -294,7 +294,7 @@ function Home() {
   };
   const provinceData = ["site", ""];
   const cityData = {
-    site: ["select", "all site", "site A" ,"site B"],
+    site: ["select", "all site", "site A", "site B"],
     // gav: ["Nanjing", "Suzhou", "Zhenjiang"],
   };
   const [cities, setCities] = useState(cityData[provinceData[0]]);
@@ -524,3 +524,10 @@ function Home() {
 }
 
 export default Home;
+
+
+
+
+
+
+

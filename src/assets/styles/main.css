@@ -3185,16 +3185,16 @@ section.ant-layout.ant-layout-has-sider.layout-dashboard.layout-profile .header-
 }
 
 /* .btnheaderRed:hover{
-  background-color: red;
-} */
+    background-color: red;
+  } */
 .btnheaderGreen {
   background-color: green;
   margin-left: 5px;
 }
 
 /* .btnheaderGreen:hover{
-  background-color: green;
-} */
+    background-color: green;
+  } */
 .btnheaderSalmon {
   background-color: salmon;
   margin-left: 5px;
@@ -3204,8 +3204,8 @@ section.ant-layout.ant-layout-has-sider.layout-dashboard.layout-profile .header-
 }
 
 /* .btnheaderSalmon:hover{
-  background-color: salmon;
-} */
+    background-color: salmon;
+  } */
 .middle2 button {
   margin-top: 20px;
   border-top-left-radius: 13px;
@@ -3285,10 +3285,6 @@ section.ant-layout.ant-layout-has-sider.layout-dashboard.layout-profile .header-
 .donuttext1 {
   margin-top: 80px;
   margin-left: 230px;
-}
-
-body {
-  margin: 20px;
 }
 
 /* bootstrap-demo is a custom classname to increases the specificity of our styles. It can be anything. 
