@@ -3333,3 +3333,44 @@ section.ant-layout.ant-layout-has-sider.layout-dashboard.layout-profile .header-
   height: 40px;
   border-radius: 0%;
 }/*# sourceMappingURL=main.css.map */
+
+
+/* TREE VIEW CSS */
+
+.form {
+  display: flex;
+  max-height: 320px;
+  min-height: 320px;
+  overflow-y: auto;
+}
+
+.form > div {
+  display: inline-block;
+  vertical-align: top;
+}
+
+#treeviewDriveC,
+#treeviewDriveD {
+  margin-top: 10px;
+}
+
+.drive-header {
+  min-height: auto;
+  padding: 0;
+  cursor: default;
+}
+
+.drive-panel {
+  /* padding: 20px 30px; */
+  font-size: 115%;
+  font-weight: bold;
+  border-right: 1px solid rgba(165, 165, 165, 0.4);
+  height: 100%;
+}
+
+.drive-panel:last-of-type {
+  border-right: none;
+}
+
+
+/*  END TREE VIEW END*/

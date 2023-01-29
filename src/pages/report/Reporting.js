@@ -1,6 +1,5 @@
 import React from "react";
 import { Card, Col, Row } from "antd";
-import DropdownTreeSelect from "react-dropdown-tree-select";
 import {
   CarryOutOutlined,
   CheckOutlined,

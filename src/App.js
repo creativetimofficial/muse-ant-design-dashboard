@@ -10,6 +10,7 @@ import Main from "./components/layout/Main";
 import "antd/dist/antd.css";
 import "./assets/styles/main.css";
 import "./assets/styles/responsive.css";
+import 'devextreme/dist/css/dx.light.css';
 import Config from "./pages/Config";
 import Alert from "./pages/Alert";
 import BuildingPerformance from "./pages/BuildingPerformance";

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import Highcharts from "highcharts";
-import { Button, Radio } from "antd";
+import { Button, Col, Radio, Row } from "antd";
 
 
 let chartType = "column";
@@ -125,38 +125,48 @@ function ReportChart() {
   return (
     <>
       <div id="container"></div>
-      <Button 
-      onClick={()=> setActiveBtn('plain')}
-      className={activeBtn === 'plain' ? 'active' : '' } 
-        style={{ width: 75, marginLeft: 75, height: 40 }}
-        id="plain"
-        key={1}
-      >
-        Bar
-      </Button>
-      <Button
-      className={activeBtn === "line"}
-        id="line"
-        key={2}
-        style={{ width: 75, marginLeft: 5, height: 40 }}
-      >
-        line
-      </Button>
-      <Button
-      
-        id="area"
-        key={3}
-        style={{ width: 75, marginLeft: 5, height: 40 }}
-      >
-        Area
-      </Button>
-      <Button
-        id="stacked"
-        key={4}
-        style={{ width: 75, marginLeft: 5, height: 40 }}
-      >
-        Stacked
-      </Button>
+      <Row gutter={[10,10]} style={{margin:0}}> 
+        <Col span={6}>
+          <Button 
+          onClick={()=> setActiveBtn('plain')}
+            className={activeBtn === 'plain' ? 'active' : '' } 
+            style={{height: 40, width: "100%" }}
+            id="plain"
+            key={1}
+          >
+            Bar
+          </Button>
+        </Col>
+        <Col span={6}>
+          <Button
+          className={activeBtn === "line"}
+            id="line"
+            key={2}
+            style={{height: 40, width: "100%" }}
+          >
+            line
+          </Button>
+        </Col>
+        <Col span={6}>
+          <Button
+          
+            id="area"
+            key={3}
+            style={{height: 40, width: "100%" }}
+          >
+            Area
+          </Button>
+        </Col>
+        <Col span={6}>
+          <Button
+            id="stacked"
+            key={4}
+            style={{height: 40, width: "100%" }}
+          >
+            Stacked
+          </Button>
+        </Col>
+      </Row>
     </>
   );
 }

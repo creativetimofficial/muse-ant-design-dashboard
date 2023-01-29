@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Card, Col, Row, Space, Input } from "antd";
-import { Container, Draggable } from 'react-smooth-dnd';
 import {
   CarryOutOutlined,
   CheckOutlined,
@@ -11,6 +10,9 @@ import { useState } from "react";
 import { DatePicker } from "antd";
 import Reporting from "./Reporting";
 import ReportChart from "./ReportChart";
+import LeftTreeView from "../../components/TreeComponent/LeftTreeView";
+import RightTreeView from "../../components/TreeComponent/RightTreeView";
+import TreeDataItems from "../../assets/data/TreeDataItems";
 // import CustomTreeNode from "../../components/TreeComponent/CustomTreeNode";
 const { TreeNode } = Tree;
 
@@ -144,155 +146,235 @@ function Report() {
     }
     return setShowLeafIcon(false);
   };
+
+  // new changes for tree and drag drop functionality //
+
+  const leftTreeViewRef = useRef(null);
+  const rightTreeViewRef = useRef(null);
+
+  const [leftTreeItems, setLeftTreeItems] = useState([...TreeDataItems])
+  const [rightTreeItems, setRightTreeItems] = useState([])
+
+  const getLeftTreeView = () => {
+    return leftTreeViewRef.current.instance;
+  }
+
+  const getRightTreeView = () => {
+    return rightTreeViewRef.current.instance;
+  }
+
+  const onDragChange = (e) => {
+    if (e.fromComponent === e.toComponent) {
+      const fromNode = findNode(getTreeView(e.fromData), e.fromIndex);
+      const toNode = findNode(getTreeView(e.toData), calculateToIndex(e));
+      if (toNode !== null && isChildNode(fromNode, toNode)) {
+        e.cancel = true;
+      }
+    }
+  }
+
+  const onDragEnd = (e) => {
+    if (e.fromComponent === e.toComponent && e.fromIndex === e.toIndex) {
+      return;
+    }
+
+    const fromTreeView = getTreeView(e.fromData);
+    const toTreeView = getTreeView(e.toData);
+
+    const fromNode = findNode(fromTreeView, e.fromIndex);
+    const toNode = findNode(toTreeView, calculateToIndex(e));
+
+    if (e.dropInsideItem && toNode !== null && !toNode.itemData.isDirectory) {
+      return;
+    }
+
+    const fromTopVisibleNode = getTopVisibleNode(e.fromComponent)
+    const toTopVisibleNode = getTopVisibleNode(e.toComponent)
+
+    const fromItems = e.fromData === "leftTree" ? leftTreeItems : rightTreeItems
+    const toItems = e.toData === "leftTree" ? leftTreeItems : rightTreeItems
+    
+    
+    if(toItems?.findIndex(item => item.id === fromNode?.itemData?.id) !== -1) {
+      return;
+    }
+    moveNode(fromNode, toNode, fromItems, toItems, e.dropInsideItem)
+    // if (e.formData === "leftTree") {
+    //   setLeftTreeItems([...fromItems])
+    // } else {
+    //   setRightTreeItems([...fromItems])
+    // }
+
+    // if (e.toData === "leftTree") {
+    //   setLeftTreeItems([...toItems])
+    // } else {
+    //   se.tRightTreeItems([...toItems])
+    // }
+    if(e.fromData === "rightTree"){
+      setRightTreeItems([...fromItems])
+    }
+    if(e.toData === "rightTree"){
+      setRightTreeItems([...toItems])
+    }
+
+    fromTreeView.scrollToItem(fromTopVisibleNode);
+    toTreeView.scrollToItem(toTopVisibleNode);
+  }
+
+  const getTreeView = (treeName) => {
+    return treeName === 'leftTree'
+      ? getLeftTreeView()
+      : getRightTreeView()
+  }
+
+
+
+  const calculateToIndex = (e) => {
+    if (e.fromComponent !== e.toComponent || e.dropInsideItem) {
+      return e.toIndex;
+    }
+
+    return e.fromIndex >= e.toIndex
+      ? e.toIndex
+      : e.toIndex + 1;
+  }
+
+  const findNode = (treeView, index) => {
+    const nodeElement = treeView.element().querySelectorAll('.dx-treeview-node')[index];
+    if (nodeElement) {
+      return findNodeById(treeView.getNodes(), nodeElement.getAttribute('data-item-id'));
+    }
+    return null;
+  }
+
+  const findNodeById = (nodes, id) => {
+    for (let i = 0; i < nodes.length; i += 1) {
+      if (nodes[i].itemData.id === id) {
+        return nodes[i];
+      }
+      if (nodes[i].children) {
+        const node = findNodeById(nodes[i].children, id);
+        if (node != null) {
+          return node;
+        }
+      }
+    }
+    return null;
+  }
+
+  const moveNode = (fromNode, toNode, fromItems, toItems, isDropInsideItem) => {
+    const fromIndex = fromItems.findIndex((item) => item.id === fromNode.itemData.id);
+    fromItems.splice(fromIndex, 1);
+
+    const toIndex = toNode === null || isDropInsideItem
+      ? toItems.length
+      : toItems.findIndex((item) => item.id === toNode.itemData.id);
+    toItems.splice(toIndex, 0, fromNode.itemData);
+
+    moveChildren(fromNode, fromItems, toItems);
+    if (isDropInsideItem) {
+      fromNode.itemData.parentId = toNode.itemData.id;
+    } else {
+      fromNode.itemData.parentId = toNode != null
+        ? toNode.itemData.parentId
+        : undefined;
+    }
+  }
+
+  const moveChildren = (node, fromDataSource, toDataSource) => {
+    
+    if (!node.itemData.isDirectory) {
+      return;
+    }
+
+    node.children.forEach((child) => {
+      if (child.itemData.isDirectory) {
+        moveChildren(child, fromDataSource, toDataSource);
+      }
+
+      const fromIndex = fromDataSource.findIndex((item) => item.id === child.itemData.id);
+      fromDataSource.splice(fromIndex, 1);
+      toDataSource.splice(toDataSource.length, 0, child.itemData);
+    });
+  }
+
+  const isChildNode = (parentNode, childNode) => {
+    let { parent } = childNode;
+    while (parent !== null) {
+      if (parent.itemData.id === parentNode.itemData.id) {
+        return true;
+      }
+      parent = parent.parent;
+    }
+    return false;
+  }
+
+  const getTopVisibleNode = (component) => {
+    const treeViewElement = component.element();
+    const treeViewTopPosition = treeViewElement.getBoundingClientRect().top;
+    const nodes = treeViewElement.querySelectorAll('.dx-treeview-node');
+    for (let i = 0; i < nodes.length; i += 1) {
+      const nodeTopPosition = nodes[i].getBoundingClientRect().top;
+      if (nodeTopPosition >= treeViewTopPosition) {
+        return nodes[i];
+      }
+    }
+
+    return null;
+  }
+
+
   return (
     <>
       <Row>
-        <Col span={12}>
-          <Card
-            style={{ backgroundColor: "rgb(28, 136, 178)", paddingLeft: 10 }}
-          >
-            {/* meter tree row start */}
+        <Col span={8} >
+          <Card style={{ backgroundColor: "rgb(28, 136, 178)", height: 500 }}>
             <Row>
-              <Col span={""}>
+              <Col span={12}>
                 <h3 style={{ color: "white" }}>Meter Tree </h3>
               </Col>
-              <Col span={6}></Col>
-              <Col span={14}>
-                <p style={{ color: "white" }}>
+              <Col span={12}>
+                <p style={{ color: "white", textAlign: 'end' }}>
                   (Drag requested files {arrow} toFavourites or Reporting){" "}
                 </p>
               </Col>
             </Row>
-            {/* meter tree row end */}
-            <Row>
-              {/* inpput row start */}
-              <Row style={{ height: 105, marginTop: 6 }} align="middle">
-                <Col span={8}>
-                  <label style={{ color: "white", marginLeft: 8 }}>
-                    Search Text:
-                  </label>
-
-                  <Input
-                    style={{ height: 32, borderRadius: 0, marginLeft: 7 }}
-                    placeholder="search text"
-                  />
-                </Col>
-                <Col span={8} style={{ display: "inline" }}>
-                  <label style={{ color: "white", marginLeft: 14 }}>
-                    Filter Text:
-                  </label>
-                  <Space direction="horizontal">
-                    <Input
-                      style={{ height: 32, borderRadius: 0, marginLeft: 14 }}
-                      placeholder="filter text"
-                    />
-                  </Space>
-                </Col>
-                <Col span={8}>
-                  <label style={{ color: "white", marginLeft: 20 }}>
-                    Filter Type:
-                  </label>
-
-                  <Select
-                    style={{
-                      width: 114,
-                      marginLeft: 20,
-                    }}
-                    value={secondCity}
-                    onChange={onSecondCityChange}
-                    options={cities.map((city) => ({
-                      label: city,
-                      value: city,
-                    }))}
-                  />
-                </Col>
-              </Row>
-            </Row>
-            {/* inpput row end */}
-
-            <Row style={{ width: 580, backgroundColor: "white" }}>
-              {/* tree row s */}
-              <Container>
-              {/* <Draggable key={1} children={Draggable}> */}
-              <Tree
-                style={{ marginLeft: 10, height: 428, marginTop: 20 }}
-                showLine={
-                  showLine
-                    ? {
-                        showLeafIcon,
-                      }
-                    : false
-                }
-                showIcon={showIcon}
-                defaultExpandedKeys={["0-0-0"]}
-                onSelect={onSelect}
-                
-                // treeData={()=>
-                 
-                // }
-
-              >
-                {
-                   treeData.map((parent, parentKey)=>
-                    <TreeNode  key={parent.key} title={parent.title}>
-                      <Draggable key={parentKey}>
-                        {
-                          parent.children.map((children, childrenKey)=>
-                          // <Draggable key={childrenKey}>
-                            <TreeNode  
-                              key={children.key} 
-                              title={children.title}
-                              // data={<Draggable key={childrenKey}><h1>{children.title}</h1> </Draggable> }
-                            />
-                          // 
-                          )
-                        }
-                      </Draggable>
-                    </TreeNode>  
-                  )  
-                }
-                </Tree>
-{/* </Draggable> */}
-</Container>
-              {/* tree row e */}
-            </Row>
-          </Card>
-        </Col>
-        <Col span={12}>
-          {/* second main column */}
-          <Card
-            style={{ backgroundColor: "rgb(28, 136, 178)", paddingLeft: 10 }}
-          >
-            <h3 style={{ color: "white", paddingLeft: 10 }}>Reporting</h3>
-            <Row style={{ marginTop: "", height: 35 }}>
-              <Col span={""}></Col>
-              <Col span={6}></Col>
-              <Col span={10}></Col>
-            </Row>
-            <Row style={{ paddingBottom: 7 }}>
-              <Col span={8} style={{ paddingLeft: 7 }}>
-                <label style={{ color: "white", marginLeft: 8 }}>
-                  From Date:
+            <Row gutter={[10, 10]} style={{ height: 60 }}>
+              <Col span={8}>
+                <label style={{ color: "white" }}>
+                  Search Text:
                 </label>
-
-                <DatePicker onChange={onChange} />
+                <Input
+                  style={{
+                    width: "100%",
+                    height: 32,
+                    borderRadius: 0
+                  }}
+                  placeholder="search text"
+                />
               </Col>
               <Col span={8}>
-                <label style={{ color: "white", marginLeft: 14 }}>
-                  To Date:
+                <label style={{ color: "white" }}>
+                  Filter Text:
                 </label>
-
-                <DatePicker onChange={onChange} style={{ marginLeft: 7 }} />
+                <Input
+                  style={{
+                    width: "100%",
+                    height: 32,
+                    borderRadius: 0
+                  }}
+                  placeholder="filter text"
+                />
               </Col>
               <Col span={8}>
-                <label style={{ color: "white", marginLeft: 20 }}>
-                  Schedule:
+                <label style={{ color: "white" }}>
+                  Filter Type:
                 </label>
-
                 <Select
                   style={{
-                    width: 114,
-                    marginLeft: 20,
+                    width: "100%",
+                    height: 32,
+                    borderRadius: 0
                   }}
                   value={secondCity}
                   onChange={onSecondCityChange}
@@ -303,18 +385,90 @@ function Report() {
                 />
               </Col>
             </Row>
-            <Reporting />
+            <Row>
+              <Card style={{ width: "100%" }}>
+                <LeftTreeView
+                  onDragChange={onDragChange}
+                  onDragEnd={onDragEnd} 
+                  leftTreeViewRef={leftTreeViewRef}
+                  leftTreeItems={leftTreeItems}
+                />
+              </Card>
+            </Row>
           </Card>
-
-          {/* second main column end */}
+        </Col>
+        <Col span={8}>
+          <Card style={{ backgroundColor: "rgb(28, 136, 178)", height: 500 }}>
+            <Row style={{ height: 60 }}>
+              <Col span={24}>
+                <h3 style={{ color: "white", paddingLeft: 10 }}>Reporting</h3>
+              </Col>
+            </Row>
+            <Row gutter={[10, 10]} style={{ height: 60 }}>
+              <Col span={8}>
+                <label style={{ color: "white" }}>
+                  From Date:
+                </label>
+                <DatePicker
+                  style={{
+                    width: "100%",
+                    borderRadius: 0,
+                    height: 32
+                  }}
+                  onChange={onChange}
+                />
+              </Col>
+              <Col span={8}>
+                <label style={{ color: "white" }}>
+                  To Date:
+                </label>
+                <DatePicker
+                  style={{
+                    width: "100%",
+                    borderRadius: 0,
+                    height: 32
+                  }}
+                  onChange={onChange}
+                />
+              </Col>
+              <Col span={8}>
+                <label style={{ color: "white" }}>
+                  Schedule:
+                </label>
+                <Select
+                  style={{
+                    width: "100%",
+                    borderRadius: 0,
+                    height: 32
+                  }}
+                  value={secondCity}
+                  onChange={onSecondCityChange}
+                  options={cities.map((city) => ({
+                    label: city,
+                    value: city,
+                  }))}
+                />
+              </Col>
+            </Row>
+            <Row>
+              <Card style={{ width: "100%" }}>
+                <RightTreeView
+                  onDragChange={onDragChange}
+                  onDragEnd={onDragEnd}
+                  rightTreeViewRef={rightTreeViewRef}
+                  rightTreeItems={rightTreeItems}
+                />
+              </Card>
+            </Row>
+          </Card>
+        </Col>
+        <Col span={8}>
+          <Card style={{ height: 500 }}>
+            <ReportChart />
+          </Card>
         </Col>
       </Row>
-
-      <Card style={{ marginTop: 50 }}>
-        <ReportChart />
-      </Card>
     </>
   );
 }
-
 export default Report;
