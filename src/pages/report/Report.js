@@ -327,7 +327,7 @@ function Report() {
   return (
     <>
       <Row>
-        <Col span={8} >
+        <Col span={12} >
           <Card style={{ backgroundColor: "rgb(28, 136, 178)", height: 500 }}>
             <Row>
               <Col span={12}>
@@ -397,7 +397,7 @@ function Report() {
             </Row>
           </Card>
         </Col>
-        <Col span={8}>
+        <Col span={12}>
           <Card style={{ backgroundColor: "rgb(28, 136, 178)", height: 500 }}>
             <Row style={{ height: 60 }}>
               <Col span={24}>
@@ -462,7 +462,9 @@ function Report() {
             </Row>
           </Card>
         </Col>
-        <Col span={8}>
+      </Row>
+      <Row style={{marginTop: 10}}>
+      <Col span={24}>
           <Card style={{ height: 500 }}>
             <ReportChart />
           </Card>
