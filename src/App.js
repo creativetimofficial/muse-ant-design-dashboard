@@ -10,22 +10,25 @@ import Main from "./components/layout/Main";
 import "antd/dist/antd.css";
 import "./assets/styles/main.css";
 import "./assets/styles/responsive.css";
+import 'devextreme/dist/css/dx.light.css';
 import Config from "./pages/Config";
 import Alert from "./pages/Alert";
 import BuildingPerformance from "./pages/BuildingPerformance";
 import React, { useState } from "react";
-import Report from "./pages/Report";
+import Report from "./pages/report/Report";
 
 export const AppContext = React.createContext();
 
 function App() {
-  const [logoUrl, setLogoUrl] = useState(require("../src/assets/images/buildlogo.jpg"));
-  
+  const [logoUrl, setLogoUrl] = useState(
+    require("../src/assets/images/buildlogo.jpg")
+  );
+
   return (
     <AppContext.Provider
       value={{
         logoUrl,
-        setLogoUrl
+        setLogoUrl,
       }}
     >
       <div className="App">
@@ -36,13 +39,16 @@ function App() {
             <Route exact path="/dashboard" component={Home} />
             <Route exact path="/sites" component={Sites} />
             <Route exact path="/building" component={Building} />
-            <Route exact path="/buildingPerformance" component={BuildingPerformance} />
+            <Route
+              exact
+              path="/buildingPerformance"
+              component={BuildingPerformance}
+            />
             <Route exact path="/meter" component={Meter} />
             <Route exact path="/alert" component={Alert} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/config" component={Config} />
             <Route exact path="/report" component={Report} />
-
 
             <Redirect from="*" to="/dashboard" />
           </Main>

@@ -40,7 +40,7 @@ function Sidenav({ color }) {
       viewBox="0 0 20 20"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      key={0}
+      key={1}
     >
       <path
         d="M9 2C8.44772 2 8 2.44772 8 3C8 3.55228 8.44772 4 9 4H11C11.5523 4 12 3.55228 12 3C12 2.44772 11.5523 2 11 2H9Z"
@@ -62,7 +62,7 @@ function Sidenav({ color }) {
       viewBox="0 0 20 20"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      key={0}
+      key={2}
     >
       <path
         d="M4 4C2.89543 4 2 4.89543 2 6V7H18V6C18 4.89543 17.1046 4 16 4H4Z"
@@ -84,7 +84,7 @@ function Sidenav({ color }) {
       viewBox="0 0 20 20"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      key={0}
+      key={3}
     >
       <path
         fillRule="evenodd"
@@ -102,7 +102,7 @@ function Sidenav({ color }) {
       viewBox="0 0 20 20"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      key={0}
+      key={5}
     >
       <path
         fillRule="evenodd"
@@ -120,7 +120,7 @@ function Sidenav({ color }) {
       viewBox="0 0 20 20"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      key={0}
+      key={6}
     >
       <path
         fillRule="evenodd"
@@ -137,7 +137,7 @@ function Sidenav({ color }) {
       width="14"
       height="14"
       viewBox="0 0 14 14"
-      key={0}
+      key={7}
     >
       <path
         d="M0,2A2,2,0,0,1,2,0H8a2,2,0,0,1,2,2V8a2,2,0,0,1-2,2H2A2,2,0,0,1,0,8Z"
@@ -151,17 +151,17 @@ function Sidenav({ color }) {
     </svg>,
   ];
   const config = [
-    <svg xmlns="http://www.w3.org/2000/svg" height="22" width="22">
+    <svg xmlns="http://www.w3.org/2000/svg" height="22" width="22" key={8}>
       <path d="M9.562 13.688h.834l.25-1.063q.416-.104.719-.271.302-.166.552-.437l1.041.333.417-.75-.75-.708q.083-.354.104-.782.021-.427-.083-.781l.729-.687-.417-.75-1.02.312q-.25-.271-.563-.448-.313-.177-.729-.281l-.229-1.063h-.855l-.208 1.063q-.416.104-.729.281-.313.177-.563.448l-1.02-.333-.417.771.75.687q-.104.375-.104.781 0 .407.104.782l-.75.708.417.771 1.041-.354q.25.25.552.427.303.177.719.281ZM10 11.5q-.625 0-1.062-.438Q8.5 10.625 8.5 10t.438-1.062Q9.375 8.5 10 8.5t1.062.438q.438.437.438 1.062t-.438 1.062q-.437.438-1.062.438Zm-5.25 5.083q-.562 0-.948-.385-.385-.386-.385-.948V4.75q0-.562.385-.948.386-.385.948-.385h10.5q.562 0 .948.385.385.386.385.948v10.5q0 .562-.385.948-.386.385-.948.385Z" />
     </svg>,
   ];
   const report = [
-    <svg xmlns="http://www.w3.org/2000/svg" height="22" width="22">
+    <svg xmlns="http://www.w3.org/2000/svg" height="22" width="22" key={9}>
       <path d="M10 13.5q.25 0 .417-.167.166-.166.166-.416 0-.25-.166-.417-.167-.167-.417-.167-.25 0-.417.167-.166.167-.166.417 0 .25.166.416.167.167.417.167Zm-.542-2.312h1.084V6.167H9.458Zm-2.187 5.395-3.854-3.875V7.271l3.854-3.854h5.458l3.854 3.854v5.458l-3.875 3.854Z" />
     </svg>,
   ];
   const alert = [
-    <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20">
+    <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" key={10}>
       <path d="m1 18 9-15 9 15Zm9-2.5q.312 0 .531-.219.219-.219.219-.531 0-.312-.219-.531Q10.312 14 10 14q-.312 0-.531.219-.219.219-.219.531 0 .312.219.531.219.219.531.219ZM9.25 13h1.5V9h-1.5Z" />
     </svg>,
   ];
@@ -266,10 +266,10 @@ function Sidenav({ color }) {
           </NavLink>
         </Menu.Item>
 
-        <Menu.Item className="menu-item-header" key="6">
+        <Menu.Item className="menu-item-header" key="8">
           Account Pages
         </Menu.Item>
-        <Menu.Item key="8">
+        <Menu.Item key="9">
           <NavLink to="/profile">
             <span
               className="icon"
@@ -282,19 +282,19 @@ function Sidenav({ color }) {
             <span className="label">Profile</span>
           </NavLink>
         </Menu.Item>
-        <Menu.Item key="9">
+        <Menu.Item key="10">
           <NavLink to="/sign-in">
             <span className="icon">{signin}</span>
             <span className="label">Sign In</span>
           </NavLink>
         </Menu.Item>
-        <Menu.Item key="10">
+        <Menu.Item key="11">
           <NavLink to="/sign-up">
             <span className="icon">{signup}</span>
             <span className="label">Sign Up</span>
           </NavLink>
         </Menu.Item>
-        <Menu.Item key="11">
+        <Menu.Item key="12">
           <NavLink to="/config">
             <span className="icon">{config}</span>
             <span className="label">Config</span>
