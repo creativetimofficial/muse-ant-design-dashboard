@@ -3366,11 +3366,14 @@ section.ant-layout.ant-layout-has-sider.layout-dashboard.layout-profile .header-
   font-weight: bold;
   border-right: 1px solid rgba(165, 165, 165, 0.4);
   height: 100%;
+  min-height: 300px;
 }
 
 .drive-panel:last-of-type {
   border-right: none;
 }
-
+.drive-panel .dx-sortable {
+  min-height: 300px;
+}
 
 /*  END TREE VIEW END*/
