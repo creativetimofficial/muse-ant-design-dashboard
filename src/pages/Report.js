@@ -20,7 +20,7 @@ const cityData = {
   Jiangsu: ['Nanjing', 'Suzhou', 'Zhenjiang'],
 };
 
-function Report() {
+function ReportChart() {
   const [cities, setCities] = useState(cityData[provinceData[0]]);
   const [secondCity, setSecondCity] = useState(cityData[provinceData[0]][0]);
   const handleProvinceChange = (value) => {
@@ -132,7 +132,7 @@ function Report() {
             <Row align='middle' style={{ backgroundColor: "rgb(28, 136, 178)", color: 'white' }}>
               {/* Chart column */}
             </Row>
-            <Report3 />
+            {/* <Report3 /> */}
 
           </Col>
         </Row>
@@ -141,4 +141,4 @@ function Report() {
   )
 }
 
-export default Report
+export default ReportChart

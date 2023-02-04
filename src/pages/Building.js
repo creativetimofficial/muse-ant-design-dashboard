@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { DatePicker, Select } from "antd";
+import { DatePicker, Divider, Select } from "antd";
 import { Form, Input, Table } from "antd";
-import { Button,Row,Col, Modal } from "antd";
+import { Button, Row, Col, Modal } from "antd";
 import "reactjs-popup/dist/index.css";
+import { useEffect } from "react";
 
+import { addBuilding, deleteBuilding, editBuilding, getBuildingList } from '../services/buildingService'
 
 const layout = {
   labelCol: {
@@ -17,10 +19,9 @@ const OPTIONS = ["Apples", "Nails", "Bananas", "Helicopters"];
 
 function Building() {
   const [selectedItems, setSelectedItems] = useState([]);
-
+  const [form] = Form.useForm()
   const filteredOptions = OPTIONS.filter((o) => !selectedItems.includes(o));
 
-  // const [open, setOpen] = useState(false);
   const validateMessages = {
     required: "${label} is required!",
     types: {
@@ -34,137 +35,143 @@ function Building() {
   const [open, setOpen] = useState(false);
   console.log(open);
 
-  const onFinish = (values) => {
-    console.log(values);
-  };
+  const onCancelModal = () => {
+    setOpen(false);
+    setBuildingId()
+    form.resetFields();
+  }
+
   const columns = [
     {
       title: "Project Name",
       dataIndex: "projectName",
-      key: "projectName",
+      key: "1",
     },
     {
       title: "Project Type",
       dataIndex: "projectType",
-      key: "projectType",
+      key: "2",
     },
     {
       title: "Project No.",
       dataIndex: "projectNo",
-      key: "projectNo",
+      key: "3",
     },
     {
       title: "Building Name",
       dataIndex: "buildingName",
-      key: "1",
+      key: "4",
     },
     {
       title: "Area",
       dataIndex: "area",
-      key: "2",
+      key: "5",
     },
     {
       title: "Street",
       dataIndex: "street",
-      key: "3",
+      key: "6",
     },
     {
       title: "PostCode",
       dataIndex: "postcode",
-      key: "4",
+      key: "7",
+    },
+    {
+      title: "Zone",
+      dataIndex: "zone",
+      key: "8",
     },
     {
       title: "Region",
       dataIndex: "region",
-      key: "5",
-    },
-    {
-      title: "Zones",
-      dataIndex: "zones",
-      key: "6",
+      key: "9",
     },
     {
       title: "Holidays",
       dataIndex: "holidays",
-      key: "7",
+      key: "10",
     },
     {
       title: "Target",
       dataIndex: "target",
-      key: "8",
+      key: "11",
     },
     {
-      title: "Ratings",
-      key: "rating",
-      dataIndex: "ratings",
+      title: "Rating",
+      dataIndex: "rating",
+      key: "12",
     },
     {
       title: "Alert",
       dataIndex: "alert",
-      key: "9",
+      key: "13",
     },
     {
-      title: "Delete",
+      title: "Actions",
       dataIndex: "delete",
-      key: "10",
-    },
+      key: "14",
+      render: (text, record, index) => (
+        <>
+          <a onClick={()=>{onEdit(record)}}>EDIT</a>
+          <Divider type="vertical"/>
+          <a onClick={()=>{onDelete(record.id)}}>DELETE</a>
+        </>
+      )
+    }
   ];
-  const data = [
-    {
-      key: "1",
-      projectNo: 23533,
-      projectName: "24,mount street,North sydeny",
-      projectType: "GBS",
-      buildingName: "d04,megacenter",
-      area: "hadpsar",
-      street: "mount st.",
-      state: "NSW",
-      postcode: 2160,
-      region: "north",
-      zones: "south",
-      holidays: "18",
-      target: "none",
-      ratings: "",
-      alert: "",
-      delete: "",
-    },
-    {
-      key: "2",
-      projectNo: 12333,
-      projectName: "12,mount street,North sydeny",
-      projectType: "GBS",
-      buildingName: "f604,megacenter",
-      area: "hadpsar",
-      street: "mount st.",
-      state: "NSW",
-      postcode: 2060,
-      region: "north",
-      zones: "south",
-      holidays: "18",
-      target: "none",
-      ratings: "",
-      alert: "",
-      delete: "",
-    },
-    {
-      key: "3",
-      projectNo: 92333,
-      projectName: "10,mount street,North sydeny",
-      projectType: "GBS",
-      buildingName: "f604,megacenter",
-      area: "hadpsar",
-      street: "mount st.",
-      state: "NSW",
-      postcode: 4060,
-      region: "north",
-      zones: "south",
-      holidays: "18",
-      target: "none",
-      ratings: "",
-      alert: "",
-      delete: "",
-    },
-  ];
+
+  const [post, setPost] = useState({});
+  const [loading, setloading] = useState(true);
+  const [buildingId, setBuildingId] = useState();
+
+  let data = [];
+  const getData = async () => {
+    try {
+      const resp = await getBuildingList();
+      console.log(resp)
+      setPost(resp)
+      setloading(false)
+
+    } catch (error) {
+    }
+  };
+  const setData = async (formData) => {
+    try {
+      if(buildingId){
+        const resp = await editBuilding(buildingId, formData);
+      }else{
+        const resp = await addBuilding(formData);
+      }
+      onCancelModal()
+      getData() 
+    } catch (error) {
+      console.log(error)
+    }
+  };
+
+  const onDelete = async (id) => {
+    try {
+      const resp = await deleteBuilding(id);
+      getData()
+    } catch (error) {
+    }
+  };
+
+  const onEdit = async (record) => {
+    form.setFieldsValue(record);
+    setBuildingId(record.id)
+    setOpen(true)
+  };
+
+  data = loading
+    ? []
+    : post
+ 
+  useEffect(() => {
+    getData()
+  }, []);
+
   return (
     <>
       {" "}
@@ -175,176 +182,212 @@ function Building() {
         style={{ textAlign: "left" }}
         title="Create New Buildings"
         centered
-        visible={open}
-        // onOk={() => setOpen(false)}
-        onCancel={() => setOpen(false)}
-        width={1300}
+        open={open}
+        onCancel={() => onCancelModal()}
+        width={1000}
         footer={null}
+        maskClosable={false}
       >
         <Form
           {...layout}
           name="nest-messages"
-          onFinish={onFinish}
+          onFinish={setData}
           style={{ maxWidth: 1000 }}
+          form={form}
           validateMessages={validateMessages}
         >
-          <Form.Item
-            name={"buildingName"}
-            label="Building Name"
-            rules={[{ required: true }]}
-          >
-            <Input className="form_input"/>
-          </Form.Item>
-          <Form.Item
-            name={"project"}
-            label="Project"
-            rules={[{ required: true }]}
-          >
-            <Select
-              mode="multiple"
-              placeholder="Select Project"
-              value={selectedItems}
-              onChange={setSelectedItems}
-              size='large'
-              style={{ width: "100%" }}
-              options={filteredOptions.map((item) => ({
-                value: item,
-                label: item,
-              }))}
-            />
-          </Form.Item>
-          <Form.Item
-            name={"energyProfile"}
-            label="Energy Profile"
-            rules={[{ required: "" }]}
-          >
-            <Select
-              mode="multiple"
-              placeholder="Select Type"
-              value={selectedItems}
-              onChange={setSelectedItems}
-              size='large'
-              style={{ width: "100%" }}
-              options={filteredOptions.map((item) => ({
-                value: item,
-                label: item,
-              }))}
-            />
-          </Form.Item>
-          <Form.Item
-            name={"buildingNumber"}
-            label="Building Number"
-            rules={[{ required: "" }]}
-          >
-            <Row>
-              <Col lg={10} xs={24} sm={24} md={24}>
-              <Input className="form_input" style={{ width: "100%" }} /> 
-              </Col>
-              <Col lg={4} xs={24} sm={24} md={24} className="form_label">
-              <lebel> Street :</lebel>
-              </Col>
-              <Col lg={10} xs={24} sm={24} md={24}>
-              <Input className="form_input" style={{ width: "100%" }} />
-              </Col>
-            </Row>
-          </Form.Item>
-          <Form.Item name={"suburb"} label="Suburb" rules={[{ required: "" }]}>
-              <Row>
-                <Col lg={10}  xs={24} sm={24} md={24}>
-                <Input className="form_input" style={{ width: "100%" }} /> 
-                </Col>
-                <Col lg={4} xs={24} sm={24} md={24} className="form_label">
-                <lebel>State :</lebel>
-                </Col>
-                <Col lg={10} xs={24} sm={24} md={24}>
-                <Input className="form_input" style={{ width: "100%" }} />
-                </Col>
-              </Row>
-          </Form.Item>
-          <Form.Item
-            name={"postcode"}
-            label="Postcode"
-            rules={[{ required: true }]}
-          > 
-            <Row>
-                <Col lg={10} xs={24} sm={24} md={24}>
-                <Input className="form_input" style={{ width: "100%" }} /> 
-                </Col>
-                <Col lg={4} xs={24} sm={24} md={24} className="form_label">
-                <lebel>Region :</lebel>
-                </Col>
-                <Col lg={10} xs={24} sm={24} md={24}>
+          <Row justify={'center'} gutter={[30, 30]}>
+            <Col span={24}>
+              <Form.Item
+                name={"projectName"}
+                label="Project Name"
+                labelCol={{ span: 4 }}
+                wrapperCol={{ span: 18 }}
+              // rules={[{ required: "" }]}
+              >
+                <Input className="form_input" />
+              </Form.Item>
+            </Col>
+          </Row>
+
+          <Row justify={'center'} gutter={[30, 30]}>
+            <Col span={24}>
+              <Form.Item
+                name={"projectType"}
+                label="Project Types"
+                labelCol={{ span: 4 }}
+                wrapperCol={{ span: 18 }}
+              >
                 <Select
-                  mode="multiple"
-                  placeholder="Select Type"
+                  placeholder="Select Project"
                   value={selectedItems}
                   onChange={setSelectedItems}
                   size='large'
                   style={{ width: "100%" }}
-                  options={filteredOptions.map((item) => ({
+
+                  options={filteredOptions.map((item, index) => ({
                     value: item,
                     label: item,
+                    key: index
                   }))}
                 />
-                </Col>
-              </Row>
-          </Form.Item>
-          <Form.Item
-            name={"totalArea"}
-            label="Total Area"
-            rules={[{ required: "" }]}
-          >
-            <Row>
-                <Col lg={10} xs={24} sm={24} md={24}>
-                <Input className="form_input" style={{ width: "100%" }} /> 
-                </Col>
-                <Col lg={4} xs={24} sm={24} md={24}  className="form_label">
-                <lebel>Constructed:</lebel>
-                </Col>
-                <Col lg={10} xs={24} sm={24} md={24}>
-                <DatePicker size='large' style={{ width: "100%" }}/>
-                </Col>
-              </Row>
-          </Form.Item>
-          <Form.Item
-            name={"totalLNA"}
-            label="Total LNA"
-            rules={[{ required: "" }]}
-          >
+              </Form.Item>
+            </Col>
+          </Row>
 
-            <Row>
-                <Col lg={10} xs={24} sm={24} md={24}>
-                <Input className="form_input" style={{ width: "100%" }} /> 
-                </Col>
-                <Col lg={4} xs={24} sm={24} md={8} className="form_label">
-                <lebel>Refurbished:</lebel>
-                </Col>
-                <Col lg={10} xs={24} sm={24} md={16}>
-                <DatePicker size="large" style={{ width: "100%" }}/>
-                </Col>
-              </Row>
-          </Form.Item>
+          <Row justify={'center'} gutter={[30, 30]}>
+            <Col span={24}>
+              <Form.Item
+                name={"projectNo"}
+                label="Project No"
+                labelCol={{ span: 4 }}
+                wrapperCol={{ span: 18 }}
+              // rules={[{ required: "" }]}
+              >
+                <Input className="form_input" />
+              </Form.Item>
+            </Col>
+          </Row>
+
+          <Row justify={'center'} gutter={[30, 30]} >
+            <Col span={11}>
+              <Form.Item
+                name={"buildingName"}
+                label="Building Name"
+                labelCol={{ span: 8 }}
+                wrapperCol={{ span: 16 }}
+              // rules={[{ required: "" }]}
+              >
+                <Input className="form_input" />
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item
+                name={"area"}
+                label="Area"
+                labelCol={{ span: 5 }}
+                wrapperCol={{ span: 16 }}
+
+              // rules={[{ required: "" }]}
+              >
+                <Input className="form_input" />
+              </Form.Item>
+            </Col>
+          </Row>
+
+          <Row justify={'center'} gutter={[30, 30]}>
+            <Col span={11}>
+              <Form.Item
+                name={"street"}
+                label="Street"
+                labelCol={{ span: 8 }}
+                wrapperCol={{ span: 16 }}
+              // rules={[{ required: "" }]}
+              >
+                <Input className="form_input" />
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item
+                name={"postcode"}
+                label="Postcode"
+                labelCol={{ span: 5 }}
+                wrapperCol={{ span: 16 }}
+              // rules={[{ required: "" }]}
+              >
+                <Input className="form_input" />
+              </Form.Item>
+            </Col>
+          </Row>
+
+          <Row justify={'center'} gutter={[30, 30]}>
+            <Col span={11}>
+              <Form.Item
+                name={"zone"}
+                label="Zone"
+                labelCol={{ span: 8 }}
+                wrapperCol={{ span: 16 }}
+              // rules={[{ required: "" }]}
+              >
+                <Input className="form_input" />
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item
+                name={"region"}
+                label="Region"
+                labelCol={{ span: 5 }}
+                wrapperCol={{ span: 16 }}
+              // rules={[{ required: "" }]}
+              >
+                <Input className="form_input" />
+              </Form.Item>
+            </Col>
+          </Row>
+
+          <Row justify={'center'} gutter={[30, 30]}>
+            <Col span={11}>
+              <Form.Item
+                name={"holidays"}
+                label="Holidays"
+                labelCol={{ span: 8 }}
+                wrapperCol={{ span: 16 }}
+              // rules={[{ required: "" }]}
+              >
+                <Input className="form_input" />
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item
+                name={"target"}
+                label="Target"
+                labelCol={{ span: 5 }}
+                wrapperCol={{ span: 16 }}
+              // rules={[{ required: "" }]}
+              >
+                <Input className="form_input" />
+              </Form.Item>
+            </Col>
+          </Row>
+
+          <Row justify={'center'} gutter={[30, 30]}>
+            <Col span={11}>
+              <Form.Item
+                name={"rating"}
+                label="Rating"
+                // rules={[{ required: "" }]}
+                labelCol={{ span: 8 }}
+                wrapperCol={{ span: 16 }}
+              >
+                <Input className="form_input" />
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item
+                name={"alert"}
+                label="Alert"
+                // rules={[{ required: "" }]}
+                labelCol={{ span: 5 }}
+                wrapperCol={{ span: 16 }}
+              >
+                <Input className="form_input" />
+              </Form.Item>
+            </Col>
+          </Row>
+
           <Form.Item
-            name={"totalGLAR"}
-            label="Total GLAR"
-            rules={[{ required: "" }]}
-          >
-            <Input className="form_input" style={{ width: "100%",borderRadius:0 }} />
-          </Form.Item>
-          <Form.Item
-            
             wrapperCol={{
-              offset: 8,
+              offset: 11,
               span: 16,
             }}
           >
-            <Row style={{justifyContent:'center'}}>
-            <Button type="primary" htmlType="submit">
-              Submit
-            </Button>
-            <Button type="" style={{ marginLeft: 10 }} htmlType="" onClick={()=>setOpen(false)} >
-              Cancel
-            </Button>
+            <Row >
+              <Button type="primary" htmlType="submit">
+                Submit
+              </Button>
+              <Button type="" style={{ marginLeft: 10 }} htmlType="" onClick={() => onCancelModal()} >
+                Cancel
+              </Button>
             </Row>
           </Form.Item>
         </Form>
@@ -352,8 +395,9 @@ function Building() {
       <Table
         columns={columns}
         dataSource={data}
+        rowKey={"id"}
         scroll={{
-          x: 1400,
+          x: 1000,
         }}
       />
     </>

@@ -911,7 +911,7 @@ button.ant-btn.bell strong {
   width: auto;
 }
 
-.consumptionTitle {
+.dashboardCardTitle {
   background-color: rgb(28, 136, 178);
   width: 40px;
   height: 40px;
@@ -923,9 +923,8 @@ button.ant-btn.bell strong {
   padding-right: 10px;
 }
 
-.consumption {
+.dashboardCardTitle {
   font-size: 25px;
-  color: #8c8c8c;
   font-family: Helvetica, Arial, sans-serif;
 }
 
@@ -3333,7 +3332,6 @@ section.ant-layout.ant-layout-has-sider.layout-dashboard.layout-profile .header-
   height: 40px;
   border-radius: 0%;
 }/*# sourceMappingURL=main.css.map */
-
 
 /* TREE VIEW CSS */
 
