@@ -331,7 +331,7 @@ function Report() {
           <Card style={{ backgroundColor: "rgb(28, 136, 178)", height: 500 }}>
             <Row>
               <Col span={12}>
-                <h3 style={{ color: "white" }}>Meter Tree </h3>
+                <h3 style={{ color: "white" }}>Meter Tree</h3>
               </Col>
               <Col span={12}>
                 <p style={{ color: "white", textAlign: 'end' }}>
@@ -385,6 +385,10 @@ function Report() {
                 />
               </Col>
             </Row>
+  
+
+
+
             <Row>
               <Card style={{ width: "100%" }}>
                 <LeftTreeView
@@ -399,7 +403,7 @@ function Report() {
         </Col>
         <Col span={12}>
           <Card style={{ backgroundColor: "rgb(28, 136, 178)", height: 500 }}>
-            <Row style={{ height: 60 }}>
+            <Row style={{ height: 40 }}>
               <Col span={24}>
                 <h3 style={{ color: "white", paddingLeft: 10 }}>Reporting</h3>
               </Col>
