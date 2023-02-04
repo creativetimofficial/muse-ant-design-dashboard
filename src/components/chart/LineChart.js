@@ -8,7 +8,7 @@ function LineChart() {
 
   return (
     <>
-      <div className="linechart">
+      <div style={{marginTop:10}} className="linechart">
         <div className="changeFamily">
           <Title level={5}> Portfolio-wide Electricity Consumption</Title>
           {/* <Paragraph className="lastweek">

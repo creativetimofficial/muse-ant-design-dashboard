@@ -28,9 +28,14 @@ import team1 from "../assets/images/team-1.jpg";
 import team2 from "../assets/images/team-2.jpg";
 import team3 from "../assets/images/team-3.jpg";
 import team4 from "../assets/images/team-4.jpg";
+import Consumption from "./dashboard/Consumption";
+import EnergyCost from "./dashboard/EnergyCost";
+import Co2 from "./dashboard/Co2";
+import WeatherInfo from "./dashboard/WeatherInfo";
+
 const { RangePicker } = DatePicker;
 
-function Home() {
+function Home (props) {
   const { Title } = Typography;
 
   const onChange = (e) => console.log(`radio checked:${e.target.value}`);
@@ -92,7 +97,6 @@ function Home() {
       today: "CO2e",
       title: "63Kg",
       dec: "Tree seedlings equivalent to 10 years",
-
       icon: co2,
       bnb: "redtext",
     },
@@ -309,6 +313,8 @@ function Home() {
 
   return (
     <>
+
+
       <Row>
         <Col>
           <Select
@@ -342,6 +348,28 @@ function Home() {
           }))}
         />
       </Row>
+
+
+      <Row align="middle" gutter={24} >
+          <Col span={6}  xs={24}
+              sm={24}
+              md={12}
+              lg={5}
+              xl={5}>
+              <Consumption data={count[0]}/>
+          </Col>  
+          <Col span={6} xs={24} sm={24} md={12} lg={5} xl={5}>
+            <EnergyCost data={count[1]}/>
+          </Col>
+          <Col span={6} xs={24} sm={24} md={12} lg={5} xl={5}>
+            <Co2 data={count[2]}/>
+          </Col>
+          
+            <WeatherInfo/>
+          
+   </Row>
+
+
       <div className="layout-content">
         <Row className="rowgap-vbox" gutter={[24, 0]}>
           {count.map((c, index) => (
@@ -352,29 +380,11 @@ function Home() {
               md={12}
               lg={5}
               xl={5}
-              className="mb-24"
+              className="mb-16"
             >
-              <Card bordered={false} className="criclebox ">
-                <div className="number">
-                  <Row align="middle" gutter={[24, 0]}>
-                    <Col xs={15}>
-                      <div className="icon-box ">{c.icon}</div>
-                    </Col>
-
-                    <Col className="col text-center" xs={24}>
-                      <span className="consumption">{c.today}</span>
-                      <Title level={2}>
-                        <span className="consumptionTitle">{c.title}</span>
-
-                        <small className={c.bnb}>{c.persent}</small>
-                        <p>{c.dec}</p>
-                      </Title>
-                    </Col>
-                  </Row>
-                </div>
-              </Card>
             </Col>
           ))}
+
           <Col xs={24} sm={24} md={12} lg={12} xl={9} className="mb-24">
             <Row className="" gutter={[24, 0]}>
               {count1.map((d, index) => (
@@ -385,49 +395,8 @@ function Home() {
                   md={24}
                   lg={24}
                   xl={24}
-                  className="mb-24"
+                  className="mb-16"
                 >
-                  <Card bordered={false} className="criclebox ">
-                    <div className="number">
-                      <Row>
-                        <Col xs={12}>
-                          <span className=""> {d.title} </span>
-                          <div>
-                            <h4>{d.dec}</h4>
-                          </div>
-
-                          <span className="weatherIcon">{d.icon}</span>
-                          {/* <small>{c.today}</small> */}
-                        </Col>
-                        <Col xs={12}>
-                          <h4>
-                            Pressure: {d.Pressure}
-                            <br />{" "}
-                          </h4>
-                          <h4>
-                            Humidity: {d.Humidity}
-                            <br />
-                          </h4>
-                          <h4>Wind: {d.Wind}</h4>
-                        </Col>
-                      </Row>
-                      <Row>
-                        {day.map((d, index) => (
-                          <Col className="days" xs={3} key={index}>
-                            <Row justify="center">
-                              <div className="iconText"> {d.day} </div>
-                            </Row>
-                            <div className="iconText">
-                              <Row justify="center">
-                                <s>{d.icon}</s>
-                              </Row>
-                              <Row justify="center">{d.temp}</Row>
-                            </div>
-                          </Col>
-                        ))}
-                      </Row>
-                    </div>
-                  </Card>
                 </Col>
               ))}
             </Row>
@@ -446,6 +415,8 @@ function Home() {
             </Card>
           </Col>
         </Row>
+
+        
 
         <Row gutter={[24, 0]}>
           <Col xs={24} sm={24} md={24} lg={24} xl={24} className="mb-24">
