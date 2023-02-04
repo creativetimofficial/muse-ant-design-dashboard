@@ -1,10 +1,11 @@
-import React from "react";
-import { Select, Form, Input, Table } from "antd";
-import { Button, Modal } from "antd";
+import React, { useState } from "react";
+import { DatePicker, Divider, Select } from "antd";
+import { Form, Input, Table } from "antd";
+import { Button, Row, Col, Modal } from "antd";
 import "reactjs-popup/dist/index.css";
-import { useState } from "react";
+import { useEffect } from "react";
+import { addSites, deleteSites, editSites, getSitesList } from '../services/sitesService'
 
-const { TextArea } = Input;
 const layout = {
   labelCol: {
     span: 8,
@@ -13,7 +14,13 @@ const layout = {
     span: 16,
   },
 };
+const OPTIONS = ["Apples", "Nails", "Bananas", "Helicopters"];
+
 function Sites() {
+  const [selectedItems, setSelectedItems] = useState([]);
+  const [form] = Form.useForm()
+  const filteredOptions = OPTIONS.filter((o) => !selectedItems.includes(o));
+
   const validateMessages = {
     required: "${label} is required!",
     types: {
@@ -27,206 +34,268 @@ function Sites() {
   const [open, setOpen] = useState(false);
   console.log(open);
 
-  const onFinish = (values) => {
-    console.log(values);
-  };
-
+  const onCancelModal = () => {
+    setOpen(false);
+    setSitesId()
+    form.resetFields();
+  }
   const columns = [
     {
-      title: "No",
-      dataIndex: "number",
-      key: "number",
+      title: "Project No",
+      dataIndex: "projectno",
+      key: "1",
     },
     {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
+      title: "Project Name",
+      dataIndex: "projectname",
+      key: "2",
     },
     {
-      title: "Type",
-      dataIndex: "type",
-      key: "type",
+      title: "Project Type",
+      dataIndex: "projecttype",
+      key: "3",
     },
+
     {
       title: "Client Name",
-      dataIndex: "clientName",
-      key: "clientName",
+      dataIndex: "clientname",
+      key: "4",
     },
     {
       title: "Client Agent Name",
-      dataIndex: "clientAgentName",
-      key: "clientAgentName",
+      dataIndex: "clientagentname",
+      key: "5",
     },
     {
       title: "PTL",
       dataIndex: "ptl",
-      key: "ptl",
+      key: "6",
     },
     {
       title: "Project Group",
-      dataIndex: "projectGroup",
-      key: "projectGroup",
+      dataIndex: "projectgroup",
+      key: "7",
     },
     {
-      title: "Delete",
+      title: "Actions",
       dataIndex: "delete",
-      key: "delete",
-    },
+      key: "8",
+      render: (text, record, index) => (
+        <>
+          <a onClick={() => { onEdit(record) }}>EDIT</a>
+          <Divider type="vertical" />
+          <a onClick={() => { onDelete(record.id) }}>DELETE</a>
+        </>
+      )
+    }
   ];
-  const data = [
-    {
-      key: "1",
-      number: 23533,
-      name: "24 Amour st Revesby - morgen carbon It consulting",
-      type: "GBS",
-      clientName: "Austen gen",
-      clientAgentName: "suman",
-      ptl: "mount st.",
-      projectGroup: "NSW",
-      delete: "",
-    },
-    {
-      key: "2",
-      number: 23533,
-      name: "24 Amour st Revesby - morgen carbon It consulting",
-      type: "GBS",
-      clientName: "Austen gen",
-      clientAgentName: "suman",
-      ptl: "mount st.",
-      projectGroup: "NSW",
-      delete: "",
-    },
-    {
-      key: "3",
-      number: 23533,
-      name: "24 Amour st Revesby - morgen carbon It consulting",
-      type: "GBS",
-      clientName: "Austen gen",
-      clientAgentName: "suman",
-      ptl: "mount st.",
-      projectGroup: "NSW",
-      delete: "",
-    },
-  ];
-  const onChange = (e) => {
-    console.log("chnage", e.target.value);
+
+  const [post, setPost] = useState({});
+  const [loading, setloading] = useState(true);
+  const [SitesId, setSitesId] = useState();
+
+  let data = [];
+  const getData = async () => {
+    try {
+      const resp = await getSitesList();
+      console.log(resp)
+      setPost(resp)
+      setloading(false)
+
+    } catch (error) {
+    }
   };
+
+  const setData = async (formData) => {
+    try {
+      if (SitesId) {
+        const resp = await editSites(SitesId, formData);
+      } else {
+        const resp = await addSites(formData);
+      }
+      onCancelModal()
+      getData()
+    } catch (error) {
+      console.log(error)
+    }
+  };
+
+  const onDelete = async (id) => {
+    try {
+      const resp = await deleteSites(id);
+      getData()
+    } catch (error) {
+    }
+  };
+
+  const onEdit = async (record) => {
+    form.setFieldsValue(record);
+    setSitesId(record.id)
+    setOpen(true)
+  };
+
+  data = loading
+    ? []
+    : post
+
+  useEffect(() => {
+    getData()
+  }, []);
+
   return (
     <>
+      {" "}
       <Button className="mb-5" type="primary" onClick={() => setOpen(true)}>
         Create New
       </Button>
       <Modal
         style={{ textAlign: "left" }}
-        title="Create New"
+        title="Create New Sites"
         centered
-        visible={open}
-        // onOk={() => setOpen(false)}
-        onCancel={() => setOpen(false)}
-        width={800}
+        open={open}
+        onCancel={() => onCancelModal()}
+        width={1000}
         footer={null}
+        maskClosable={false}
       >
         <Form
-          className="modelForm"
           {...layout}
           name="nest-messages"
-          onFinish={onFinish}
+          onFinish={setData}
+          style={{ maxWidth: 1000 }}
+          form={form}
           validateMessages={validateMessages}
-          // style={{textAlign:'left'}}
-          labelAlign=""
         >
-          <Form.Item name={["project", "name"]} label="Project Type">
-            <Select
-              showSearch
-              style={{
-                width: 421,
-              }}
-              placeholder="Search to Select"
-              optionFilterProp="children"
-              filterOption={(input, option) =>
-                (option?.label ?? "").includes(input)
-              }
-              filterSort={(optionA, optionB) =>
-                (optionA?.label ?? "")
-                  .toLowerCase()
-                  .localeCompare((optionB?.label ?? "").toLowerCase())
-              }
-              options={[
-                {
-                  value: "1",
-                  label: "Not Identified",
-                },
-                {
-                  value: "2",
-                  label: "Closed",
-                },
-                {
-                  value: "3",
-                  label: "Communicated",
-                },
-                {
-                  value: "4",
-                  label: "Identified",
-                },
-                {
-                  value: "5",
-                  label: "Resolved",
-                },
-                {
-                  value: "6",
-                  label: "Cancelled",
-                },
-              ]}
-            />
-            {/* <Input/> */}
-          </Form.Item>
+          <Row justify={'center'} gutter={[30, 30]}>
+            <Col span={24}>
+              <Form.Item
+                name={"projectnumber"}
+                label="Project No"
+                labelCol={{ span: 4 }}
+                wrapperCol={{ span: 18 }}
+              // rules={[{ required: "" }]}
+              >
+                <Input className="form_input" />
+              </Form.Item>
+            </Col>
+          </Row>
 
-          <Form.Item label="Project Name">
-            <Input />
-          </Form.Item>
-          <Form.Item label="Client Contact">
-            <TextArea
-              showCount
-              maxLength={100}
-              placeholder={"Click to pick"}
-              onChange={onChange}
-            />
-          </Form.Item>
-          <Form.Item label="Agent Contact">
-            <TextArea
-              showCount
-              maxLength={100}
-              placeholder={"Click to pick"}
-              onChange={onChange}
-            />
-          </Form.Item>
+          <Row justify={'center'} gutter={[30, 30]}>
+            <Col span={24}>
+              <Form.Item
+                name={"projectname"}
+                label="Project Name"
+                labelCol={{ span: 4 }}
+                wrapperCol={{ span: 18 }}
+              // rules={[{ required: "" }]}
+              >
+                <Input className="form_input" />
+              </Form.Item>
+            </Col>
+          </Row>
 
-          <Form.Item>
-            <Button
-              style={{ float: "right" }}
-              onClick={() => setOpen(false)}
-              type=""
-              htmlType="cancel"
-            >
-              Cancel
-            </Button>
-            <Button
-              className=""
-              style={{ float: "right", marginRight: 18 }}
-              onClick={() => setOpen(false)}
-              type="primary"
-              htmlType="submit"
-            >
-              Save
-            </Button>
+          <Row justify={'center'} gutter={[30, 30]}>
+            <Col span={24}>
+              <Form.Item
+                name={"projecttype"}
+                label="Project Types"
+                labelCol={{ span: 4 }}
+                wrapperCol={{ span: 18 }}
+              >
+                <Select
+                  placeholder="Select Project"
+                  value={selectedItems}
+                  onChange={setSelectedItems}
+                  size='large'
+                  style={{ width: "100%" }}
+                  options={filteredOptions.map((item, index) => ({
+                    value: item,
+                    label: item,
+                    key: index
+                  }))}
+                />
+              </Form.Item>
+            </Col>
+          </Row>
+
+          <Row justify={'center'} gutter={[30, 30]}>
+            <Col span={24}>
+              <Form.Item
+                name={"clientname"}
+                label="Client Name"
+                labelCol={{ span: 4 }}
+                wrapperCol={{ span: 18 }}
+              // rules={[{ required: "" }]}
+              >
+                <Input className="form_input" />
+              </Form.Item>
+            </Col>
+          </Row>
+
+          <Row justify={'center'} gutter={[30, 30]}>
+            <Col span={24}>
+              <Form.Item
+                name={"clientagentname"}
+                label="Client Agent Name"
+                labelCol={{ span: 4 }}
+                wrapperCol={{ span: 18 }}
+              // rules={[{ required: "" }]}
+              >
+                <Input className="form_input" />
+              </Form.Item>
+            </Col>
+          </Row>
+          <Row justify={'center'} gutter={[30, 30]}>
+            <Col span={24}>
+              <Form.Item
+                name={"ptl"}
+                label="PTL"
+                labelCol={{ span: 4 }}
+                wrapperCol={{ span: 18 }}
+              // rules={[{ required: "" }]}
+              >
+                <Input className="form_input" />
+              </Form.Item>
+            </Col>
+          </Row>
+
+          <Row justify={'center'} gutter={[30, 30]}>
+            <Col span={24}>
+              <Form.Item
+                name={"projectgroup"}
+                label="Project Group"
+                labelCol={{ span: 4 }}
+                wrapperCol={{ span: 18 }}
+              // rules={[{ required: "" }]}
+              >
+                <Input className="form_input" />
+              </Form.Item>
+            </Col>
+          </Row>
+
+          <Form.Item
+            wrapperCol={{
+              offset: 11,
+              span: 16,
+            }}
+          >
+            <Row >
+              <Button type="primary" htmlType="submit">
+                Submit
+              </Button>
+              <Button type="" style={{ marginLeft: 10 }} htmlType="" onClick={() => onCancelModal()} >
+                Cancel
+              </Button>
+            </Row>
           </Form.Item>
         </Form>
       </Modal>
       <Table
         columns={columns}
         dataSource={data}
+        rowKey={"id"}
         scroll={{
-          x: 1300,
+          x: 1000,
         }}
       />
     </>
