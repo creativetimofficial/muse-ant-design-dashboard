@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Card, Col, Row, Input, Button } from "antd";
 import { Select, Tree } from "antd";
 import { useState } from "react";
@@ -21,22 +21,7 @@ const cityData = {
 };
 
 function Report(props) {
-  const [series, setSeries] = useState([]
-  //   [
-  //   {
-  //     data: [
-  //       111.9, 107.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1,
-  //       95.6, 54.4,
-  //     ],
-  //   },
-  //   {
-  //     data: [
-  //       19.9, 71.5, 109.4, 129.2, 134.0, 176.0, 175.6, 148.5, 216.4, 194.1,
-  //       195.6, 84.4,
-  //     ],
-  //   },
-  // ]
-  );
+  const [series, setSeries] = useState([]);
   const [cities, setCities] = useState(cityData[provinceData[0]]);
   const [secondCity, setSecondCity] = useState(cityData[provinceData[0]][0]);
   const [selectedReports, setSelectedReports] = useState([]);
@@ -53,7 +38,7 @@ function Report(props) {
   const runReport = () => {
     setSeries(selectedReports);
   };
-  // new changes for tree and drag drop functionality //
+
 
   const leftTreeViewRef = useRef(null);
   const rightTreeViewRef = useRef(null);

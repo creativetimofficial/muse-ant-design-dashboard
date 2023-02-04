@@ -24,6 +24,8 @@ function App() {
     require("../src/assets/images/buildlogo.jpg")
   );
 
+  console.log("ppppp",process.env)
+
   return (
     <AppContext.Provider
       value={{

@@ -1,7 +1,8 @@
 import axios from 'axios';
+const API_URL = `https://my-json-server.typicode.com/balajigite16/bwjson`;
 
 export const getAlertsList = async () => {
-    return axios.get(` http://localhost:3000/alerts `).then((resp) => {
+    return axios.get(`${API_URL}/alerts `).then((resp) => {
         return resp?.data
     }).catch((error) => {
         return error
@@ -9,7 +10,7 @@ export const getAlertsList = async () => {
     )
 }
 export const addAlerts = async (data) => {
-    return axios.post(`http://localhost:3000/alerts`, data).then((resp) => {
+    return axios.post(`${API_URL}/alerts`, data).then((resp) => {
         return resp?.data
     }).catch((error) => {
         return error
@@ -19,7 +20,7 @@ export const addAlerts = async (data) => {
 
 
 export const deleteAlerts = async (id) => {
-    return axios.delete(`http://localhost:3000/alerts/${id}`).then((resp) => {
+    return axios.delete(`${API_URL}/alerts/${id}`).then((resp) => {
         return resp?.data
     }).catch((error) => {
         return error
@@ -28,7 +29,7 @@ export const deleteAlerts = async (id) => {
 }
 
 export const editAlerts = async (id, data) => {
-    return axios.put(`http://localhost:3000/alerts/${id}`, data).then((resp) => {
+    return axios.put(`${API_URL}/alerts/${id}`, data).then((resp) => {
         return resp?.data
     }).catch((error) => {
         return error
