@@ -1,0 +1,73 @@
+const RightTreeDataItems = [
+  {
+    id: "R1",
+    name: "Energy",
+    icon: "activefolder",
+    isDirectory: true,
+    expanded: true,  
+  },
+  {
+    id: "R2",
+    parentId: "R1",
+    name: "Consumption Report",
+    icon: "activefolder",
+    isDirectory: true,
+    expanded: true,
+  },
+  {
+    id: "R3",
+    parentId: "R1",
+    name: "Demand",
+    icon: "activefolder",
+    isDirectory: true,
+    expanded: true,
+  },
+  {
+    id: "R4",
+    parentId: "R1",
+    name: "Neighbour Rating",
+    icon: "activefolder",
+    isDirectory: true,
+    expanded: true,
+  },
+  {
+    id: "R5",
+    parentId: "R1",
+    name: "Pick Load and Base Load ",
+    icon: "activefolder",
+    isDirectory: true,
+    expanded: true,
+  },
+  {
+    id: "R6",
+    name: "Gas",
+    icon: "activefolder",
+    isDirectory: true,
+    expanded: true,
+  },
+  {
+    id: "R7",
+    parentId: "R6",
+    name: "Consumption",
+    icon: "activefolder",
+    isDirectory: true,
+    expanded: true,
+  },
+  {
+    id: "R8",
+    name: "Water",
+    icon: "activefolder",
+    isDirectory: true,
+    expanded: true,
+  },
+  {
+    id: "R9",
+    parentId: "R8",
+    name: "Usage",
+    icon: "activefolder",
+    isDirectory: true,
+    expanded: true,
+  },
+];
+
+export default RightTreeDataItems;
