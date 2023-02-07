@@ -3,6 +3,7 @@ import { Typography } from "antd";
 import { MinusOutlined } from "@ant-design/icons";
 import lineChart from "./configs/lineChart";
 
+
 function LineChart() {
   const { Title } = Typography;
 

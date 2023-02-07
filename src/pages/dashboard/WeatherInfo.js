@@ -118,6 +118,8 @@ function WeatherInfo() {
                           <h4>Wind: {d.Wind}</h4>
                         </Col>
                       </Row>
+
+
                       <Row>
                         {day.map((d, index) => (
                           <Col className="days" xs={3} key={index}>
@@ -133,6 +135,8 @@ function WeatherInfo() {
                           </Col>
                         ))}
                       </Row>
+
+
                     </div>
                   </Card>
                 </Col>

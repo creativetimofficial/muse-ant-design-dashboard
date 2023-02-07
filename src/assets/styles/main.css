@@ -3080,7 +3080,7 @@ section.ant-layout.ant-layout-has-sider.layout-dashboard.layout-profile .header-
   border: 1px solid black;
   border-radius: 5px 5px 5px 5px;
   text-align: center;
-  padding: 0px;
+  padding-left:0px;
 }
 
 .createBuildingForm {

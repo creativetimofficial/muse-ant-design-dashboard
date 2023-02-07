@@ -294,9 +294,6 @@ function Report(props) {
               </Col>
             </Row>
   
-
-
-
             <Row>
               <Card style={{ width: "100%" }}>
                 <LeftTreeView
@@ -311,7 +308,7 @@ function Report(props) {
         </Col>
         <Col span={12}>
           <Card style={{ backgroundColor: "rgb(28, 136, 178)", height: 500 }}>
-            <Row style={{ height: 60 }}>
+            <Row style={{ height: 40 }}>
               <Col span={10}>
                 <h3 style={{ color: "white", paddingLeft: 10 }}>Reporting</h3>
               </Col>

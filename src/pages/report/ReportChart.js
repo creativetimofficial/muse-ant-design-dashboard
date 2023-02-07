@@ -6,9 +6,7 @@ import HighchartsReact from "highcharts-react-official";
 const ReportChart = (props) => {
   const { series } = props;
   const [chartType, setChartType] = useState("column");
-  const [updatedChart, setUpdatedChart] = useState({});
-
-//   const [data, setData] = useState();
+  // const [updatedChart, setUpdatedChart] = useState({});
 
   const changeChartType = (type) => {
     setChartType(type);
@@ -32,16 +30,16 @@ const ReportChart = (props) => {
           series: series
         }}
       />
-      <Button style={{ width: 300 }} onClick={() => changeChartType("line")}>
+      <Button style={{ width: 300, }} onClick={() => changeChartType("line")}>
         Line
       </Button>
-      <Button style={{ width: 300 }} onClick={() => changeChartType("column")}>
+      <Button style={{ width: 300 ,marginLeft:47}} onClick={() => changeChartType("column")}>
         Column
       </Button>
-      <Button style={{ width: 300 }} onClick={() => changeChartType("area")}>
+      <Button style={{ width: 300 ,marginLeft:47}} onClick={() => changeChartType("area")}>
         Area
       </Button>
-      <Button style={{ width: 300 }} onClick={() => changeChartType("bar")}>
+      <Button style={{ width: 300 ,marginLeft:47}} onClick={() => changeChartType("bar")}>
         Bar{" "}
       </Button>
     </div>

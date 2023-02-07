@@ -259,7 +259,7 @@ function Header({
     <>
       <div className="setting-drwer" onClick={showDrawer}>
         {setting}
-      </div>
+      </div> 
       <Row gutter={[24, 0]}>
         <Col span={24} md={6}>
           <Breadcrumb>
@@ -279,18 +279,7 @@ function Header({
             </span>
           </div>
         </Col>
-        <Col span={24} md={18} className="header-control">
-          <Badge size="small" count={4}>
-            <Dropdown overlay={menu} trigger={["click"]}>
-              <a
-                href="#pablo"
-                className="ant-dropdown-link"
-                onClick={(e) => e.preventDefault()}
-              >
-                {bell}
-              </a>
-            </Dropdown>
-          </Badge>
+        <Col span={24} md={18} className="header-control"> 
           <Button type="link" onClick={showDrawer}>
             {logsetting}
           </Button>
@@ -308,8 +297,8 @@ function Header({
             onClose={hideDrawer}
             placement={placement}
             visible={visible}
-          >
-            <div layout="vertical">
+          > 
+             <div layout="vertical">
               <div className="header-top">
                 <Title level={4}>
                   Configuration
@@ -436,7 +425,7 @@ function Header({
                   </Col>
                 </Row>
               </div>
-            </div>
+            </div> 
           </Drawer>
         </Col>
       </Row>

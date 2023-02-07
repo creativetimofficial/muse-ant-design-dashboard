@@ -120,6 +120,8 @@ function ReportChart() {
                   }))}
                 />
               </Col>
+
+              
             </Row>
           </Col>
           <Col

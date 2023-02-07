@@ -126,7 +126,7 @@ export default class SignIn extends Component {
     return (
       <>
         <Layout className="layout-default layout-signin">
-          <Header>
+          {/* <Header>
             <div className="header-col header-brand">
               <h5>Muse Dashboard</h5>
             </div>
@@ -161,7 +161,7 @@ export default class SignIn extends Component {
             <div className="header-col header-btn">
               <Button type="primary">FREE DOWNLOAD</Button>
             </div>
-          </Header>
+          </Header> */}
           <Content className="signin">
             <Row gutter={[24, 0]} justify="space-around">
               <Col
