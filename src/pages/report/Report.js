@@ -35,11 +35,6 @@ function Report(props) {
   };
   const arrow = ">>";
 
-  const runReport = () => {
-    setSeries(selectedReports);
-  };
-
-
   const leftTreeViewRef = useRef(null);
   const rightTreeViewRef = useRef(null);
 
@@ -55,6 +50,7 @@ function Report(props) {
   };
 
   const onDragChange = (e) => {
+    unselectTreeNodes()
     if (e.fromComponent === e.toComponent) {
       const fromNode = findNode(getTreeView(e.fromData), e.fromIndex);
       const toNode = findNode(getTreeView(e.toData), calculateToIndex(e));
@@ -74,13 +70,18 @@ function Report(props) {
 
     const fromNode = _.cloneDeep(findNode(fromTreeView, e.fromIndex));
     const toNode = findNode(toTreeView, calculateToIndex(e));
-
-    if (
-      e.dropInsideItem ||
-      (toNode !== null && !toNode.itemData.isDirectory) ||
-      !toNode.itemData.parentId
-    ) {
+    
+    
+    if (e.dropInsideItem || toNode == null || !toNode?.itemData?.isDirectory) {
       return;
+    }
+    let checkIfPresent = false;
+    let tmpId  = fromNode?.itemData?.id + toNode?.itemData?.id
+    const presetNode = toNode?.children?.find(item=> item?.itemData?.id == tmpId)
+    if(presetNode){
+      checkIfPresent = true; 
+    }else{
+      fromNode.itemData.id = tmpId;
     }
 
     const fromTopVisibleNode = getTopVisibleNode(e.fromComponent);
@@ -89,15 +90,15 @@ function Report(props) {
     const fromItems =
       e.fromData === "leftTree" ? leftTreeItems : rightTreeItems;
     const toItems = e.toData === "leftTree" ? leftTreeItems : rightTreeItems;
-    
+
     const selectedItem = toItems?.find(
       (item) => item.id === fromNode?.itemData?.id
     );
     if (selectedItem) {
-      if(selectedItem.parentId === fromNode.itemData.parentId){
+      if (selectedItem.parentId === fromNode.itemData.parentId) {
         return true;
-      }else {
-        fromNode.itemData.id = fromNode.id+toNode.parentId
+      } else {
+        fromNode.itemData.id = fromNode.id + toNode.parentId
       }
     }
     moveNode(fromNode, toNode, fromItems, toItems, e.dropInsideItem);
@@ -166,18 +167,18 @@ function Report(props) {
     toItems.splice(toIndex, 0, fromNode.itemData);
 
     moveChildren(fromNode, fromItems, toItems);
-    
+
+  
     if (isDropInsideItem) {
       fromNode.itemData.parentId = toNode.itemData.id;
     } else {
-      fromNode.itemData.parentId =
-        toNode != null
-          ? toNode.itemData.parentId
-            ? toNode.itemData.id
-            : undefined
-          : undefined;
+      fromNode.itemData.parentId =  toNode.itemData.id 
+          // ? toNode.itemData.parentId
+          //   ? toNode.itemData.id
+          //   : undefined
+          // : undefined;
     }
-    console.log(fromItems, toItems)
+    // console.log(fromItems, toItems)
   };
 
   const moveChildren = (node, fromDataSource, toDataSource) => {
@@ -222,6 +223,7 @@ function Report(props) {
 
     return null;
   };
+
   const syncSelection = (treeView) => {
     const selectedNodes = treeView
       .getSelectedNodes()
@@ -238,6 +240,33 @@ function Report(props) {
     setSelectedReports(temp);
   };
 
+  const runReport = () => {
+    setSeries(selectedReports);
+  };
+
+
+  const unselectTreeNodes = () => {
+    rightTreeViewRef?.current?.instance?.unselectAll()
+    setSelectedReports([])
+  }
+
+  const deleteReport = () => {
+    const temp=[];
+    const selectedNodes = rightTreeViewRef?.current?.instance?.getSelectedNodes().map((node) => node.itemData);
+    const reports = selectedNodes.filter(item => !item.isDirectory)
+    if(reports.length>0){
+      rightTreeItems?.map(item=>{
+        const toBeDeleted = reports?.findIndex(reportItem=> reportItem?.id == item?.id)
+        if(toBeDeleted === -1){
+          temp.push(item)
+        }
+      })
+    }
+    unselectTreeNodes([])
+    setSeries([])
+    setRightTreeItems([...temp])
+  };
+
   return (
     <>
       <Row>
@@ -248,6 +277,7 @@ function Report(props) {
                 <h3 style={{ color: "white" }}>Meter Tree</h3>
               </Col>
               <Col span={12}>
+
                 <p style={{ color: "white", textAlign: "end" }}>
                   (Drag requested files {arrow} toFavourites or Reporting){" "}
                 </p>
@@ -293,10 +323,6 @@ function Report(props) {
                 />
               </Col>
             </Row>
-  
-
-
-
             <Row>
               <Card style={{ width: "100%" }}>
                 <LeftTreeView
@@ -316,11 +342,13 @@ function Report(props) {
                 <h3 style={{ color: "white", paddingLeft: 10 }}>Reporting</h3>
               </Col>
               <Col span={10}>
-                <button onClick={runReport} className="">
-                  {" "}
-                  Run Report{" "}
-                </button>
-                <button> Delete Tree Item </button>
+                <Button type="secondary" onClick={runReport} disabled={selectedReports.length == 0}>
+                  Run Report
+                </Button>
+                {" "}
+                <Button type="secondary" onClick={deleteReport} disabled={selectedReports.length == 0}>
+                  Delete Report
+                </Button>
               </Col>
             </Row>
             <Row gutter={[10, 10]} style={{ height: 60 }}>
@@ -379,7 +407,7 @@ function Report(props) {
       </Row>
       <Row style={{ marginTop: 10 }}>
         <Col span={24}>
- 
+
           {(series.length > 0) ? (
             <Card style={{ height: 500 }}>
               <ReportChart series={series} />
