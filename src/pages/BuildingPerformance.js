@@ -1,14 +1,14 @@
 import React from "react";
 import { Row, Col, Card } from "antd";
 
-import Donut from "../components/chart/DonutChart";
-import Mixchart from "../components/chart/Mixchart";
-import StackedChart from "../components/chart/StackedChart";
+import Donut from "../components/chart/buildingPerformance/DonutChart";
+import Mixchart from "../components/chart/buildingPerformance/Mixchart";
+import StackedChart from "../components/chart/buildingPerformance/StackedChart";
 
-import DonutS from "../components/chart/DonutS";
-import WaterChart from "../components/chart/WaterChart";
-import MeterChart from "../components/chart/MeterChart";
-import MeterChartS from "../components/chart/MeterChartS";
+import DonutS from "../components/chart/buildingPerformance/DonutS";
+import WaterChart from "../components/chart/buildingPerformance/WaterChart";
+import MeterChart from "../components/chart/buildingPerformance/MeterChart";
+import MeterChartS from "../components/chart/buildingPerformance/MeterChartS";
 
 const fireAlarm = [
   <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20">

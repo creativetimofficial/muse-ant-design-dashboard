@@ -9,26 +9,28 @@ import LeftTreeDataItems from "../../assets/data/LeftTreeDataItems";
 import RightTreeDataItems from "../../assets/data/RightTreeDataItem";
 import ReportChart from "./ReportChart";
 import _ from "lodash";
+import { createGlobalStyle } from "styled-components";
 
 const onChange = (date, dateString) => {
   console.log(date, dateString);
 };
 
-const provinceData = ["select", "Jiangsu"];
-const cityData = {
-  select: ["None", "Meter Name", "Address", "NMI"],
-  Jiangsu: ["Nanjing", "Suzhou", "Zhenjiang"],
+const provinceData = ["select"];
+const granularityData = {
+  select: ["Select", "Hourly", "Daily", "Weekly", "Monthly", "Yearly"],
 };
 
 function Report(props) {
   const [series, setSeries] = useState([]);
-  const [cities, setCities] = useState(cityData[provinceData[0]]);
-  const [secondCity, setSecondCity] = useState(cityData[provinceData[0]][0]);
+  const [cities, setCities] = useState(granularityData[provinceData[0]]);
+  const [secondCity, setSecondCity] = useState(
+    granularityData[provinceData[0]][0]
+  );
   const [selectedReports, setSelectedReports] = useState([]);
 
   const handleProvinceChange = (value) => {
-    setCities(cityData[value]);
-    setSecondCity(cityData[value][0]);
+    setCities(granularityData[value]);
+    setSecondCity(granularityData[value][0]);
   };
   const onSecondCityChange = (value) => {
     setSecondCity(value);
@@ -239,6 +241,7 @@ function Report(props) {
     });
     setSelectedReports(temp);
   };
+ 
 
   const runReport = () => {
     setSeries(selectedReports);
@@ -272,7 +275,7 @@ function Report(props) {
       <Row>
         <Col span={12}>
           <Card style={{ backgroundColor: "rgb(28, 136, 178)", height: 500 }}>
-            <Row>
+            <Row style={{height: 40,marginBottom: 10 }}>
               <Col span={12}>
                 <h3 style={{ color: "white" }}>Meter Tree</h3>
               </Col>
@@ -314,12 +317,12 @@ function Report(props) {
                     height: 32,
                     borderRadius: 0,
                   }}
-                  value={secondCity}
-                  onChange={onSecondCityChange}
-                  options={cities.map((city) => ({
-                    label: city,
-                    value: city,
-                  }))}
+                  // value={secondCity}
+                  // onChange={onSecondCityChange}
+                  // options={cities.map((city) => ({
+                  //   label: city,
+                  //   value: city,
+                  // }))}
                 />
               </Col>
             </Row>
@@ -335,10 +338,12 @@ function Report(props) {
             </Row>
           </Card>
         </Col>
+
+
         <Col span={12}>
           <Card style={{ backgroundColor: "rgb(28, 136, 178)", height: 500 }}>
-            <Row style={{ height: 60 }}>
-              <Col span={10}>
+            <Row style={{ height: 40, marginBottom: 10 }}>
+              <Col span={8}>
                 <h3 style={{ color: "white", paddingLeft: 10 }}>Reporting</h3>
               </Col>
               <Col span={10}>
@@ -375,7 +380,7 @@ function Report(props) {
                 />
               </Col>
               <Col span={8}>
-                <label style={{ color: "white" }}>Schedule:</label>
+                <label style={{ color: "white" }}>Granularity:</label>
                 <Select
                   style={{
                     width: "100%",
