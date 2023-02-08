@@ -1,11 +1,10 @@
-import { Menu} from "antd";
+import { Menu } from "antd";
 import { useContext } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 // import logo from "../../assets/images/buildlogo.jpg";
 import { AppContext } from "../../App";
 function Sidenav({ color }) {
-
-  const  context = useContext(AppContext)
+  const context = useContext(AppContext);
 
   const { pathname } = useLocation();
   const page = pathname.replace("/", "");
@@ -269,19 +268,7 @@ function Sidenav({ color }) {
         <Menu.Item className="menu-item-header" key="8">
           Account Pages
         </Menu.Item>
-        <Menu.Item key="9">
-          <NavLink to="/profile">
-            <span
-              className="icon"
-              style={{
-                background: page === "profile" ? color : "",
-              }}
-            >
-              {profile}
-            </span>
-            <span className="label">Profile</span>
-          </NavLink>
-        </Menu.Item>
+
         <Menu.Item key="10">
           <NavLink to="/sign-in">
             <span className="icon">{signin}</span>
@@ -289,10 +276,10 @@ function Sidenav({ color }) {
           </NavLink>
         </Menu.Item>
         <Menu.Item key="11">
-          <NavLink to="/sign-up">
+          {/* <NavLink to="/sign-up">
             <span className="icon">{signup}</span>
             <span className="label">Sign Up</span>
-          </NavLink>
+          </NavLink> */}
         </Menu.Item>
         <Menu.Item key="12">
           <NavLink to="/config">
@@ -301,9 +288,6 @@ function Sidenav({ color }) {
           </NavLink>
         </Menu.Item>
       </Menu>
-    
-    
-      
     </>
   );
 }

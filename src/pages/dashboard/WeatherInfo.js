@@ -1,7 +1,21 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import { Card, Col, Row, Typography, } from "antd";
+import { getWeatherInfoData } from '../../services/DashboardService';
 
 function WeatherInfo() {
+  const [weatherData, setWeatherData] = useState({});
+
+  const getData = async () => {
+    try {
+      const resp = await getWeatherInfoData();
+      console.log(resp?.weatherInfo)
+      setWeatherData(resp?.weatherInfo);
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
   const { Title } = Typography;
   const onChange = (e) => console.log(`radio checked:${e.target.value}`);
 
@@ -81,6 +95,7 @@ function WeatherInfo() {
       temp: "09-14°",
     },
   ];
+  
   return (
 
     <Col span={6}  xs={24} sm={24} md={12} lg={12} xl={9}>

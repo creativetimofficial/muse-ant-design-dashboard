@@ -126,42 +126,7 @@ export default class SignIn extends Component {
     return (
       <>
         <Layout className="layout-default layout-signin">
-          <Header>
-            <div className="header-col header-brand">
-              <h5>Muse Dashboard</h5>
-            </div>
-            <div className="header-col header-nav">
-              <Menu mode="horizontal" defaultSelectedKeys={["1"]}>
-                <Menu.Item key="1">
-                  <Link to="/dashboard">
-                    {template}
-                    <span> Dashboard</span>
-                  </Link>
-                </Menu.Item>
-                <Menu.Item key="2">
-                  <Link to="/profile">
-                    {profile}
-                    <span>Profile</span>
-                  </Link>
-                </Menu.Item>
-                <Menu.Item key="3">
-                  <Link to="/sign-up">
-                    {signup}
-                    <span> Sign Up</span>
-                  </Link>
-                </Menu.Item>
-                <Menu.Item key="4">
-                  <Link to="/sign-in">
-                    {signin}
-                    <span> Sign In</span>
-                  </Link>
-                </Menu.Item>
-              </Menu>
-            </div>
-            <div className="header-col header-btn">
-              <Button type="primary">FREE DOWNLOAD</Button>
-            </div>
-          </Header>
+        
           <Content className="signin">
             <Row gutter={[24, 0]} justify="space-around">
               <Col
