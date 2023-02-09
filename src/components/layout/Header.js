@@ -279,7 +279,8 @@ function Header({
             </span>
           </div>
         </Col>
-        <Col span={24} md={18} className="header-control"> 
+        <Col span={24} md={18} className="header-control">
+         
           <Button type="link" onClick={showDrawer}>
             {logsetting}
           </Button>
@@ -296,9 +297,9 @@ function Header({
             width={360}
             onClose={hideDrawer}
             placement={placement}
-            visible={visible}
-          > 
-             <div layout="vertical">
+            open={visible}
+          >
+            <div layout="vertical">
               <div className="header-top">
                 <Title level={4}>
                   Configuration

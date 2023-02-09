@@ -1,50 +1,65 @@
 {
-    "consumption":[{
-        "id":"1",
-        "title": "8087.3kWh"
-    }],
+  "consumptionData": [
+    {
+      "id": "1",
+      "title": "8087.3kWh"
+    }
+  ],
 
-    "energy cost":[{
-        "id":"1", 
-        "title": "$1374.6"
-    }],
+  "energy cost": [
+    {
+      "id": "1",
+      "title": "$1374.6"
+    }
+  ],
 
-    "weather info":[{
-        "id":"1",
-        "title": "63Kg"
-    }],
+  "weather info": [
+    {
+      "id": "1",
+      "title": "63Kg"
+    }
+  ],
 
-    "perth":[{
-        "id":"1",
-        "title": "Perth",
-        "today": "31.6°C",
-        "pressure": "1014.6",
-        "humidity": "10%",
-        "wind": "6.3m/s",
+  "perth": [
+    {
+      "id": "1",
+      "title": "Perth",
+      "today": "31.6°C",
+      "pressure": "1014.6",
+      "humidity": "10%",
+      "wind": "6.3m/s",
 
-        "days": [{
-           "sun temp": "12-33°",
-           "mon temp":"29-44°",
-           "tue temp":"29-30°",
-           "wed temp":"19-44°",
-           "thu temp":"29-34°",
-           "fri temp":"29-44°",
-           "sat temp":"09-14°"
-        }]
-    }],
+      "days": [
+        {
+          "sun temp": "12-33°",
+          "mon temp": "29-44°",
+          "tue temp": "29-30°",
+          "wed temp": "19-44°",
+          "thu temp": "29-34°",
+          "fri temp": "29-44°",
+          "sat temp": "09-14°"
+        }
+      ]
+    }
+  ],
 
-    "consumption comparsion":[{
-        "series": [{
-            "name": "Consumption",
-            "data": "440, 505, 414, 671, 227, 413, 201, 352, 752,250.300,500,100"
-          }, 
-          {
-            "name": "Consumption-Pre",
-            "data": "12, 22, 15, 17, 33, 22, 17, 21, 12,8,5,13"
-          }]
-    }],
+  "consumption comparsion": [
+    {
+      "series": [
+        {
+          "name": "Consumption",
+          "data": [440, 505, 414, 671, 227, 413, 201, 352, 752, 250.3, 500, 100]
+        },
+        {
+          "name": "Consumption-Pre",
+          "data": "12, 22, 15, 17, 33, 22, 17, 21, 12,8,5,13"
+        }
+      ]
+    }
+  ],
 
-    "portfolio-wide electricity consumption":[{
+  "portfolio-wide electricity consumption": [
+    {
       "series": [
         {
           "name": "Mobile apps",
@@ -53,16 +68,35 @@
         {
           "name": "Websites",
           "data": "30, 90, 40, 140, 290, 290, 340, 230, 400"
-        }]
-    }],
+        }
+      ]
+    }
+  ],
 
-    "projects": [
-      {
-        "id": "1",
-        "companies":"Soft UI Shopify Version",
-        "members":"5",
-        "budget":"$14,000",
-        "completion":"70%"
-      }
-    ]
+  "projects": [
+    {
+      "id": "1",
+      "companies": "Soft UI Shopify Version",
+      "members": "5",
+      "budget": "$14,000",
+      "completion": "70%"
+    }
+  ],
+
+  "dashboardColumnChart": [
+    {
+      "name": "Bill Usage",
+      "data": [
+        49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1,
+        95.6, 54.4
+      ]
+    },
+    {
+      " name": "Bill Spend",
+      " data": [
+        83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6,
+        92.3
+      ]
+    }
+  ]
 }

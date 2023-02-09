@@ -3,14 +3,13 @@ import Home from "./pages/Home";
 import Sites from "./pages/Sites";
 import Building from "./pages/Building";
 import Meter from "./pages/Meter";
-import Profile from "./pages/Profile";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import Main from "./components/layout/Main";
 import "antd/dist/antd.css";
 import "./assets/styles/main.css";
 import "./assets/styles/responsive.css";
-import 'devextreme/dist/css/dx.light.css';
+import "devextreme/dist/css/dx.light.css";
 import Config from "./pages/Config";
 import Alert from "./pages/Alert";
 import BuildingPerformance from "./pages/BuildingPerformance";
@@ -24,7 +23,7 @@ function App() {
     require("../src/assets/images/buildlogo.jpg")
   );
 
-  console.log("ppppp",process.env)
+  console.log("ppppp", process.env);
 
   return (
     <AppContext.Provider
@@ -48,10 +47,8 @@ function App() {
             />
             <Route exact path="/meter" component={Meter} />
             <Route exact path="/alert" component={Alert} />
-            <Route exact path="/profile" component={Profile} />
             <Route exact path="/config" component={Config} />
             <Route exact path="/report" component={Report} />
-
             <Redirect from="*" to="/dashboard" />
           </Main>
         </Switch>

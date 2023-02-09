@@ -220,7 +220,7 @@ function Config() {
                     style={{ textAlign: "left" }}
                     title="Create New"
                     centered
-                    visible={open}
+                    open={open}
                     // onOk={() => setOpen(false)}
                     onCancel={() => setOpen(false)}
                     width={800}
