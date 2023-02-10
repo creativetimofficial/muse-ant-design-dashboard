@@ -1,6 +1,7 @@
-import React,{useState,useEffect} from 'react'
-import { Card, Col, Row, Typography, } from "antd";
-import { getWeatherInfoData } from '../../services/DashboardService';
+import React, { useState, useEffect } from "react";
+import { Card, Col, Row, Typography } from "antd";
+import { getWeatherInfoData } from "../../services/DashboardService";
+import { Item } from "devextreme-react/accordion";
 
 function WeatherInfo() {
   const [weatherData, setWeatherData] = useState({});
@@ -8,11 +9,13 @@ function WeatherInfo() {
   const getData = async () => {
     try {
       const resp = await getWeatherInfoData();
-      console.log(resp?.weatherInfo)
+      // console.log('weatherData',resp?.weatherInfo)
+    let weatherdata =   resp?.weatherInfo;
       setWeatherData(resp?.weatherInfo);
     } catch (error) {}
   };
-
+  // const wData = { ...weatherData };
+  // console.log(wData);
   useEffect(() => {
     getData();
   }, []);
@@ -41,6 +44,10 @@ function WeatherInfo() {
       <path d="M26.2 46q-4.2 0-7.875-1.6t-6.4-4.325Q9.2 37.35 7.6 33.675 6 30 6 25.8q0-7.3 4.65-12.875T22.5 6q-.9 4.9.55 9.625 1.45 4.725 5 8.275 3.55 3.55 8.275 5.025Q41.05 30.4 46 29.5q-1.3 7.2-6.9 11.85Q33.5 46 26.2 46Zm0-3q5 0 9.1-2.85t6.6-7.25q-4.5-.4-8.65-2.075Q29.1 29.15 25.95 26q-3.2-3.15-4.85-7.275-1.65-4.125-2.05-8.575-4.4 2.4-7.225 6.525Q9 20.8 9 25.8q0 7.15 5.025 12.175T26.2 43Zm-.3-17Z" />
     </svg>,
   ];
+
+  // {
+  //   {Object.keys(wData).map((key, i) => console.log(wData[key]));}
+  // }
   const count1 = [
     {
       today: "31.6°C",
@@ -95,70 +102,59 @@ function WeatherInfo() {
       temp: "09-14°",
     },
   ];
-  
+
   return (
-
-    <Col span={6}  xs={24} sm={24} md={12} lg={12} xl={9}>
-            <Row className="" gutter={[24, 0]}>
-              {count1.map((d, index) => (
-                <Col
-                  key={index}
-                  xs={24}
-                  sm={24}
-                  md={24}
-                  lg={24}
-                  xl={24}
-                >
-                  <Card bordered={false} className="criclebox ">
-                    <div className="number">
-                      <Row>
-                        <Col xs={12}>
-                          <span className=""> {d.title} </span>
-                          <div>
-                            <h4>{d.dec}</h4>
-                          </div>
-
-                          <span className="weatherIcon">{d.icon}</span>
-                          {/* <small>{c.today}</small> */}
-                        </Col>
-                        <Col xs={12}>
-                          <h4>
-                            Pressure: {d.Pressure}
-                            <br />{" "}
-                          </h4>
-                          <h4>
-                            Humidity: {d.Humidity}
-                            <br />
-                          </h4>
-                          <h4>Wind: {d.Wind}</h4>
-                        </Col>
-                      </Row>
-
-
-                      <Row>
-                        {day.map((d, index) => (
-                          <Col className="days" xs={3} key={index}>
-                            <Row justify="center">
-                              <div className="iconText"> {d.day} </div>
-                            </Row>
-                            <div className="iconText">
-                              <Row justify="center">
-                                <s>{d.icon}</s>
-                              </Row>
-                              <Row justify="center">{d.temp}</Row>
-                            </div>
-                          </Col>
-                        ))}
-                      </Row>
-
-
+    <Col span={6} xs={24} sm={24} md={12} lg={12} xl={9}>
+      <Row className="" gutter={[24, 0]}>
+        {count1.map((d, index) => (
+          <Col key={index} xs={24} sm={24} md={24} lg={24} xl={24}>
+            <Card bordered={false} className="criclebox ">
+              <div className="number">
+                <Row>
+                  <Col xs={12}>
+                    <span className=""> {d.title} </span>
+                    <div>
+                      <h4>{d.dec}</h4>
                     </div>
-                  </Card>
-                </Col>
-              ))}
-            </Row>
+
+                    <span className="weatherIcon">{d.icon}</span>
+                    {/* <small>{c.today}</small> */}
+                  </Col>
+                  <Col xs={12}>
+                    <h4>
+                      Pressure: {d.Pressure}
+                      <br />{" "}
+                    </h4>
+                    <h4>
+                      Humidity: {d.Humidity}
+                      <br />
+                    </h4>
+                    <h4>Wind: {d.Wind}</h4>
+                  </Col>
+                </Row>
+
+                <Row>
+                  {day.map((d, index) => (
+                    <Col className="days" xs={3} key={index}>
+                      <Row justify="center">
+                        <div className="iconText"> {d.day} </div>
+                      </Row>
+                      <div className="iconText">
+                        <Row justify="center">
+                          <s>{d.icon}</s>
+                        </Row>
+                        <Row justify="center">{d.temp}</Row>
+                      </div>
+                    </Col>
+                  ))}
+                </Row>
+              </div>
+            </Card>
           </Col>
-  )
+        ))}
+      </Row>
+    </Col>
+  );
 }
 
 export default WeatherInfo;

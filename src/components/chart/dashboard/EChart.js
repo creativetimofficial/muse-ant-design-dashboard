@@ -1,18 +1,37 @@
-import React,{useEffect} from 'react'
+import React,{useEffect,useState} from 'react'
 import * as Highcharts from "highcharts";
+import { getConsumptionChartData } from '../../../services/dashChartService';
 require("highcharts/modules/exporting")(Highcharts);
 require("highcharts/modules/export-data")(Highcharts);
 require("highcharts/modules/annotations")(Highcharts);
 
 
 function EChart() {
+
+    const [chartData, setChartData] = useState([
+       
+      ]);
+      // let data = []
+      const getChartData = async () => {
+        try {
+          const resp = await getConsumptionChartData();
+          console.log("chartData",resp?.consumptionChart);
+          setChartData(resp?.consumptionChart);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      useEffect(()=>{
+        getChartData()
+      },[])
   useEffect(() => {
     Highcharts.chart('containerEchart', {
       chart: {
           zoomType: 'xy',
           style: {
             fontFamily: 'Open Sans'
-        }
+        },
+     
       },
       title: {
           text: 'Consumption Comparsion',
@@ -61,39 +80,22 @@ function EChart() {
         enabled: false,
       },
       legend: {
-          align: 'left',
-          x: 80,
-          verticalAlign: 'top',
-          y: 80,
-          floating: true,
-          backgroundColor:
-              Highcharts.defaultOptions.legend.backgroundColor || // theme
-              'rgba(255,255,255,0.25)'
+        //   align: 'left',
+          x: 0,
+          verticalAlign: 'bottom',
+          y: 0,
+        //   floating: true,
+        //   backgroundColor:
+        //       Highcharts.defaultOptions.legend.backgroundColor || // theme
+        //       'rgba(255,255,255,0.25)'
       },
-      series: [{
-          name: 'Consumption',
-          type: 'column',
-          yAxis: 1,
-          data: [27.6, 28.8, 21.7, 34.1, 29.0, 28.4, 45.6, 51.7, 39.0,
-              60.0, 28.6, 32.1],
-          tooltip: {
-              valueSuffix: ' mm'
-          }
-  
-      }, {
-          name: 'Consumption-Pre',
-          type: 'spline',
-          data: [-13.6, -14.9, -5.8, -0.7, 3.1, 13.0, 14.5, 10.8, 5.8,
-              -0.7, -11.0, -16.4],
-          tooltip: {
-              valueSuffix: '°C'
-          }
-      }]
+      
+      series: chartData
   });
     return () => {
       
     };
-  }, []);
+  }, [chartData]);
   return (
     <>
     <div id='containerEchart'>

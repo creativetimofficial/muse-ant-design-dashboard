@@ -27,8 +27,8 @@ function ColumnChart() {
   const getChartData = async () => {
     try {
       const resp = await getColumnChartData();
-      console.log(resp.columnChart);
-      setChartData(resp?.columnChart);
+      console.log("chartData",resp?.dashboardColumnChart);
+      setChartData(resp?.dashboardColumnChart);
     } catch (error) {
       console.log(error);
     }

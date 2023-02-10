@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Select, DatePicker, Space } from "antd";
+import { Rate, Select, DatePicker, Space } from "antd";
 import {
   Card,
   Col,
@@ -33,6 +33,8 @@ import EnergyCost from "./dashboard/EnergyCost";
 import Co2 from "./dashboard/Co2";
 import WeatherInfo from "./dashboard/WeatherInfo";
 import ColumnChart from "../components/chart/dashboard/ColumnChart";
+import DashboardChart from "../components/chart/dashboard/ConsuProfile";
+import ConsuProfile from "../components/chart/dashboard/ConsuProfile";
 
 const { RangePicker } = DatePicker;
 
@@ -115,8 +117,6 @@ function Home(props) {
       Wind: "6.3m/s",
     },
   ];
- 
-  
 
   const list = [
     {
@@ -275,7 +275,7 @@ function Home(props) {
   return (
     <>
       <Row>
-        <Col span={17}>
+        <Col span={16}>
           <Select
             style={{
               width: 160,
@@ -292,23 +292,33 @@ function Home(props) {
           <Space direction="vertical" size={12}>
             <RangePicker />
           </Space>
-        <Select
-          style={{
-            width: 100,
-            marginBottom: 25,
-            marginLeft: 25,
-          }}
-          value={secondCity}
-          onChange={onSecondCityChange}
-          options={cities.map((city) => ({
-            label: city,
-            value: city,
-          }))}
+          <Select
+            style={{
+              width: 100,
+              marginBottom: 25,
+              marginLeft: 25,
+            }}
+            value={secondCity}
+            onChange={onSecondCityChange}
+            options={cities.map((city) => ({
+              label: city,
+              value: city,
+            }))}
           />
-          </Col>
-          <Col>
-          Reting Star
-          </Col>
+        </Col>
+
+        {/* <Col span={3}>
+         
+          </Col> */}
+        <h1> Neighbour Raiting</h1>
+        <Col span={4} style={{ textAlign: "right" }}>
+          <Rate
+            allowHalf
+            defaultValue={4.5}
+            count={5}
+            style={{ color: "#749452" }}
+          />
+        </Col>
       </Row>
 
       <Row align="middle" gutter={24}>
@@ -356,8 +366,6 @@ function Home(props) {
           </Col>
         </Row>
 
-
-
         <Row gutter={[24, 0]}>
           <Col xs={24} sm={24} md={12} lg={12} xl={12} className="mb-24">
             <Card bordered={false} className="criclebox h-full">
@@ -376,10 +384,21 @@ function Home(props) {
           </Col>
         </Row>
       </div>
+      <Row gutter={[24, 0]} style={{ marginTop: 20 }}>
+        <Col xs={24} sm={24} md={12} lg={12} xl={12} className="mb-24">
+          <Card bordered={false} className="">
+            {/* <ConsuProfile/> */}
+            consumption profileChart
+          </Card>
+        </Col>
+        <Col xs={24} sm={24} md={12} lg={12} xl={12} className="mb-24">
+          <Card bordered={false} className="">
+            Base Load, Peak Load
+          </Card>
+        </Col>
+      </Row>
     </>
   );
 }
 
 export default Home;
-
-
