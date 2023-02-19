@@ -1,22 +1,25 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect,useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { Layout, Drawer, Affix } from "antd";
 import Sidenav from "./Sidenav";
 import Header from "./Header";
 import Footer from "./Footer";
+import { AppContext } from "../../App";
 
 const { Header: AntHeader, Content, Sider } = Layout;
 
 function Main({ children }) {
   const [visible, setVisible] = useState(false);
   const [placement, setPlacement] = useState("right");
-  const [sidenavColor, setSidenavColor] = useState("#1C88B2");
+  // const [sidenavColor, setSidenavColor] = useState("#1C88B2");
   const [sidenavType, setSidenavType] = useState("transparent");
   const [fixed, setFixed] = useState(false);
-
+  
+  const context = useContext(AppContext);
   const openDrawer = () => setVisible(!visible);
   const handleSidenavType = (type) => setSidenavType(type);
-  const handleSidenavColor = (color) => setSidenavColor(color);
+  const handleSidenavColor = (color) => context.setSidenavColor(color);
+  const handleBackgroundColor = (color) => context.setBackgroundColor(color);
   const handleFixedNavbar = (type) => setFixed(type);
 
   let { pathname } = useLocation();
@@ -29,9 +32,9 @@ function Main({ children }) {
       setPlacement("right");
     }
   }, [pathname]);
-
   return (
-    <Layout
+    <Layout 
+    style={{backgroundColor:context.backgroundColor}}
       className={`layout-dashboard ${
         pathname === "profile" ? "layout-profile" : ""
       } ${pathname === "rtl" ? "layout-dashboard-rtl" : ""}`}
@@ -62,7 +65,7 @@ function Main({ children }) {
             }`}
             style={{ background: sidenavType }}
           >
-            <Sidenav color={sidenavColor} />
+            <Sidenav color={context.sidenavColor} />
           </Sider>
         </Layout>
       </Drawer>
@@ -80,7 +83,7 @@ function Main({ children }) {
         }`}
         style={{ background: sidenavType }}
       >
-        <Sidenav color={sidenavColor} />
+        <Sidenav color={context.sidenavColor} />
       </Sider>
       <Layout>
         {fixed ? (
@@ -93,6 +96,7 @@ function Main({ children }) {
                 handleSidenavColor={handleSidenavColor}
                 handleSidenavType={handleSidenavType}
                 handleFixedNavbar={handleFixedNavbar}
+                handleBackgroundColor={handleBackgroundColor}
               />
             </AntHeader>
           </Affix>
@@ -105,6 +109,7 @@ function Main({ children }) {
               handleSidenavColor={handleSidenavColor}
               handleSidenavType={handleSidenavType}
               handleFixedNavbar={handleFixedNavbar}
+              handleBackgroundColor={handleBackgroundColor}
             />
           </AntHeader>
         )}

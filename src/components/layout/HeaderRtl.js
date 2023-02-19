@@ -296,7 +296,7 @@ function Header({
               </a>
             </Dropdown>
           </Badge>
-          <Button type="link" onClick={showDrawer}>
+          <Button type="primary" onClick={showDrawer}>
             {logsetting}
           </Button>
           <Button

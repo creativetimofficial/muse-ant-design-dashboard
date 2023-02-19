@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DatePicker, Divider, Select } from "antd";
+import { Spin, Divider, Select } from "antd";
 import { Form, Input, Table } from "antd";
 import { Button, Row, Col, Modal } from "antd";
 import "reactjs-popup/dist/index.css";
@@ -18,6 +18,7 @@ const OPTIONS = ["Apples", "Nails", "Bananas", "Helicopters"];
 
 function Sites() {
   const [selectedItems, setSelectedItems] = useState([]);
+  const [isLoading,setIsLoading] = useState(false);
   const [form] = Form.useForm()
   const filteredOptions = OPTIONS.filter((o) => !selectedItems.includes(o));
 
@@ -96,11 +97,13 @@ function Sites() {
 
   let data = [];
   const getData = async () => {
+    setIsLoading(true)
     try {
       const resp = await getSitesList();
       console.log(resp)
       setPost(resp)
       setloading(false)
+      setIsLoading(false)
 
     } catch (error) {
     }
@@ -290,6 +293,8 @@ function Sites() {
           </Form.Item>
         </Form>
       </Modal>
+      <Spin spinning={isLoading}>
+
       <Table
         columns={columns}
         dataSource={data}
@@ -297,7 +302,8 @@ function Sites() {
         scroll={{
           x: 1000,
         }}
-      />
+        />
+        </Spin>
     </>
   );
 }

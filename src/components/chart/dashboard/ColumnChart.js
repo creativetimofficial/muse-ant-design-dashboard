@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import * as Highcharts from "highcharts";
 import { getColumnChartData } from "../../../services/dashChartService";
-import { createGlobalStyle } from "styled-components";
+import{ Spin} from 'antd'
 require("highcharts/modules/exporting")(Highcharts);
 require("highcharts/modules/export-data")(Highcharts);
 require("highcharts/modules/annotations")(Highcharts);
 
 function ColumnChart() {
+  const [isLoading, setIsLoading] = useState(false)
   const [chartData, setChartData] = useState([
     // {
     //   name: "Bill Usage",
@@ -25,12 +26,15 @@ function ColumnChart() {
   ]);
   // let data = []
   const getChartData = async () => {
+    setIsLoading(true)
     try {
       const resp = await getColumnChartData();
       console.log("chartData",resp?.dashboardColumnChart);
       setChartData(resp?.dashboardColumnChart);
+      setIsLoading(false)
     } catch (error) {
       console.log(error);
+      setIsLoading(false)
     }
   };
   useEffect(() => {
@@ -121,7 +125,10 @@ function ColumnChart() {
   // console.log('chartData',chartData)
   return (
     <>
+    <Spin spinning={isLoading}>
       <div id="dashboardColumnChart"></div>
+
+    </Spin>
     </>
   );
 }

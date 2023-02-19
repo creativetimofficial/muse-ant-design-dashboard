@@ -30,16 +30,16 @@ const ReportChart = (props) => {
           series: series
         }}
       />
-      <Button style={{ width: 300, }} onClick={() => changeChartType("line")}>
+      <Button style={{ width: 260, }} onClick={() => changeChartType("line")}>
         Line
       </Button>
-      <Button style={{ width: 300 ,marginLeft:47}} onClick={() => changeChartType("column")}>
+      <Button style={{ width: 260 ,marginLeft:47}} onClick={() => changeChartType("column")}>
         Column
       </Button>
-      <Button style={{ width: 300 ,marginLeft:47}} onClick={() => changeChartType("area")}>
+      <Button style={{ width: 260 ,marginLeft:47}} onClick={() => changeChartType("area")}>
         Area
       </Button>
-      <Button style={{ width: 300 ,marginLeft:47}} onClick={() => changeChartType("bar")}>
+      <Button style={{ width: 260 ,marginLeft:47}} onClick={() => changeChartType("bar")}>
         Bar{" "}
       </Button>
     </div>

@@ -1,25 +1,27 @@
-import React, { useEffect ,useState} from "react";
+import React, { useEffect, useState } from "react";
 import * as Highcharts from "highcharts";
 import { getPortfolioChartData } from "../../../services/dashChartService";
+import { Spin } from "antd";
 
 function LineChart() {
-  
-  const [chartData, setChartData] = useState([
-       
-  ]);
+  const [chartData, setChartData] = useState([]);
+  const [isLoading,setIsLoading] = useState(false)
   // let data = []
   const getChartData = async () => {
+    setIsLoading(true)
     try {
       const resp = await getPortfolioChartData();
-      console.log("chartData",resp?.portFolioChart);
+      console.log("chartData", resp?.portFolioChart);
       setChartData(resp?.portFolioChart);
+      setIsLoading(false)
     } catch (error) {
+      setIsLoading(false)
       console.log(error);
     }
   };
-  useEffect(()=>{
-    getChartData()
-  },[])
+  useEffect(() => {
+    getChartData();
+  }, []);
   useEffect(() => {
     Highcharts.chart("container", {
       chart: {
@@ -84,7 +86,9 @@ function LineChart() {
   }, [chartData]);
   return (
     <>
-      <div id="container"></div>
+      <Spin spinning={isLoading}>
+        <div id="container"></div>
+      </Spin>
     </>
   );
 }

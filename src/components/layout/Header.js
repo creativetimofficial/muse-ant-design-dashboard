@@ -1,8 +1,10 @@
 import { useState, useEffect, useContext } from "react";
 import { Form, Upload } from "antd";
+import{ IoIosSettings} from 'react-icons/io'
 // import ImageUploading from 'react-images-uploading';
 import React from "react";
-
+import { AppContext } from "../../App";
+import {IoSettingsOutline} from 'react-icons/io5'
 import {
   Row,
   Col,
@@ -22,7 +24,6 @@ import {} from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import avtar from "../../assets/images/team-2.jpg";
-import { AppContext } from "../../App";
 
 const ButtonContainer = styled.div`
   .ant-btn-primary {
@@ -168,24 +169,7 @@ const menu = (
     )}
   />
 );
-
-const logsetting = [
-  <svg
-    width="20"
-    height="20"
-    viewBox="0 0 20 20"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    key={0}
-  >
-    <path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M11.4892 3.17094C11.1102 1.60969 8.8898 1.60969 8.51078 3.17094C8.26594 4.17949 7.11045 4.65811 6.22416 4.11809C4.85218 3.28212 3.28212 4.85218 4.11809 6.22416C4.65811 7.11045 4.17949 8.26593 3.17094 8.51078C1.60969 8.8898 1.60969 11.1102 3.17094 11.4892C4.17949 11.7341 4.65811 12.8896 4.11809 13.7758C3.28212 15.1478 4.85218 16.7179 6.22417 15.8819C7.11045 15.3419 8.26594 15.8205 8.51078 16.8291C8.8898 18.3903 11.1102 18.3903 11.4892 16.8291C11.7341 15.8205 12.8896 15.3419 13.7758 15.8819C15.1478 16.7179 16.7179 15.1478 15.8819 13.7758C15.3419 12.8896 15.8205 11.7341 16.8291 11.4892C18.3903 11.1102 18.3903 8.8898 16.8291 8.51078C15.8205 8.26593 15.3419 7.11045 15.8819 6.22416C16.7179 4.85218 15.1478 3.28212 13.7758 4.11809C12.8896 4.65811 11.7341 4.17949 11.4892 3.17094ZM10 13C11.6569 13 13 11.6569 13 10C13 8.34315 11.6569 7 10 7C8.34315 7 7 8.34315 7 10C7 11.6569 8.34315 13 10 13Z"
-      fill="#111827"
-    ></path>
-  </svg>,
-];
+const dark = '#454545'
 
 const toggler = [
   <svg
@@ -199,23 +183,7 @@ const toggler = [
   </svg>,
 ];
 
-const setting = [
-  <svg
-    width="20"
-    height="20"
-    viewBox="0 0 20 20"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    key={0}
-  >
-    <path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M11.4892 3.17094C11.1102 1.60969 8.8898 1.60969 8.51078 3.17094C8.26594 4.17949 7.11045 4.65811 6.22416 4.11809C4.85218 3.28212 3.28212 4.85218 4.11809 6.22416C4.65811 7.11045 4.17949 8.26593 3.17094 8.51078C1.60969 8.8898 1.60969 11.1102 3.17094 11.4892C4.17949 11.7341 4.65811 12.8896 4.11809 13.7758C3.28212 15.1478 4.85218 16.7179 6.22417 15.8819C7.11045 15.3419 8.26594 15.8205 8.51078 16.8291C8.8898 18.3903 11.1102 18.3903 11.4892 16.8291C11.7341 15.8205 12.8896 15.3419 13.7758 15.8819C15.1478 16.7179 16.7179 15.1478 15.8819 13.7758C15.3419 12.8896 15.8205 11.7341 16.8291 11.4892C18.3903 11.1102 18.3903 8.8898 16.8291 8.51078C15.8205 8.26593 15.3419 7.11045 15.8819 6.22416C16.7179 4.85218 15.1478 3.28212 13.7758 4.11809C12.8896 4.65811 11.7341 4.17949 11.4892 3.17094ZM10 13C11.6569 13 13 11.6569 13 10C13 8.34315 11.6569 7 10 7C8.34315 7 7 8.34315 7 10C7 11.6569 8.34315 13 10 13Z"
-      fill="#111827"
-    ></path>
-  </svg>,
-];
+
 
 function Header({
   placement,
@@ -223,6 +191,8 @@ function Header({
   subName,
   onPress,
   handleSidenavColor,
+  handleBackgroundColor,
+
   handleSidenavType,
   handleFixedNavbar,
 }) {
@@ -257,17 +227,33 @@ function Header({
 
   return (
     <>
-      <div className="setting-drwer" onClick={showDrawer}>
-        {setting}
-      </div> 
+      <div  style={{color:context.sidenavColor}} className="setting-drwer" onClick={showDrawer}>
+    <  IoIosSettings/>
+      </div>
       <Row gutter={[24, 0]}>
         <Col span={24} md={6}>
           <Breadcrumb>
             <Breadcrumb.Item>
-              <NavLink to="/">Pages</NavLink>
+              <NavLink to="/">
+                {" "}
+                <span
+                  style={{
+                    color: context.backgroundColor === dark ? "white" : "",
+                  }}
+                >
+                  Pages
+                </span>
+              </NavLink>
             </Breadcrumb.Item>
             <Breadcrumb.Item style={{ textTransform: "capitalize" }}>
-              {name.replace("/", "")}
+              <span
+                style={{
+                  color: context.backgroundColor === dark ? "white" : "",
+                }}
+              >
+                {" "}
+                {name.replace("/", "")}
+              </span>
             </Breadcrumb.Item>
           </Breadcrumb>
           <div className="ant-page-header-heading">
@@ -275,14 +261,22 @@ function Header({
               className="ant-page-header-heading-title"
               style={{ textTransform: "capitalize" }}
             >
-              {subName.replace("/", "")}
+              <span
+                style={{
+                  color: context.backgroundColor === dark ? "white" : "",
+                }}
+              >
+                {" "}
+                {subName.replace("/", "")}
+              </span>
             </span>
           </div>
         </Col>
         <Col span={24} md={18} className="header-control">
-         
           <Button type="link" onClick={showDrawer}>
-            {logsetting}
+       
+
+     <IoSettingsOutline/>    
           </Button>
           <Button
             type="link"
@@ -291,143 +285,198 @@ function Header({
           >
             {toggler}
           </Button>
-          <Drawer
-            className="settings-drawer"
-            mask={true}
-            width={360}
-            onClose={hideDrawer}
-            placement={placement}
-            open={visible}
-          >
-            <div layout="vertical">
-              <div className="header-top">
-                <Title level={4}>
-                  Configuration
-                  <Text className="subtitle">See our dashboard options.</Text>
-                </Title>
-              </div>
-
-              <div className="sidebar-color">
-                <Title level={5}>Sidebar Color</Title>
-                <div className="theme-color mb-2">
-                  <ButtonContainer>
-                    <Button
-                      type="primary"
-                      onClick={() => handleSidenavColor("#1890ff")}
-                    >
-                      1
-                    </Button>
-                    <Button
-                      type="success"
-                      onClick={() => handleSidenavColor("#52c41a")}
-                    >
-                      1
-                    </Button>
-                    <Button
-                      type="danger"
-                      onClick={() => handleSidenavColor("#d9363e")}
-                    >
-                      1
-                    </Button>
-                    <Button
-                      type="yellow"
-                      onClick={() => handleSidenavColor("#fadb14")}
-                    >
-                      1
-                    </Button>
-
-                    <Button
-                      type="black"
-                      onClick={() => handleSidenavColor("#111")}
-                    >
-                      1
-                    </Button>
-                  </ButtonContainer>
+          <div>
+            <Drawer
+              className="settings-drawer"
+              mask={true}
+              width={360}
+              onClose={hideDrawer}
+              placement={placement}
+              open={visible}
+              bodyStyle={{ backgroundColor: context.backgroundColor }}
+              headerStyle={{ backgroundColor: context.backgroundColor }}
+            >
+              <div
+                layout="vertical"
+                style={{ backgroundColor: context.backgroundColor }}
+              >
+                <div className="header-top">
+                  <Title level={4} style={{color:context.backgroundColor===dark?'white':''}}>
+                    Configuration
+                    <Text className="subtitle">See our dashboard options.</Text>
+                  </Title>
                 </div>
 
-                <div className="sidebarnav-color mb-2">
-                  <Title level={5}>Sidenav Type</Title>
-                  <Text>Choose between 2 different sidenav types.</Text>
-                  <ButtonContainer className="trans">
-                    <Button
-                      type={sidenavType === "transparent" ? "primary" : "white"}
-                      onClick={() => {
-                        handleSidenavType("transparent");
-                        setSidenavType("transparent");
-                      }}
-                    >
-                      TRANSPARENT
-                    </Button>
-                    <Button
-                      type={sidenavType === "white" ? "primary" : "white"}
-                      onClick={() => {
-                        handleSidenavType("#fff");
-                        setSidenavType("white");
-                      }}
-                    >
-                      WHITE
-                    </Button>
-                  </ButtonContainer>
+                <div className="sidebar-color">
+                  <Title style={{color:context.backgroundColor===dark?'white':''}} level={5}> Color</Title>
+                  <div className="theme-color mb-2">
+                    <ButtonContainer>
+                      <Button
+                        type="primary"
+                        onClick={() => handleSidenavColor("#1890ff")}
+                      >
+                        1
+                      </Button>
+                      <Button
+                        type="success"
+                        onClick={() => handleSidenavColor("#52c41a")}
+                      >
+                        1
+                      </Button>
+                      <Button
+                        type="danger"
+                        onClick={() => handleSidenavColor("#d9363e")}
+                      >
+                        1
+                      </Button>
+                      <Button
+                        type="yellow"
+                        onClick={() => handleSidenavColor("#fadb14")}
+                      >
+                        1
+                      </Button>
+
+                      <Button
+                        type="black"
+                        onClick={() => handleSidenavColor(dark)}
+                      >
+                        1
+                      </Button>
+                      <Button
+                        type=""
+                        onClick={() => handleSidenavColor("#gray")}
+                      >
+                        1
+                      </Button>
+                    </ButtonContainer>
+                  </div>
+                  <Title style={{color:context.backgroundColor===dark?'white':''}} level={5}>background Color</Title>
+                  <div className="theme-color mb-2">
+                    <ButtonContainer>
+                      <Button
+                        type="primary"
+                        onClick={() => handleBackgroundColor("skyblue")}
+                      >
+                        1
+                      </Button>
+                      <Button
+                        type="success"
+                        onClick={() => handleBackgroundColor("#98FF98")}
+                      >
+                        1
+                      </Button>
+                      <Button
+                        type="danger"
+                        onClick={() => handleBackgroundColor("#FF9999")}
+                      >
+                        1
+                      </Button>
+                      <Button
+                        type="yellow"
+                        onClick={() => handleBackgroundColor("#fadb14")}
+                      >
+                        1
+                      </Button>
+                      <Button
+                        type="tra"
+                        onClick={() => handleBackgroundColor("transparent")}
+                      >
+                        1
+                      </Button>
+                      <Button
+                        type="black"
+                        onClick={() => handleBackgroundColor(dark)}
+                      >
+                        1
+                      </Button>
+                    </ButtonContainer>
+                  </div>
+
+                  <div className="sidebarnav-color mb-2">
+                    <Title style={{color:context.backgroundColor===dark?'white':''}} level={5}>Sidenav Type</Title>
+                    <Text>Choose between 2 different sidenav types.</Text>
+                    <ButtonContainer className="trans">
+                      <Button
+                        type={
+                          sidenavType === "transparent" ? "primary" : "white"
+                        }
+                        onClick={() => {
+                          handleSidenavType("transparent");
+                          setSidenavType("transparent");
+                        }}
+                      >
+                        TRANSPARENT
+                      </Button>
+                      <Button
+                        type={sidenavType === "white" ? "primary" : "white"}
+                        onClick={() => {
+                          handleSidenavType("#fff");
+                          setSidenavType("white");
+                        }}
+                      >
+                        WHITE
+                      </Button>
+                    </ButtonContainer>
+                  </div>
+
+                  <Row gutter>
+                    <Col xs={24} md={24} lg={24}>
+                      <div className="sideheaderlogo">
+                        <Text style={{color:context.backgroundColor===dark?'white':''}}>LOGO</Text>
+                        <div>
+                          <Upload
+                            showUploadList={false}
+                            beforeUpload={uploadLogo}
+                          >
+                            <Button style={{ width: "310px" }}>
+                              Click to Upload
+                            </Button>
+                          </Upload>
+                        </div>
+
+                        <div>
+                          <Form.Item
+                           
+                            name="hight"
+                            label=""
+                            style={{ marginTop: 15,color:context.backgroundColor===dark?'white':''}}
+                          >
+                            HEIGHT
+                            <Input
+                              style={{ width: "310px" }}
+                              placeholder="eg 40 (optional)"
+                            />
+                          </Form.Item>
+                        </div>
+                        <div>
+                          <Form.Item>
+                           <span  style={{color:context.backgroundColor===dark?'white':''}} > APP ICON </span>
+                            <Input
+                              style={{ width: "310px" }}
+                              value="{{app.application builder}}"
+                            />
+                          </Form.Item>
+                        </div>
+                      </div>
+                    </Col>
+                  </Row>
+
+                  <Row>
+                    <Col className="middle2" xs={24} md={24} lg={24}>
+                      <div className="themes">
+                        <small style={{color:context.backgroundColor===dark?'white':''}} >Themes</small>
+                      </div>
+
+                      <Button className="btnheaderGeg">Geg</Button>
+                      <Button className="btnheaderRed">Red</Button>
+                      <Button className="btnheaderGreen">Green</Button>
+                      <Button className="btnheaderSalmon">Salmon</Button>
+                    </Col>
+                  </Row>
                 </div>
-
-                <Row gutter>
-                  <Col xs={24} md={24} lg={24}>
-                    <div className="sideheaderlogo">
-                      <Text>LOGO</Text>
-                      <div>
-                        <Upload
-                          showUploadList={false}
-                          beforeUpload={uploadLogo}
-                        >
-                          <Button style={{ width: "310px" }}>
-                            Click to Upload
-                          </Button>
-                        </Upload>
-                      </div>
-
-                      <div>
-                        <Form.Item
-                          style={{
-                            marginTop: 15,
-                          }}
-                          name="hight"
-                          label=""
-                        >
-                          HEIGHT
-                          <Input
-                            style={{ width: "310px" }}
-                            placeholder="eg 40 (optional)"
-                          />
-                        </Form.Item>
-                      </div>
-                      <div>
-                        <Form.Item>
-                          APP ICON
-                          <Input
-                            style={{ width: "310px" }}
-                            value="{{app.application builder}}"
-                          />
-                        </Form.Item>
-                      </div>
-                    </div>
-                  </Col>
-                </Row>
-
-                <Row>
-                  <Col className="middle2" xs={24} md={24} lg={24}>
-                    <div className="themes">
-                      <small>Themes</small>
-                    </div>
-
-                    <Button className="btnheaderGeg">Geg</Button>
-                    <Button className="btnheaderRed">Red</Button>
-                    <Button className="btnheaderGreen">Green</Button>
-                    <Button className="btnheaderSalmon">Salmon</Button>
-                  </Col>
-                </Row>
               </div>
-            </div> 
-          </Drawer>
+            </Drawer>
+          </div>
         </Col>
       </Row>
     </>

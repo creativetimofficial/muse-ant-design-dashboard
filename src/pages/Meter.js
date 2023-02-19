@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DatePicker, Divider, Select } from "antd";
+import { Spin, Divider, Select } from "antd";
 import { Form, Input, Table } from "antd";
 import { Button, Row, Col, Modal } from "antd";
 import "reactjs-popup/dist/index.css";
@@ -18,6 +18,7 @@ const OPTIONS = ["Apples", "Nails", "Bananas", "Helicopters"];
 
 function Meter() {
   const [selectedItems, setSelectedItems] = useState([]);
+  const [isLoading,setIsLoading] = useState(false)
   const [form] = Form.useForm()
   const filteredOptions = OPTIONS.filter((o) => !selectedItems.includes(o));
 
@@ -146,11 +147,13 @@ function Meter() {
 
   let data = [];
   const getData = async () => {
+    setIsLoading(true)
     try {
       const resp = await getMeterList();
       console.log(resp)
       setPost(resp)
       setloading(false)
+      setIsLoading(false)
 
     } catch (error) {
     }
@@ -462,8 +465,9 @@ function Meter() {
             </Row>
           </Form.Item>
         </Form>
-
+  
       </Modal>
+<Spin spinning={isLoading}>
       <Table
         columns={columns}
         dataSource={data}
@@ -471,7 +475,8 @@ function Meter() {
         scroll={{
           x: 1000,
         }}
-      />
+        />
+        </Spin>
     </>
   );
 }

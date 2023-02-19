@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import { Card, Col, Row, Typography } from "antd";
 import { getWeatherInfoData } from "../../services/DashboardService";
-import { Item } from "devextreme-react/accordion";
+import { AppContext } from "../../App";
 
 function WeatherInfo() {
   const [weatherData, setWeatherData] = useState({});
-
+ const context = useContext(AppContext);
   const getData = async () => {
     try {
       const resp = await getWeatherInfoData();
@@ -53,7 +53,7 @@ function WeatherInfo() {
       today: "31.6°C",
       title: "Perth",
       dec: "Clear",
-      icon: <span className="iconText"> {clearNight} 21&#8451;</span>,
+      icon: <span style={{color:context.sidenavColor}} className="iconText"> {clearNight} 21&#8451;</span>,
       bnb: "bnb2",
       Pressure: "1014.6",
       Humidity: "10%",
@@ -137,13 +137,13 @@ function WeatherInfo() {
                   {day.map((d, index) => (
                     <Col className="days" xs={3} key={index}>
                       <Row justify="center">
-                        <div className="iconText"> {d.day} </div>
+                        <div style={{color:context.sidenavColor}}  className="iconText"> {d.day} </div>
                       </Row>
                       <div className="iconText">
                         <Row justify="center">
                           <s>{d.icon}</s>
                         </Row>
-                        <Row justify="center">{d.temp}</Row>
+                        <Row style={{color:context.sidenavColor}}  justify="center">{d.temp}</Row>
                       </div>
                     </Col>
                   ))}

@@ -8,7 +8,7 @@ function Sidenav({ color }) {
 
   const { pathname } = useLocation();
   const page = pathname.replace("/", "");
-
+  const dark = "#454545";
   const dashboard = [
     <svg
       width="20"
@@ -94,24 +94,6 @@ function Sidenav({ color }) {
     </svg>,
   ];
 
-  const profile = [
-    <svg
-      width="20"
-      height="20"
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      key={5}
-    >
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M18 10C18 14.4183 14.4183 18 10 18C5.58172 18 2 14.4183 2 10C2 5.58172 5.58172 2 10 2C14.4183 2 18 5.58172 18 10ZM12 7C12 8.10457 11.1046 9 10 9C8.89543 9 8 8.10457 8 7C8 5.89543 8.89543 5 10 5C11.1046 5 12 5.89543 12 7ZM9.99993 11C7.98239 11 6.24394 12.195 5.45374 13.9157C6.55403 15.192 8.18265 16 9.99998 16C11.8173 16 13.4459 15.1921 14.5462 13.9158C13.756 12.195 12.0175 11 9.99993 11Z"
-        fill={color}
-      ></path>
-    </svg>,
-  ];
-
   const signin = [
     <svg
       width="20"
@@ -130,25 +112,6 @@ function Sidenav({ color }) {
     </svg>,
   ];
 
-  const signup = [
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="14"
-      height="14"
-      viewBox="0 0 14 14"
-      key={7}
-    >
-      <path
-        d="M0,2A2,2,0,0,1,2,0H8a2,2,0,0,1,2,2V8a2,2,0,0,1-2,2H2A2,2,0,0,1,0,8Z"
-        transform="translate(4 4)"
-        fill={color}
-      />
-      <path
-        d="M2,0A2,2,0,0,0,0,2V8a2,2,0,0,0,2,2V4A2,2,0,0,1,4,2h6A2,2,0,0,0,8,0Z"
-        fill={color}
-      />
-    </svg>,
-  ];
   const config = [
     <svg xmlns="http://www.w3.org/2000/svg" height="22" width="22" key={8}>
       <path d="M9.562 13.688h.834l.25-1.063q.416-.104.719-.271.302-.166.552-.437l1.041.333.417-.75-.75-.708q.083-.354.104-.782.021-.427-.083-.781l.729-.687-.417-.75-1.02.312q-.25-.271-.563-.448-.313-.177-.729-.281l-.229-1.063h-.855l-.208 1.063q-.416.104-.729.281-.313.177-.563.448l-1.02-.333-.417.771.75.687q-.104.375-.104.781 0 .407.104.782l-.75.708.417.771 1.041-.354q.25.25.552.427.303.177.719.281ZM10 11.5q-.625 0-1.062-.438Q8.5 10.625 8.5 10t.438-1.062Q9.375 8.5 10 8.5t1.062.438q.438.437.438 1.062t-.438 1.062q-.437.438-1.062.438Zm-5.25 5.083q-.562 0-.948-.385-.385-.386-.385-.948V4.75q0-.562.385-.948.386-.385.948-.385h10.5q.562 0 .948.385.385.386.385.948v10.5q0 .562-.385.948-.386.385-.948.385Z" />
@@ -182,7 +145,21 @@ function Sidenav({ color }) {
             >
               {dashboard}
             </span>
-            <span className="label">Dashboard</span>
+
+            <span
+              style={{
+                color:
+                  (context.backgroundColor === dark) & (page === "dashboard")
+                    ? "black"
+                    : (context.backgroundColor === dark) &
+                      (page !== "dashboard")
+                    ? "white"
+                    : "black",
+              }}
+              className="label"
+            >
+              Dashboard
+            </span>
           </NavLink>
         </Menu.Item>
         <Menu.Item key="2">
@@ -195,7 +172,19 @@ function Sidenav({ color }) {
             >
               {sites}
             </span>
-            <span className="label">Sites</span>
+            <span
+              style={{
+                color:
+                  (context.backgroundColor === dark) & (page === "sites")
+                    ? "black"
+                    : (context.backgroundColor === dark) & (page !== "sites")
+                    ? "white"
+                    : "black",
+              }}
+              className="label"
+            >
+              Sites
+            </span>
           </NavLink>
         </Menu.Item>
         <Menu.Item key="3">
@@ -208,7 +197,19 @@ function Sidenav({ color }) {
             >
               {buildings}
             </span>
-            <span className="label">Buildings</span>
+            <span
+              style={{
+                color:
+                  (context.backgroundColor === dark) & (page === "building")
+                    ? "black"
+                    : (context.backgroundColor === dark) & (page !== "building")
+                    ? "white"
+                    : "black",
+              }}
+              className="label"
+            >
+              Buildings
+            </span>
           </NavLink>
         </Menu.Item>
         <Menu.Item key="4">
@@ -221,7 +222,21 @@ function Sidenav({ color }) {
             >
               {buildings}
             </span>
-            <span className="label">Building Performance</span>
+            <span
+              style={{
+                color:
+                  (context.backgroundColor === dark) &
+                  (page === "buildingPerformance")
+                    ? "black"
+                    : (context.backgroundColor === dark) &
+                      (page !== "buildingPerformance")
+                    ? "white"
+                    : "black",
+              }}
+              className="label"
+            >
+              Building Performance
+            </span>
           </NavLink>
         </Menu.Item>
         <Menu.Item key="5">
@@ -234,7 +249,19 @@ function Sidenav({ color }) {
             >
               {meter}
             </span>
-            <span className="label">Meter</span>
+            <span
+              style={{
+                color:
+                  (context.backgroundColor === dark) & (page === "meter")
+                    ? "black"
+                    : (context.backgroundColor === dark) & (page !== "meter")
+                    ? "white"
+                    : "black",
+              }}
+              className="label"
+            >
+              Meter
+            </span>
           </NavLink>
         </Menu.Item>
         <Menu.Item key="6">
@@ -247,7 +274,19 @@ function Sidenav({ color }) {
             >
               {alert}
             </span>
-            <span className="label">Alert</span>
+            <span
+              style={{
+                color:
+                  (context.backgroundColor === dark) & (page === "alert")
+                    ? "black"
+                    : (context.backgroundColor === dark) & (page !== "alert")
+                    ? "white"
+                    : "black",
+              }}
+              className="label"
+            >
+              Alert
+            </span>
           </NavLink>
         </Menu.Item>
 
@@ -261,7 +300,18 @@ function Sidenav({ color }) {
             >
               {report}
             </span>
-            <span className="label">Report</span>
+            <span
+              style={{
+                color:
+                  (context.backgroundColor === dark) & (page === "report")
+                    ? "black"
+                    : (context.backgroundColor === dark) & (page !== "report")
+                    ? "white"
+                    : "black",
+              }}
+            >
+              Report
+            </span>
           </NavLink>
         </Menu.Item>
 
@@ -272,7 +322,14 @@ function Sidenav({ color }) {
         <Menu.Item key="10">
           <NavLink to="/sign-in">
             <span className="icon">{signin}</span>
-            <span className="label">Sign In</span>
+            <span
+              style={{
+                color: context.backgroundColor === dark ? "white" : "black",
+              }}
+              className="label"
+            >
+              Sign In
+            </span>
           </NavLink>
         </Menu.Item>
         <Menu.Item key="11">
@@ -284,7 +341,14 @@ function Sidenav({ color }) {
         <Menu.Item key="12">
           <NavLink to="/config">
             <span className="icon">{config}</span>
-            <span className="label">Config</span>
+            <span
+              style={{
+                color: context.backgroundColor === dark ? "white" : "black",
+              }}
+              className="label"
+            >
+              Config
+            </span>
           </NavLink>
         </Menu.Item>
       </Menu>
