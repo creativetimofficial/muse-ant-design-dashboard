@@ -14,7 +14,7 @@ import ReactApexChart from "react-apexcharts";
 import { Row, Col, Typography } from "antd";
 import eChart from "./configs/eChart";
 
-function EChart() {
+const EChart: React.FC<EChartProps> = (props) => {
   const { Title, Paragraph } = Typography;
 
   const items = [
@@ -41,7 +41,6 @@ function EChart() {
       <div id="chart">
         <ReactApexChart
           className="bar-chart"
-          options={eChart.options}
           series={eChart.series}
           type="bar"
           height={220}
@@ -56,7 +55,7 @@ function EChart() {
           We have created multiple options for you to put together and customise
           into pixel perfect pages.
         </Paragraph>
-        <Row gutter>
+        <Row>
           {items.map((v, index) => (
             <Col xs={6} xl={6} sm={6} md={6} key={index}>
               <div className="chart-visitor-count">
@@ -69,6 +68,10 @@ function EChart() {
       </div>
     </>
   );
+}
+
+interface EChartProps {
+
 }
 
 export default EChart;

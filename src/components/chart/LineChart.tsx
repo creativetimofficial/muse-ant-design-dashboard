@@ -15,7 +15,7 @@ import { Typography } from "antd";
 import { MinusOutlined } from "@ant-design/icons";
 import lineChart from "./configs/lineChart";
 
-function LineChart() {
+const LineChart: React.FC<LineChartProps> = (props) => {
   const { Title, Paragraph } = Typography;
 
   return (
@@ -37,7 +37,6 @@ function LineChart() {
 
       <ReactApexChart
         className="full-width"
-        options={lineChart.options}
         series={lineChart.series}
         type="area"
         height={350}
@@ -45,6 +44,10 @@ function LineChart() {
       />
     </>
   );
+}
+
+interface LineChartProps {
+
 }
 
 export default LineChart;

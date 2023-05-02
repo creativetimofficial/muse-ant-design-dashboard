@@ -19,7 +19,8 @@ import Footer from "./Footer";
 
 const { Header: AntHeader, Content, Sider } = Layout;
 
-function Main({ children }) {
+const Main: React.FC<MainProps> = (props) => {
+  const { children } = props;
   const [visible, setVisible] = useState(false);
   const [placement, setPlacement] = useState("right");
   const [sidenavColor, setSidenavColor] = useState("#1890ff");
@@ -27,9 +28,9 @@ function Main({ children }) {
   const [fixed, setFixed] = useState(false);
 
   const openDrawer = () => setVisible(!visible);
-  const handleSidenavType = (type) => setSidenavType(type);
-  const handleSidenavColor = (color) => setSidenavColor(color);
-  const handleFixedNavbar = (type) => setFixed(type);
+  const handleSidenavType = (type: string) => setSidenavType(type);
+  const handleSidenavColor = (color: string) => setSidenavColor(color);
+  const handleFixedNavbar = (type: boolean) => setFixed(type);
 
   let { pathname } = useLocation();
   pathname = pathname.replace("/", "");
@@ -125,6 +126,10 @@ function Main({ children }) {
       </Layout>
     </Layout>
   );
+}
+
+interface MainProps {
+  children?: any
 }
 
 export default Main;

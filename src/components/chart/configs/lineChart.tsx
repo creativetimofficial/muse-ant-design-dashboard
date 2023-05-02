@@ -76,7 +76,7 @@ const lineChart = {
 
     tooltip: {
       y: {
-        formatter: function (val) {
+        formatter: function (val: any) {
           return val;
         },
       },
