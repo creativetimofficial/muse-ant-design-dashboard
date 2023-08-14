@@ -41,5 +41,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/AliJone/muse-ant-design-dashboard.git",
+  "author": "Ali Jone <62622409+AliJone@users.noreply.github.com>",
+  "license": "MIT"
 }
