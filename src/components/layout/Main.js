@@ -1,9 +1,9 @@
 /*!
   =========================================================
-  * Muse Ant Design Dashboard - v1.0.0
+  * Muse Ant Design Dashboard - v1.1.0
   =========================================================
   * Product Page: https://www.creative-tim.com/product/muse-ant-design-dashboard
-  * Copyright 2021 Creative Tim (https://www.creative-tim.com)
+  * Copyright 2023 Creative Tim (https://www.creative-tim.com)
   * Licensed under MIT (https://github.com/creativetimofficial/muse-ant-design-dashboard/blob/main/LICENSE.md)
   * Coded by Creative Tim
   =========================================================
@@ -40,6 +40,8 @@ function Main({ children }) {
     } else {
       setPlacement("right");
     }
+
+    return {};
   }, [pathname]);
 
   return (
@@ -53,7 +55,7 @@ function Main({ children }) {
         placement={placement === "right" ? "left" : "right"}
         closable={false}
         onClose={() => setVisible(false)}
-        visible={visible}
+        open={visible}
         key={placement === "right" ? "left" : "right"}
         width={250}
         className={`drawer-sidebar ${

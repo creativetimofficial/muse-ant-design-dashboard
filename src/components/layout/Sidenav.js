@@ -1,9 +1,9 @@
 /*!
   =========================================================
-  * Muse Ant Design Dashboard - v1.0.0
+  * Muse Ant Design Dashboard - v1.1.0
   =========================================================
   * Product Page: https://www.creative-tim.com/product/muse-ant-design-dashboard
-  * Copyright 2021 Creative Tim (https://www.creative-tim.com)
+  * Copyright 2023 Creative Tim (https://www.creative-tim.com)
   * Licensed under MIT (https://github.com/creativetimofficial/muse-ant-design-dashboard/blob/main/LICENSE.md)
   * Coded by Creative Tim
   =========================================================
@@ -160,6 +160,111 @@ function Sidenav({ color }) {
     </svg>,
   ];
 
+  const navItems = [
+    {
+      key: "dashboard",
+      label: (
+        <NavLink to="/dashboard">
+          <span
+            className="icon"
+            style={{
+              background: page === "dashboard" ? color : "",
+            }}
+          >
+            {dashboard}
+          </span>
+          <span className="label">Dashboard</span>
+        </NavLink>
+      ),
+    },
+    {
+      key: "tables",
+      label: (
+        <NavLink to="/tables">
+          <span
+            className="icon"
+            style={{
+              background: page === "tables" ? color : "",
+            }}
+          >
+            {tables}
+          </span>
+          <span className="label">Tables</span>
+        </NavLink>
+      ),
+    },
+    {
+      key: "billing",
+      label: (
+        <NavLink to="/billing">
+          <span
+            className="icon"
+            style={{
+              background: page === "billing" ? color : "",
+            }}
+          >
+            {billing}
+          </span>
+          <span className="label">Billing</span>
+        </NavLink>
+      ),
+    },
+    {
+      key: "rtl",
+      label: (
+        <NavLink to="/rtl">
+          <span
+            className="icon"
+            style={{
+              background: page === "rtl" ? color : "",
+            }}
+          >
+            {rtl}
+          </span>
+          <span className="label">RTL</span>
+        </NavLink>
+      ),
+    },
+    {
+      key: "account-pages",
+      label: "Account Pages",
+      className: "menu-item-header",
+    },
+    {
+      key: "profile",
+      label: (
+        <NavLink to="/profile">
+          <span
+            className="icon"
+            style={{
+              background: page === "profile" ? color : "",
+            }}
+          >
+            {profile}
+          </span>
+          <span className="label">Profile</span>
+        </NavLink>
+      ),
+    },
+    {
+      key: "sign-in",
+      label: (
+        <NavLink to="/sign-in">
+          <span className="icon">{signin}</span>
+          <span className="label">Sign In</span>
+        </NavLink>
+      ),
+    },
+    {
+      key: "sign-up",
+      label: (
+        <NavLink to="/sign-up">
+          <span className="icon">{signup}</span>
+          <span className="label">Sign Up</span>
+        </NavLink>
+      ),
+    },
+  ];
   return (
     <>
       <div className="brand">
@@ -167,88 +272,7 @@ function Sidenav({ color }) {
         <span>Muse Dashboard</span>
       </div>
       <hr />
-      <Menu theme="light" mode="inline">
-        <Menu.Item key="1">
-          <NavLink to="/dashboard">
-            <span
-              className="icon"
-              style={{
-                background: page === "dashboard" ? color : "",
-              }}
-            >
-              {dashboard}
-            </span>
-            <span className="label">Dashboard</span>
-          </NavLink>
-        </Menu.Item>
-        <Menu.Item key="2">
-          <NavLink to="/tables">
-            <span
-              className="icon"
-              style={{
-                background: page === "tables" ? color : "",
-              }}
-            >
-              {tables}
-            </span>
-            <span className="label">Tables</span>
-          </NavLink>
-        </Menu.Item>
-        <Menu.Item key="3">
-          <NavLink to="/billing">
-            <span
-              className="icon"
-              style={{
-                background: page === "billing" ? color : "",
-              }}
-            >
-              {billing}
-            </span>
-            <span className="label">Billing</span>
-          </NavLink>
-        </Menu.Item>
-        <Menu.Item key="4">
-          <NavLink to="/rtl">
-            <span
-              className="icon"
-              style={{
-                background: page === "rtl" ? color : "",
-              }}
-            >
-              {rtl}
-            </span>
-            <span className="label">RTL</span>
-          </NavLink>
-        </Menu.Item>
-        <Menu.Item className="menu-item-header" key="5">
-          Account Pages
-        </Menu.Item>
-        <Menu.Item key="6">
-          <NavLink to="/profile">
-            <span
-              className="icon"
-              style={{
-                background: page === "profile" ? color : "",
-              }}
-            >
-              {profile}
-            </span>
-            <span className="label">Profile</span>
-          </NavLink>
-        </Menu.Item>
-        <Menu.Item key="7">
-          <NavLink to="/sign-in">
-            <span className="icon">{signin}</span>
-            <span className="label">Sign In</span>
-          </NavLink>
-        </Menu.Item>
-        <Menu.Item key="8">
-          <NavLink to="/sign-up">
-            <span className="icon">{signup}</span>
-            <span className="label">Sign Up</span>
-          </NavLink>
-        </Menu.Item>
-      </Menu>
+      <Menu theme="light" mode="inline" items={navItems}></Menu>
       <div className="aside-footer">
         <div
           className="footer-box"
