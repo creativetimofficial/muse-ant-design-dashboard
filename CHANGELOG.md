@@ -1,3 +1,8 @@
+## [1.1.0] 2023-08-30
+
+- Update dependencies
+- Fix warnings
+
 ## [1.0.0] 2021-10-05
 
 ### Original Release
