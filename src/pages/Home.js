@@ -1,9 +1,9 @@
 /*!
   =========================================================
-  * Muse Ant Design Dashboard - v1.0.0
+  * Muse Ant Design Dashboard - v1.1.0
   =========================================================
   * Product Page: https://www.creative-tim.com/product/muse-ant-design-dashboard
-  * Copyright 2021 Creative Tim (https://www.creative-tim.com)
+  * Copyright 2023 Creative Tim (https://www.creative-tim.com)
   * Licensed under MIT (https://github.com/creativetimofficial/muse-ant-design-dashboard/blob/main/LICENSE.md)
   * Coded by Creative Tim
   =========================================================
@@ -52,6 +52,10 @@ function Home() {
   const onChange = (e) => console.log(`radio checked:${e.target.value}`);
 
   const [reverse, setReverse] = useState(false);
+
+  function reverseOrder() {
+    setReverse(!reverse);
+  }
 
   const dollor = [
     <svg
@@ -479,7 +483,7 @@ function Home() {
                 <Button
                   type="primary"
                   className="width-100"
-                  onClick={() => setReverse(!reverse)}
+                  onClick={reverseOrder}
                 >
                   {<MenuUnfoldOutlined />} REVERSE
                 </Button>

@@ -1,9 +1,9 @@
 /*!
   =========================================================
-  * Muse Ant Design Dashboard - v1.0.0
+  * Muse Ant Design Dashboard - v1.1.0
   =========================================================
   * Product Page: https://www.creative-tim.com/product/muse-ant-design-dashboard
-  * Copyright 2021 Creative Tim (https://www.creative-tim.com)
+  * Copyright 2023 Creative Tim (https://www.creative-tim.com)
   * Licensed under MIT (https://github.com/creativetimofficial/muse-ant-design-dashboard/blob/main/LICENSE.md)
   * Coded by Creative Tim
   =========================================================
@@ -287,7 +287,7 @@ function Header({
         </Col>
         <Col span={24} md={18} className="header-control">
           <Badge size="small" count={4}>
-            <Dropdown overlay={menu} trigger={["click"]}>
+            <Dropdown menu={menu} trigger={["click"]}>
               <a
                 href="#pablo"
                 className="ant-dropdown-link"
@@ -313,7 +313,7 @@ function Header({
             width={360}
             onClose={hideDrawer}
             placement={placement}
-            visible={visible}
+            open={visible}
           >
             <div layout="vertical">
               <div className="header-top">
