@@ -1,5 +1,6 @@
   
-import { useState } from "react";
+import { useState, useContext } from "react";
+import {UserContext} from "../context/UserContext";
 
 import {
   Card,
@@ -36,7 +37,9 @@ import team3 from "../assets/images/team-3.jpg";
 import team4 from "../assets/images/team-4.jpg";
 import card from "../assets/images/info-card-1.jpg";
 
-function Home() {
+function Dashboard() {
+  const {user} = useContext(UserContext);
+// console.log("usercontext ",user)
   const { Title, Text } = Typography;
 
   const onChange = (e) => console.log(`radio checked:${e.target.value}`);
@@ -548,4 +551,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Dashboard;
