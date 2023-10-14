@@ -1,15 +1,6 @@
-/*!
-  =========================================================
-  * Muse Ant Design Dashboard - v1.0.0
-  =========================================================
-  * Product Page: https://www.creative-tim.com/product/muse-ant-design-dashboard
-  * Copyright 2021 Creative Tim (https://www.creative-tim.com)
-  * Licensed under MIT (https://github.com/creativetimofficial/muse-ant-design-dashboard/blob/main/LICENSE.md)
-  * Coded by Creative Tim
-  =========================================================
-  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-import { useState } from "react";
+  
+import { useState, useContext } from "react";
+import {UserContext} from "../context/UserContext";
 
 import {
   Card,
@@ -46,7 +37,9 @@ import team3 from "../assets/images/team-3.jpg";
 import team4 from "../assets/images/team-4.jpg";
 import card from "../assets/images/info-card-1.jpg";
 
-function Home() {
+function Dashboard() {
+  const {user} = useContext(UserContext);
+// console.log("usercontext ",user)
   const { Title, Text } = Typography;
 
   const onChange = (e) => console.log(`radio checked:${e.target.value}`);
@@ -503,7 +496,7 @@ function Home() {
                   <div className="h-full col-content p-20">
                     <div className="ant-muse">
                       <Text>Built by developers</Text>
-                      <Title level={5}>Muse Dashboard for Ant Design</Title>
+                      <Title level={5}>Car Insurance for Ant Design</Title>
                       <Paragraph className="lastweek mb-36">
                         From colors, cards, typography to complex elements, you
                         will find the full documentation.
@@ -558,4 +551,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Dashboard;
