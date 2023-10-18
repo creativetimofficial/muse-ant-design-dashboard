@@ -184,7 +184,7 @@ function Sidenav({ color }) {
             <span className="label">Make</span>
           </NavLink>
         </Menu.Item>
-        <Menu.Item key="3">
+        {/* <Menu.Item key="3">
           <NavLink to="/modelTable">
             <span
               className="icon"
@@ -196,7 +196,7 @@ function Sidenav({ color }) {
             </span>
             <span className="label">Model</span>
           </NavLink>
-        </Menu.Item>
+        </Menu.Item> */}
         <Menu.Item key="4">
           <NavLink to="/users">
             <span
@@ -236,7 +236,7 @@ function Sidenav({ color }) {
             <span className="label">Roles</span>
           </NavLink>
         </Menu.Item>
-        <Menu.Item key="6">
+        {/* <Menu.Item key="6">
           <NavLink to="/rtl">
             <span
               className="icon"
@@ -248,8 +248,8 @@ function Sidenav({ color }) {
             </span>
             <span className="label">RTL</span>
           </NavLink>
-        </Menu.Item>
-        <Menu.Item className="menu-item-header" key="5">
+        </Menu.Item> */}
+        {/* <Menu.Item className="menu-item-header" key="5">
           Account Pages
         </Menu.Item>
         <Menu.Item key="7">
@@ -270,7 +270,7 @@ function Sidenav({ color }) {
             <span className="icon">{signin}</span>
             <span className="label">Sign In</span>
           </NavLink>
-        </Menu.Item>
+        </Menu.Item> */}
         {/* <Menu.Item key="9">
           <NavLink to="/sign-up">
             <span className="icon">{signup}</span>

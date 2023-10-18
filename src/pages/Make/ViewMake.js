@@ -48,14 +48,14 @@ const originalDataSource1 = [{
 //   canCreate: true,
 //   canView: true,
 // }
+const permissionsProblem = {
+  canEdit: true,
+  canDelete: true,
+  canAdd: true,
+  canView: true,
+}
 
-function ViewMake({permissions}) {
-  permissions = {
-    canEdit: true,
-    canDelete: true,
-    canCreate: true,
-    canView: true,
-  }
+function ViewMake({permissions = permissionsProblem}) {
   const [form] = Form.useForm();
   const [messageApi, contextHolder] = message.useMessage();
   const [editingKey, setEditingKey] = useState("");
@@ -101,7 +101,7 @@ function ViewMake({permissions}) {
 
 
   const edit = (record) => {
-    history.push(`/Editmake/${record.makeId}`);
+    history.push(`/edit-make/${record.makeId}`);
   };
 
   const onChangeTableFilter = (e) => {
@@ -140,7 +140,7 @@ function ViewMake({permissions}) {
   ].filter(Boolean);
 
   const handleAddUser = () => {
-    history.push('/AddMake'); // Redirects to /adduser
+    history.push('/add-make'); // Redirects to /adduser
   };
 
 
@@ -156,7 +156,7 @@ function ViewMake({permissions}) {
               title="Make Table"
               extra={
                 <>
-                  {permissions?.canCreate && <span style={{ marginRight: "20px" }}>
+                  {permissions?.canAdd && <span style={{ marginRight: "20px" }}>
                     <Button type="primary" onClick={handleAddUser}>
                       Add Make
                     </Button>

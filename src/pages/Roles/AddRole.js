@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { Form, Input, Button, message, Card, Row, Col, Checkbox, Space } from "antd";
-
+import { Form, Input, Button, message, Card, Row, Col, Checkbox, Space, Select } from "antd";
+import { getPermissionNames } from "../../apis/permissions";
 import { createRole, getRoleDetails, updateRole } from "../../apis/role";
+const { Option } = Select;
+
 
 const permissionOptions = [
     { label: 'Edit', value: 'canEdit' },
@@ -15,8 +17,12 @@ function AddRole({ isEditable = false }) {
     const [form] = Form.useForm();
     const history = useHistory();
     const { applicationRoleId } = useParams();
+    const [permissionNames, setPermissionNames] = useState([]);
 
     useEffect(() => {
+        getPermissionNames().then(response => {
+            setPermissionNames(response.data);
+        }); 
         if (isEditable && applicationRoleId) {
             getRoleDetails(applicationRoleId).then(response => {
                 console.log(response.data);
@@ -31,7 +37,6 @@ function AddRole({ isEditable = false }) {
                         ...(perm.canView ? ['canView'] : [])
                     ]
                 }));
-                
 
                 // Set form values
                 form.setFieldsValue({
@@ -49,48 +54,48 @@ function AddRole({ isEditable = false }) {
     const handleOk = () => {
         form.validateFields().then((values) => {
             // Convert permissions array back to booleans
-        values.permissions = values.permissions.map(perm => ({
-            ...perm,
-            canEdit: perm.permissions.includes('canEdit'),
-            canDelete: perm.permissions.includes('canDelete'),
-            canAdd: perm.permissions.includes('canAdd'),
-            canView: perm.permissions.includes('canView'),
-        }));
+            values.permissions = values.permissions.map(perm => ({
+                permissionName: perm.permissionName,
+                permissionId: permissionNames?.find(permission => permission.permissionName === perm.permissionName).permissionId,
+                canEdit: perm.permissions.includes('canEdit'),
+                canDelete: perm.permissions.includes('canDelete'),
+                canAdd: perm.permissions.includes('canAdd'),
+                canView: perm.permissions.includes('canView')
+            }));
 
-        // Remove the 'permissions' array from each item
-        values.permissions.forEach(perm => {
-            delete perm.permissions;
-        });
-        if (isEditable) {
-            updateRole(applicationRoleId, values).then((response) => {
-                if (!response.error) {
-                    message.success("Role updated successfully");
-                    history.push("/roles");
-                } else {
-                    message.error(response.data);
-                }
-            });
-        } else{
-            createRole(values).then((response) => {
-                if (!response.error) {
-                    message.success("Role added successfully");
-                    history.push("/roles");
-                } else {
-                    message.error(response.data);
-                }
-            });
-        }
-            
+            // Remove the 'permissions' array from each item
+            // values.permissions.forEach(perm => {
+            //     delete perm.permissions;
+            // });
+            if (isEditable) {
+                updateRole(applicationRoleId, values).then((response) => {
+                    if (!response.error) {
+                        message.success("Role updated successfully");
+                        history.push("/roles");
+                    } else {
+                        message.error(response.data);
+                    }
+                });
+            } else {
+                createRole(values).then((response) => {
+                    if (!response.error) {
+                        message.success("Role added successfully");
+                        history.push("/roles");
+                    } else {
+                        message.error(response.data);
+                    }
+                });
+            }
+
         });
     };
 
     return (
-        <div style={{ padding: '20px' }}>
-            <Card style={{ maxWidth: '800px', margin: '0 auto' }}>
-                <h2 style={{ textAlign: 'center' }}>Add New Role</h2>
+            <Card>
+                <h2 style={{ textAlign: 'center', fontWeight:"bolder" }}>{isEditable? "Edit Role": "Add New Role"}</h2>
                 <Form form={form} onFinish={handleOk} layout="vertical">
                     <Row gutter={16}>
-                        <Col xs={24} sm={24}>
+                        <Col xs={24} sm={12}>
                             <Form.Item
                                 name="roleName"
                                 label="Role Name"
@@ -99,6 +104,7 @@ function AddRole({ isEditable = false }) {
                                 <Input style={{ width: '100%' }} />
                             </Form.Item>
                         </Col>
+
                         {/* <Col xs={24} sm={12}>
                             <Form.Item
                                 name="applicationRoleId"
@@ -118,7 +124,7 @@ function AddRole({ isEditable = false }) {
                             <>
                                 {fields.map(field => (
                                     <Row key={field.key} gutter={16} align="middle">
-                                        <Col xs={24} sm={6}>
+                                        {/* <Col xs={24} sm={6}>
                                             <Form.Item
                                                 {...field}
                                                 name={[field.name, 'permissionName']}
@@ -128,8 +134,25 @@ function AddRole({ isEditable = false }) {
                                             >
                                                 <Input style={{ width: '100%' }} />
                                             </Form.Item>
+                                        </Col> */}
+                                        <Col xs={24} sm={12} md={12} >
+                                            <Form.Item
+                                                {...field}
+                                                name={[field.name, 'permissionName']}
+                                                fieldKey={[field.fieldKey, 'permissionName']}
+                                                label="Permission Name"
+                                                rules={[{ required: true, message: 'Permission name is required!' }]}
+                                            >
+                                                <Select style={{ width: '100%' }}>
+                                                    {permissionNames?.map(permission => (
+                                                        <Option key={permission.permissionId} value={permission.permissionName}>
+                                                            {permission.permissionName}
+                                                        </Option>
+                                                    ))}
+                                                </Select>
+                                            </Form.Item>
                                         </Col>
-                                        <Col xs={24} sm={6}>
+                                        {/* <Col xs={24} sm={6}>
                                             <Form.Item
                                                 {...field}
                                                 name={[field.name, 'permissionId']}
@@ -142,21 +165,22 @@ function AddRole({ isEditable = false }) {
                                             >
                                                 <Input style={{ width: '100%' }} />
                                             </Form.Item>
-                                        </Col>
-                                        <Col xs={24} sm={9}>
+                                        </Col> */}
+                                        <Col xs={24} sm={9} md={8}>
                                             <Form.Item
                                                 {...field}
                                                 name={[field.name, 'permissions']}
                                                 fieldKey={[field.fieldKey, 'permissions']}
                                             >
                                                 <Checkbox.Group
+                                                    style={{display: 'flex', justifyContent: 'space-around', marginTop: '1.5rem'}}
                                                     options={permissionOptions}
                                                     defaultValue={Object.keys(field).filter(key => field[key] === true)}
                                                 />
                                             </Form.Item>
                                         </Col>
 
-                                        <Col xs={24} sm={3}>
+                                        <Col xs={24} sm={3} md={4}>
                                             <Button type="dashed" onClick={() => remove(field.name)} style={{ width: '100%' }}>
                                                 Remove
                                             </Button>
@@ -173,14 +197,13 @@ function AddRole({ isEditable = false }) {
                         )}
                     </Form.List>
 
-                    <Form.Item style={{ textAlign: 'center' }}>
-                        <Button type="primary" htmlType="submit">
+                    <Form.Item style={{ textAlign: "end", paddingTop:"2rem" }}>
+                        <Button style={{width: "40%"}} type="primary" htmlType="submit">
                             Submit
                         </Button>
                     </Form.Item>
                 </Form>
             </Card>
-        </div>
     );
 }
 

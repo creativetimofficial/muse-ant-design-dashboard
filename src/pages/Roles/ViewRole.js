@@ -18,14 +18,15 @@ import {
   } from "antd";
 import { Link, useHistory } from "react-router-dom";
 import { getAllRoles } from "../../apis/role";
+const permissionsProblem = {
+  canEdit: true,
+  canDelete: true,
+  canAdd: true,
+  canView: true,
+}
 
-function ViewRole({permissions}) {
-    permissions = {
-        canEdit: true,
-        canDelete: true,
-        canCreate: true,
-        canView: true,
-      }
+function ViewRole({permissions = permissionsProblem}) {
+
   const [form] = Form.useForm();
     const [roles, setRoles] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -72,11 +73,11 @@ function ViewRole({permissions}) {
         });
     };
     const handleAddUser = () => {
-        history.push('/Addrole'); // Redirects to /adduser
+        history.push('/add-role'); // Redirects to /adduser
       };
     
     const edit = (record) => {
-        history.push(`/Editrole/${record.applicationUserId}`);
+        history.push(`/edit-role/${record.applicationRoleId}`);
       };
 
     
@@ -92,7 +93,7 @@ function ViewRole({permissions}) {
               title="Role Table"
               extra={
                 <>
-                  {permissions?.canCreate && <span style={{ marginRight: "20px" }}>
+                  {permissions?.canAdd && <span style={{ marginRight: "20px" }}>
                     <Button type="primary" onClick={handleAddUser}>
                       Add Role
                     </Button>

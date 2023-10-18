@@ -42,15 +42,16 @@ const originalDataSource1 = [{
   isActive: false,
 },]
 
+const permissionsProblem = {
+  canEdit: true,
+  canDelete: true,
+  canAdd: true,
+  canView: true,
+}
 
-
-function ViewUser({permissions}) {
-   permissions = {
-    canEdit: true,
-    canDelete: true,
-    canCreate: true,
-    canView: true,
-  }
+function ViewUser({permissions = permissionsProblem}) {
+  console.log("permissions", permissions);
+  
   const [form] = Form.useForm();
   const [messageApi, contextHolder] = message.useMessage();
   const [editingKey, setEditingKey] = useState("");
@@ -104,7 +105,7 @@ function ViewUser({permissions}) {
 
 
   const edit = (record) => {
-    history.push(`/Edituser/${record.applicationUserId}`);
+    history.push(`/edit-user/${record.applicationUserId}`);
   };
 
   const onChangeTableFilter = (e) => {
@@ -233,7 +234,7 @@ function ViewUser({permissions}) {
   ].filter(Boolean);
 
   const handleAddUser = () => {
-    history.push('/Adduser'); // Redirects to /adduser
+    history.push('/add-user'); // Redirects to /adduser
   };
 
 
@@ -249,7 +250,7 @@ function ViewUser({permissions}) {
               title="User Table"
               extra={
                 <>
-                  {permissions?.canCreate && <span style={{ marginRight: "20px" }}>
+                  {permissions?.canAdd && <span style={{ marginRight: "20px" }}>
                     <Button type="primary" onClick={handleAddUser}>
                       Add User
                     </Button>

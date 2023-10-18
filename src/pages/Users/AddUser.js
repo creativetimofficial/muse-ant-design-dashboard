@@ -53,9 +53,8 @@ function AddUser({ isEditable = false }) {
     };
 
     return (
-        <div style={{ padding: '20px' }}>
-            <Card style={{ maxWidth: '800px', margin: '0 auto' }}>
-                <h2 style={{ textAlign: 'center' }}>Add New User</h2>
+            <Card >
+                <h2 style={{ textAlign: 'center', fontWeight:"bolder" }}>{isEditable? "Edit User": "Add New User"}</h2>
                 <Form
                     form={form}
                     onFinish={handleOk}
@@ -107,14 +106,14 @@ function AddUser({ isEditable = false }) {
 
                     </Row>
                     {/* ... [continue with the rest of your Form.Items in a similar manner] */}
-                    <Form.Item style={{ textAlign: 'center' }}>
-                        <Button type="primary" htmlType="submit">
+                    <Form.Item style={{ textAlign: "end", paddingTop:"2rem" }}>
+                        <Button style={{width: "40%"}} type="primary" htmlType="submit">
                             Submit
                         </Button>
                     </Form.Item>
                 </Form>
             </Card>
-        </div>
+
     );
 }
 

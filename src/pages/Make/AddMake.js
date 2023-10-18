@@ -41,9 +41,8 @@ function AddMake({ isEditable = false }) {
     };
 
     return (
-        <div style={{ padding: '20px' }}>
-            <Card style={{ maxWidth: '800px', margin: '0 auto' }}>
-                <h2 style={{ textAlign: 'center' }}>Add New Make</h2>
+            <Card>
+                <h2 style={{ textAlign: 'center', fontWeight:"bolder" }}>{isEditable? "Edit Make": "Add New Make"}</h2>
                 <Form
                     form={form}
                     onFinish={handleOk}
@@ -62,14 +61,13 @@ function AddMake({ isEditable = false }) {
                             </Col>
                         ))}
                     </Row>
-                    <Form.Item style={{ textAlign: 'center' }}>
-                        <Button type="primary" htmlType="submit">
+                    <Form.Item style={{ textAlign: "end", paddingTop:"2rem" }}>
+                        <Button style={{width: "40%"}} type="primary" htmlType="submit">
                             Submit
                         </Button>
                     </Form.Item>
                 </Form>
             </Card>
-        </div>
     );
 }
 

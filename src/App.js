@@ -20,6 +20,8 @@ import ViewRole from "./pages/Roles/ViewRole";
 import AddRole from "./pages/Roles/AddRole";   
 import ViewMake from "./pages/Make/ViewMake";
 import AddMake from "./pages/Make/AddMake";
+import NotFoundPage from "./pages/Error/NotFoundPage";
+import UnAuthorized from "./pages/Error/UnAuthorized";
 
 function App() {
   return (
@@ -28,27 +30,28 @@ function App() {
         <Switch>
           <Route path="/sign-in" component={SignIn} />
           <Main>
-            <Route exact path="/dashboard" component={Dashboard} />
-            <Route exact path="/makeTable" component={MakeTable} />
-            <Route exact path="/modelTable" component={ModelTable} />
+          <Switch>
+            <ProtectedRoute exact path="/dashboard" Component={Dashboard} />
 
-            <Route exact path="/users" component={ViewUser} />
-            <Route exact path="/Addusers" component={AddUser} />
+            <ProtectedRoute exact path="/users" Component={ViewUser} page={"Users"}/>
+            <ProtectedRoute exact path="/add-users" Component={AddUser} page={"Users"}/>
             {/* <ProtectedRoute exact path="/users" Component={ViewUser} /> */}
             {/* <ProtectedRoute exact path="/Adduser" Component={AddUser} /> */}
-            <Route exact path="/Edituser/:applicationUserId" render={(props) => <AddUser {...props} isEditable={true} />} />
+            <ProtectedRoute exact path="/edit-user/:applicationUserId" page={"Users"}  Component={AddUser} isEditable={true} />
 
-            <ProtectedRoute exact path="/roles" Component={ViewRole} />
-            <ProtectedRoute exact path="/Addrole" Component={AddRole} />
-            <Route exact path="/Editrole/:applicationRoleId" render={(props) => <AddRole {...props} isEditable={true} />} />
+            <ProtectedRoute exact path="/roles" Component={ViewRole} page={"Roles"}/>
+            <ProtectedRoute exact path="/add-role" Component={AddRole} page={"Roles"}/>
+            <ProtectedRoute exact path="/edit-role/:applicationRoleId" page={"Roles"}  Component={AddRole} isEditable={true}  />
 
-            <ProtectedRoute exact path="/makes" Component={ViewMake} />
-            <ProtectedRoute exact path="/Addmake" Component={AddMake} />
-            <Route exact path="/Editmake/:makeId" render={(props) => <AddMake {...props} isEditable={true} />} />
+  
 
-            <Route exact path="/billing" component={Billing} />
-            <Route exact path="/rtl" component={Rtl} />
-            <Route exact path="/profile" component={Profile} />
+            <ProtectedRoute exact path="/makes" Component={ViewMake} page={"Makes"}/>
+            <ProtectedRoute exact path="/add-make" Component={AddMake} page={"Makes"} />
+            <ProtectedRoute exact path="/edit-make/:makeId" Component={AddMake} page={"Makes"} isEditable={true}  />
+
+            <ProtectedRoute exact path="/not-found-page" Component={NotFoundPage} />
+            <ProtectedRoute exact path="/un-authorized" Component={UnAuthorized} />
+            </Switch>
           </Main>
         </Switch>
       </UserProvider>

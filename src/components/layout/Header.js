@@ -28,6 +28,9 @@ import { NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
 import avtar from "../../assets/images/team-2.jpg";
 
+
+import Cookies from 'universal-cookie';
+
 const ButtonContainer = styled.div`
   .ant-btn-primary {
     background-color: #1890ff;
@@ -257,12 +260,17 @@ function Header({
 
   const showDrawer = () => setVisible(true);
   const hideDrawer = () => setVisible(false);
-
+  const handleLogout = () => {
+    
+    const cookies = new Cookies();
+    cookies.remove('token');
+    window.location.href = "/sign-in";
+  }
   return (
     <>
-      <div className="setting-drwer" onClick={showDrawer}>
+      {/* <div className="setting-drwer" onClick={showDrawer}>
         {setting}
-      </div>
+      </div> */}
       <Row gutter={[24, 0]}>
         <Col span={24} md={6}>
           <Breadcrumb>
@@ -270,7 +278,7 @@ function Header({
               <NavLink to="/">Pages</NavLink>
             </Breadcrumb.Item>
             <Breadcrumb.Item style={{ textTransform: "capitalize" }}>
-              {name.replace("/", "")}
+            {(subName.replace("/", " ")).replace("-", " ")}
             </Breadcrumb.Item>
           </Breadcrumb>
           <div className="ant-page-header-heading">
@@ -278,7 +286,7 @@ function Header({
               className="ant-page-header-heading-title"
               style={{ textTransform: "capitalize" }}
             >
-              {subName.replace("/", "")}
+              {(subName.replace("/", " ")).replace("-", " ")}
             </span>
           </div>
         </Col>
@@ -294,7 +302,7 @@ function Header({
               </a>
             </Dropdown>
           </Badge> */}
-          <Button type="link" onClick={showDrawer}>
+          {/* <Button type="link" onClick={showDrawer}>
             {logsetting}
           </Button>
           <Button
@@ -410,11 +418,13 @@ function Header({
                 </div>
               </div>
             </div>
-          </Drawer>
-          <Link to="/sign-in" className="btn-sign-in">
+          </Drawer> */}
+          <div onClick={() => {
+                        handleLogout();
+                      }} style={{cursor: "pointer"}} className="btn-sign-in" >
             {profile}
-            <span>Sign in</span>
-          </Link>
+            <span>Logout</span>
+          </div>
           {/* <Input
             className="header-search"
             placeholder="Type here..."

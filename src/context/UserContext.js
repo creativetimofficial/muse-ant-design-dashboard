@@ -5,15 +5,13 @@ export const UserContext = createContext();
 
 export default ({ children }) => {
   const [permission, setPermission] = useState("");
-  const [authenticated, setAuthenticated] = useState(false);
+  // const [authenticated, setAuthenticated] = useState(false);
 
   return (
     <UserContext.Provider
       value={{
         permission,
         setPermission,
-        authenticated,
-        setAuthenticated,
       }}
     >
       {children}
