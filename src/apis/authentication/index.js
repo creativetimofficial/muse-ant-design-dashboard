@@ -29,11 +29,13 @@ export const login = async (userData) => {
 //         return {error:true, status: error.response?.status, data: `Error checking permission: ${error}`};
 //     }
 // };
-export const checkPermission = async (permissionName) => {
+export const checkPermission = async (permissionName, history) => {
     try {
         const response = await apiClient.get(`/api/Account/Verify?permissionName=${permissionName}`);
         console.log(response);
         if (response?.status === 200) {
+            if(!response?.data?.canView)
+                return history.push("/un-authorized");
             return {error:false, data: response?.data};
         } else {
             return {error:true, status: response?.status, data:`Unexpected status code ${response?.status}`};

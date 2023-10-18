@@ -31,10 +31,11 @@ function App() {
           <Route path="/sign-in" component={SignIn} />
           <Main>
           <Switch>
+          <Redirect exact from="/" to="/dashboard" />
             <ProtectedRoute exact path="/dashboard" Component={Dashboard} />
 
             <ProtectedRoute exact path="/users" Component={ViewUser} page={"Users"}/>
-            <ProtectedRoute exact path="/add-users" Component={AddUser} page={"Users"}/>
+            <ProtectedRoute exact path="/add-users" Component={AddUser} page={"Users"} isEditable={false}/>
             {/* <ProtectedRoute exact path="/users" Component={ViewUser} /> */}
             {/* <ProtectedRoute exact path="/Adduser" Component={AddUser} /> */}
             <ProtectedRoute exact path="/edit-user/:applicationUserId" page={"Users"}  Component={AddUser} isEditable={true} />
@@ -51,8 +52,10 @@ function App() {
 
             <ProtectedRoute exact path="/not-found-page" Component={NotFoundPage} />
             <ProtectedRoute exact path="/un-authorized" Component={UnAuthorized} />
+            <Route component={NotFoundPage} />
             </Switch>
           </Main>
+            <Route component={NotFoundPage} />
         </Switch>
       </UserProvider>
     </div>

@@ -1,6 +1,6 @@
 // ProtectedRoute.js
 import React, { useContext, useEffect, useState } from 'react';
-import { Route, Redirect, useLocation } from "react-router-dom";
+import { Route, Redirect, useLocation,useHistory } from "react-router-dom";
 import { UserContext } from '../context/UserContext';
 import Cookies from 'universal-cookie';
 import { checkPermission } from '../apis/authentication';
@@ -9,32 +9,38 @@ import {
 } from "antd";
 import Main from '../components/layout/Main';
 
+
 export const ProtectedRoute = ({ Component: Component, isEditable = false, page = null, ...rest }) => {
+
   const cookies = new Cookies();
   const token = cookies.get('token');
   const { pathname } = useLocation();
   const [permission, setPermission] = useState(null);
   const [loading, setLoading] = useState(true);
+  const history = useHistory();
 
   useEffect(() => {
-    console.log("pathname", pathname);
-    console.log("rest.path", rest.path);
-    console.log("page", page);
-    console.log('token', token);
+    console.log("isEditable", isEditable);
+    setLoading(true);
     ReCheckAuth();
   }, [pathname]);
+  console.log("pathname", pathname);
+  console.log("rest.path", rest.path);
+  console.log("page", page);
+  console.log('token', token);
+  console.log('permission', permission);
   const ReCheckAuth = () => {
     if (page == null) return;
-    checkPermission(page).then((res) => {
+    checkPermission(page, history).then((res) => {
       setPermission(res);
       setLoading(false); // set loading to false once we have the response
 
     });
   };
 
-  // if (!token) {
-  //   return <Redirect exact to="/sign-in" state={{ from: pathname }} replace />;
-  // }
+  if (!token) {
+    return <Redirect exact to="/sign-in" state={{ from: pathname }} replace />;
+  }
 
   // if(page == null) return () => <Route {...rest} render={(props) => <Component isEditable exact {...props} />} />;
 
@@ -43,7 +49,6 @@ export const ProtectedRoute = ({ Component: Component, isEditable = false, page 
       <Spin size="large" />
     </div>;
   } else {
-
     return (
       <Route
         {...rest}
@@ -53,12 +58,13 @@ export const ProtectedRoute = ({ Component: Component, isEditable = false, page 
           }
           if(page != null && permission !=null){
             if (permission?.data?.canView) {
-              return <Component exact isEditable permissions={permission?.data} {...props} />;
-            } else {
-              setLoading(false);
-              setPermission({});
-              return <Redirect exact to="/un-authorized" state={{ from: pathname }} replace />;
+              return <Component exact isEditable={isEditable} permissions={permission?.data} {...props} />;
             }
+            //  else {
+            //   setLoading(false);
+            //   setPermission({});
+            //   return <Redirect exact to="/un-authorized" state={{ from: pathname }} replace />;
+            // }
           }
         }}
       />
