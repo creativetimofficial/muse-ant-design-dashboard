@@ -34,21 +34,21 @@ function App() {
           <Redirect exact from="/" to="/dashboard" />
             <ProtectedRoute exact path="/dashboard" Component={Dashboard} />
 
-            <ProtectedRoute exact path="/users" Component={ViewUser} page={"Users"}/>
-            <ProtectedRoute exact path="/add-users" Component={AddUser} page={"Users"} isEditable={false}/>
+            <ProtectedRoute exact path="/users" Component={ViewUser} page={"Users"} permissionType={'view'}/>
+            <ProtectedRoute exact path="/add-user" Component={AddUser} page={"Users"} isEditable={false} permissionType={'add'}/>
             {/* <ProtectedRoute exact path="/users" Component={ViewUser} /> */}
             {/* <ProtectedRoute exact path="/Adduser" Component={AddUser} /> */}
-            <ProtectedRoute exact path="/edit-user/:applicationUserId" page={"Users"}  Component={AddUser} isEditable={true} />
+            <ProtectedRoute exact path="/edit-user/:applicationUserId" page={"Users"}  Component={AddUser} isEditable={true} permissionType={'edit'}/>
 
-            <ProtectedRoute exact path="/roles" Component={ViewRole} page={"Roles"}/>
-            <ProtectedRoute exact path="/add-role" Component={AddRole} page={"Roles"}/>
-            <ProtectedRoute exact path="/edit-role/:applicationRoleId" page={"Roles"}  Component={AddRole} isEditable={true}  />
+            <ProtectedRoute exact path="/roles" Component={ViewRole} page={"Roles"} permissionType={'view'}/>
+            <ProtectedRoute exact path="/add-role" Component={AddRole} page={"Roles"} permissionType={'add'}/>
+            <ProtectedRoute exact path="/edit-role/:applicationRoleId" page={"Roles"}  Component={AddRole} isEditable={true} permissionType={'edit'}/>
 
   
 
-            <ProtectedRoute exact path="/makes" Component={ViewMake} page={"Makes"}/>
-            <ProtectedRoute exact path="/add-make" Component={AddMake} page={"Makes"} />
-            <ProtectedRoute exact path="/edit-make/:makeId" Component={AddMake} page={"Makes"} isEditable={true}  />
+            <ProtectedRoute exact path="/makes" Component={ViewMake} page={"Makes"} permissionType={'view'}/>
+            <ProtectedRoute exact path="/add-make" Component={AddMake} page={"Makes"} permissionType={'add'}/>
+            <ProtectedRoute exact path="/edit-make/:makeId" Component={AddMake} page={"Makes"} isEditable={true} permissionType={'edit'}/>
 
             <ProtectedRoute exact path="/not-found-page" Component={NotFoundPage} />
             <ProtectedRoute exact path="/un-authorized" Component={UnAuthorized} />

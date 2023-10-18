@@ -10,7 +10,7 @@ import {
 import Main from '../components/layout/Main';
 
 
-export const ProtectedRoute = ({ Component: Component, isEditable = false, page = null, ...rest }) => {
+export const ProtectedRoute = ({ Component: Component, isEditable = false, page = null,permissionType:permissionType, ...rest }) => {
 
   const cookies = new Cookies();
   const token = cookies.get('token');
@@ -31,7 +31,7 @@ export const ProtectedRoute = ({ Component: Component, isEditable = false, page 
   // console.log('permission', permission);
   const ReCheckAuth = () => {
     if (page == null) return;
-    checkPermission(page, history).then((res) => {
+    checkPermission(page, history, permissionType).then((res) => {
       setPermission(res);
       setLoading(false); // set loading to false once we have the response
 
@@ -57,7 +57,13 @@ export const ProtectedRoute = ({ Component: Component, isEditable = false, page 
             return <Component exact isEditable {...props} />;
           }
           if(page != null && permission !=null){
-            if (permission?.data?.canView) {
+            if(permissionType == 'add' && permission?.data?.canAdd){
+              return <Component exact isEditable={isEditable} permissions={permission?.data} {...props} />;
+            }
+            if (permissionType == 'view' && permission?.data?.canView) {
+              return <Component exact isEditable={isEditable} permissions={permission?.data} {...props} />;
+            }
+            if (permissionType == 'edit' && permission?.data?.canEdit) {
               return <Component exact isEditable={isEditable} permissions={permission?.data} {...props} />;
             }
             //  else {

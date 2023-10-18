@@ -234,7 +234,7 @@ function ViewUser({permissions = permissionsProblem}) {
   ].filter(Boolean);
 
   const handleAddUser = () => {
-    history.push('/add-users'); // Redirects to /adduser
+    history.push('/add-user'); // Redirects to /adduser
   };
 
 

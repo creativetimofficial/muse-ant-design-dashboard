@@ -29,13 +29,18 @@ export const login = async (userData) => {
 //         return {error:true, status: error.response?.status, data: `Error checking permission: ${error}`};
 //     }
 // };
-export const checkPermission = async (permissionName, history) => {
+export const checkPermission = async (permissionName, history, permissionType) => {
     try {
         const response = await apiClient.get(`/api/Account/Verify?permissionName=${permissionName}`);
         // console.log(response);
         if (response?.status === 200) {
-            if(!response?.data?.canView)
+            if(permissionType == 'view' && !response?.data?.canView)
                 return history.push("/un-authorized");
+            if(permissionType == 'add' && !response?.data?.canAdd)
+                return history.push("/un-authorized");
+            if(permissionType == 'edit' && !response?.data?.canEdit)
+                return history.push("/un-authorized");
+
             return {error:false, data: response?.data};
         } else {
             return {error:true, status: response?.status, data:`Unexpected status code ${response?.status}`};
