@@ -20,15 +20,15 @@ export const ProtectedRoute = ({ Component: Component, isEditable = false, page 
   const history = useHistory();
 
   useEffect(() => {
-    console.log("isEditable", isEditable);
+    // console.log("isEditable", isEditable);
     setLoading(true);
     ReCheckAuth();
   }, [pathname]);
-  console.log("pathname", pathname);
-  console.log("rest.path", rest.path);
-  console.log("page", page);
-  console.log('token', token);
-  console.log('permission', permission);
+  // console.log("pathname", pathname);
+  // console.log("rest.path", rest.path);
+  // console.log("page", page);
+  // console.log('token', token);
+  // console.log('permission', permission);
   const ReCheckAuth = () => {
     if (page == null) return;
     checkPermission(page, history).then((res) => {

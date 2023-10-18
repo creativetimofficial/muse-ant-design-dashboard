@@ -6,8 +6,8 @@ const usePermission = (page) => {
     
     const [permissions, setPermissions] = useState(null);
     const [loading, setLoading] = useState(!!page);
-    console.log('Checking permission for:', page);
-    console.log('Current permissions:', permissions);
+    // console.log('Checking permission for:', page);
+    // console.log('Current permissions:', permissions);
 
     useEffect(() => {
         if (!page || permissions[page]) return;

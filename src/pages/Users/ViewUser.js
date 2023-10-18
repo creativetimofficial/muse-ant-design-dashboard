@@ -50,7 +50,7 @@ const permissionsProblem = {
 }
 
 function ViewUser({permissions = permissionsProblem}) {
-  console.log("permissions", permissions);
+  // console.log("permissions", permissions);
   
   const [form] = Form.useForm();
   const [messageApi, contextHolder] = message.useMessage();
@@ -80,9 +80,9 @@ function ViewUser({permissions = permissionsProblem}) {
   const FetchData = async () => {
     setLoading(true)
     getAllUsers().then((response) => {
-      console.log(response);
+      // console.log(response);
       if (!response.error) {
-        console.log(response);
+        // console.log(response);
         setDataSource(response.data);
         setOriginalDataSource(response.data);
       } else {
@@ -247,7 +247,7 @@ function ViewUser({permissions = permissionsProblem}) {
             <Card
               bordered={false}
               className="criclebox tablespace mb-24"
-              title="User Table"
+              title="Users"
               extra={
                 <>
                   {permissions?.canAdd && <span style={{ marginRight: "20px" }}>

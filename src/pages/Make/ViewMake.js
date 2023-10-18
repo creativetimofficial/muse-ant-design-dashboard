@@ -83,9 +83,9 @@ function ViewMake({permissions = permissionsProblem}) {
   const FetchData = async () => {
     setLoading(true)
     getAllMakes().then((response) => {
-      console.log(response);
+      // console.log(response);
       if (!response.error) {
-        console.log(response);
+        // console.log(response);
         setDataSource(response.data);
         setOriginalDataSource(response.data);
       } else {
@@ -153,7 +153,7 @@ function ViewMake({permissions = permissionsProblem}) {
             <Card
               bordered={false}
               className="criclebox tablespace mb-24"
-              title="Make Table"
+              title="Makes"
               extra={
                 <>
                   {permissions?.canAdd && <span style={{ marginRight: "20px" }}>

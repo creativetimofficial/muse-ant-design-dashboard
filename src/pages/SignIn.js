@@ -25,7 +25,7 @@ import {
   GithubOutlined,
 } from "@ant-design/icons";
 function onChange(checked) {
-  console.log(`switch to ${checked}`);
+  // console.log(`switch to ${checked}`);
 }
 const { Title } = Typography;
 const { Header, Footer, Content } = Layout;
@@ -125,12 +125,12 @@ export default function SignIn(props) {
 
 
   const onFinish = (values) => {
-    console.log("Success:", values);
+    // console.log("Success:", values);
     setLoading(true)
     login(values).then((response) => {
-      console.log(response);
+      // console.log(response);
       if (!response.error) {
-        console.log(response);
+        // console.log(response);
         cookies.set('token', response.data.token, { path: '/'});
         props.history.push("/dashboard");
       } else {

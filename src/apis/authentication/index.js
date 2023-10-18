@@ -32,7 +32,7 @@ export const login = async (userData) => {
 export const checkPermission = async (permissionName, history) => {
     try {
         const response = await apiClient.get(`/api/Account/Verify?permissionName=${permissionName}`);
-        console.log(response);
+        // console.log(response);
         if (response?.status === 200) {
             if(!response?.data?.canView)
                 return history.push("/un-authorized");

@@ -29,7 +29,7 @@ export const createUser = async (userData) => {
       }
 };
 export const updateUser = async (applicationUserId, userData) => {
-    console.log("applicationUserId", applicationUserId)
+    // console.log("applicationUserId", applicationUserId)
     try {
         const response = await apiClient.put(`/api/Users/${applicationUserId}`,userData);  
         if (response?.status === 202) {

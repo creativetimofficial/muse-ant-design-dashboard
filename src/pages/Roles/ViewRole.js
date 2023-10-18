@@ -90,7 +90,7 @@ function ViewRole({permissions = permissionsProblem}) {
             <Card
               bordered={false}
               className="criclebox tablespace mb-24"
-              title="Role Table"
+              title="Roles"
               extra={
                 <>
                   {permissions?.canAdd && <span style={{ marginRight: "20px" }}>

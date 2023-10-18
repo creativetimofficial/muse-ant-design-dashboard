@@ -25,7 +25,7 @@ function AddRole({ isEditable = false }) {
         }); 
         if (isEditable && applicationRoleId) {
             getRoleDetails(applicationRoleId).then(response => {
-                console.log(response.data);
+                // console.log(response.data);
                 // Convert the applicationRolePermissions to the form's permissions format
                 const permissions = response.data.applicationRolePermissions.map(perm => ({
                     permissionName: perm.permissionName,
@@ -45,6 +45,7 @@ function AddRole({ isEditable = false }) {
                     permissions: permissions
                 });
             }).catch(err => {
+                setPermissionNames([]);
                 message.error("Failed to fetch role details");
             });
         }
