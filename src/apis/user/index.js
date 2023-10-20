@@ -58,3 +58,15 @@ export const getUserDetails = async (applicationUserId) => {
         return {error:true, data: `Error logging in: ${error}`}; 
     }
 };
+export const getUserPermissions = async () => {
+    try {
+        const response = await apiClient.get('/api/Users/Permissions');
+        if (response?.status === 200) {
+            return {error:false, data: response?.data}; 
+        } else {
+            return {error:true, data:`Unexpected status code ${response?.status}` }; 
+        }
+    } catch (error) {
+        return {error:true, data: `Error logging in: ${error}`}; 
+    }
+};

@@ -1,13 +1,42 @@
   
 
-// import { useState } from "react";
-import { Menu, Button } from "antd";
+import { useState, useEffect } from "react";
+import { Menu, Button,Spin,message } from "antd";
 import { NavLink, useLocation } from "react-router-dom";
+import { getUserPermissions } from "../../apis/user";
 import logo from "../../assets/images/logo.png";
+
 
 function Sidenav({ color }) {
   const { pathname } = useLocation();
+  const [messageApi, contextHolder] = message.useMessage();
   const page = pathname.replace("/", "");
+  const [loading, setLoading] = useState(true);
+  const [permissions, setPermissions] = useState([]);
+  const [error, setError] = useState(null);
+  const errors = (e) => {
+    messageApi.open({
+      type: 'error',
+      content: e,
+    });
+  };
+  useEffect(() => {
+    getUserPermissions().then((response) => {
+      if (response?.error) {
+        setError(response?.data);
+        errors(response?.data);
+      } else {
+        setPermissions(response?.data[0]?.permissions);
+      }
+      setLoading(false);
+    });
+  }, []);
+
+
+  // Check if user has permission based on permissionName and canView flag
+  const hasPermission = (permissionName) => {
+    return permissions.some(p => p.permissionName === permissionName && p.canView);
+  };
 
   const dashboard = [
     <svg
@@ -152,12 +181,14 @@ function Sidenav({ color }) {
 
   return (
     <>
+    {contextHolder}
       <div className="brand">
         <img src={logo} alt="" />
         <span>Car Insurance</span>
       </div>
       <hr />
-      <Menu theme="light" mode="inline">
+
+       <Menu theme="light" mode="inline">
         <Menu.Item key="1">
           <NavLink to="/dashboard">
             <span
@@ -171,33 +202,9 @@ function Sidenav({ color }) {
             <span className="label">Dashboard</span>
           </NavLink>
         </Menu.Item>
-        <Menu.Item key="2">
-          <NavLink to="/makes">
-            <span
-              className="icon"
-              style={{
-                background: page === "tables" ? color : "",
-              }}
-            >
-              {tables}
-            </span>
-            <span className="label">Make</span>
-          </NavLink>
-        </Menu.Item>
-        {/* <Menu.Item key="3">
-          <NavLink to="/modelTable">
-            <span
-              className="icon"
-              style={{
-                background: page === "tables" ? color : "",
-              }}
-            >
-              {tables}
-            </span>
-            <span className="label">Model</span>
-          </NavLink>
-        </Menu.Item> */}
-        <Menu.Item key="4">
+        {(loading || error) ? <Spin style={{margin:"15px auto auto",width:"100%"}} size="large" /> :<>
+
+         {hasPermission("Users") && <Menu.Item key="2">
           <NavLink to="/users">
             <span
               className="icon"
@@ -207,23 +214,11 @@ function Sidenav({ color }) {
             >
               {tables}
             </span>
-            <span className="label">Users</span>
+            <span className="label">User Management</span>
           </NavLink>
-        </Menu.Item>
-        {/* <Menu.Item key="5">
-          <NavLink to="/billing">
-            <span
-              className="icon"
-              style={{
-                background: page === "billing" ? color : "",
-              }}
-            >
-              {billing}
-            </span>
-            <span className="label">Billing</span>
-          </NavLink>
-        </Menu.Item> */}
-        <Menu.Item key="5">
+        </Menu.Item>}
+
+        {hasPermission("Roles") && <Menu.Item key="3">
           <NavLink to="/roles">
             <span
               className="icon"
@@ -231,53 +226,31 @@ function Sidenav({ color }) {
                 background: page === "roles" ? color : "",
               }}
             >
-              {billing}
+              {signin}
             </span>
-            <span className="label">Roles</span>
+            <span className="label">User Roles</span>
           </NavLink>
-        </Menu.Item>
-        {/* <Menu.Item key="6">
-          <NavLink to="/rtl">
+        </Menu.Item>}
+
+        {hasPermission("Makes") && <Menu.Item key="4">
+          <NavLink to="/makes">
             <span
               className="icon"
               style={{
-                background: page === "rtl" ? color : "",
+                background: page === "tables" ? color : "",
               }}
             >
               {rtl}
             </span>
-            <span className="label">RTL</span>
+            <span className="label">Make</span>
           </NavLink>
-        </Menu.Item> */}
-        {/* <Menu.Item className="menu-item-header" key="5">
-          Account Pages
-        </Menu.Item>
-        <Menu.Item key="7">
-          <NavLink to="/profile">
-            <span
-              className="icon"
-              style={{
-                background: page === "profile" ? color : "",
-              }}
-            >
-              {profile}
-            </span>
-            <span className="label">Profile</span>
-          </NavLink>
-        </Menu.Item>
-        <Menu.Item key="8">
-          <NavLink to="/sign-in">
-            <span className="icon">{signin}</span>
-            <span className="label">Sign In</span>
-          </NavLink>
-        </Menu.Item> */}
-        {/* <Menu.Item key="9">
-          <NavLink to="/sign-up">
-            <span className="icon">{signup}</span>
-            <span className="label">Sign Up</span>
-          </NavLink>
-        </Menu.Item> */}
+        </Menu.Item>}
+
+
+
+        </>}
       </Menu>
+      
     </>
   );
 }

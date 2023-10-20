@@ -21,7 +21,10 @@ function AddRole({ isEditable = false }) {
 
     useEffect(() => {
         getPermissionNames().then(response => {
-            setPermissionNames(response.data);
+            if( response.error) {
+                message.error(response.data);
+            }else
+                setPermissionNames(response.data);
         }); 
         if (isEditable && applicationRoleId) {
             getRoleDetails(applicationRoleId).then(response => {
@@ -45,7 +48,6 @@ function AddRole({ isEditable = false }) {
                     permissions: permissions
                 });
             }).catch(err => {
-                setPermissionNames([]);
                 message.error("Failed to fetch role details");
             });
         }
