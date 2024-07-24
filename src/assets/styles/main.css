@@ -404,7 +404,7 @@ body {
 }
 .layout-dashboard .ant-page-header-heading .ant-page-header-heading-title {
   font-weight: 700;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 20px;
   margin-top: 4px;
 }
@@ -970,6 +970,7 @@ button.ant-btn.bell strong {
   color: #fff;
   border-radius: 0.5rem;
   margin-left: auto;
+  margin-right: auto;
   line-height: 55px;
 }
 
