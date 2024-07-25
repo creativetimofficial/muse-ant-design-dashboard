@@ -13,6 +13,7 @@ Save weeks of time and build your perfect dashboard with this powerful template!
 - [Versions](#versions)
 - [Demo](#demo)
 - [Quick Start](#quick-start)
+- [Deploy](#deploy)
 - [Documentation](#documentation)
 - [File Structure](#file-structure)
 - [Browser Support](#browser-support)
@@ -47,6 +48,12 @@ Quick start options:
 
 1. Download and Install NodeJs LTS version from [NodeJs Official Page](https://nodejs.org/en/download/).
 2. Navigate to the root / directory and run npm install or (yarn install, if you're using yarn) to install our local dependencies.
+
+## Deploy
+
+:rocket: You can deploy your own version of the template to Genezio with one click:
+
+[![Deploy to Genezio](https://raw.githubusercontent.com/Genez-io/graphics/main/svg/deploy-button.svg)](https://app.genez.io/start/deploy?repository=https://github.com/creativetimofficial/muse-ant-design-dashboard&utm_source=github&utm_medium=referral&utm_campaign=github-creativetim&utm_term=deploy-project&utm_content=button-head)
 
 ## Documentation
 
